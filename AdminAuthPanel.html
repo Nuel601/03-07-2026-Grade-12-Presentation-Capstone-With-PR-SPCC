@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create · Admin | Barangay 118</title>
+    <link rel="shortcut icon" type="image/png" href="Logo-Favicon-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="AdminAuthPanel.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo" onclick="location.reload()">
+                    <div class="logo-icon"><i class="fas fa-cogs"></i></div>
+                    <div class="logo-text"><h1>BARANGAY 118 ADMIN PANEL</h1><p>Registration Control Center</p></div>
+                </div>
+                <div class="nav-links">
+                    <a href="PanelAdmin.html">Dashboard</a>
+                    <a href="AboutUsAdmin.html">AboutUs</a>
+                    <a href="NewsAdmin.html">News</a>
+                    <a href="EmergencyAdmin.html">Emergency</a>
+                    <a href="AdminAuthPanel.html" class="active">Create</a>
+                    <a href="AdminLogInControl.html">Access Control</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ADMIN PANEL -->
+    <div class="admin-panel">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-header"><h2 class="sidebar-title"><i class="fas fa-cogs"></i> Control Center</h2></div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active" data-tab="dashboard"><span class="sidebar-icon"><i class="fas fa-tachometer-alt"></i></span> Dashboard</a></li>
+                <li><a href="#" data-tab="registrations"><span class="sidebar-icon"><i class="fas fa-users-cog"></i></span> Registrations</a></li>
+                <li><a href="#" data-tab="all-registrations"><span class="sidebar-icon"><i class="fas fa-list-alt"></i></span> All Registrations</a></li>
+                <li><a href="#" data-tab="create-manual"><span class="sidebar-icon"><i class="fas fa-user-plus"></i></span> Create Manual</a></li>
+                <li><a href="#" data-tab="admin-management"><span class="sidebar-icon"><i class="fas fa-user-shield"></i></span> Admin Management</a></li>
+                <li><a href="#" data-tab="create-hero"><span class="sidebar-icon"><i class="fas fa-pen"></i></span> Create Hero</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="LogIn.html" class="sidebar-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="admin-content" id="admin-content">
+            <!-- DASHBOARD TAB -->
+            <div id="dashboard" class="tab-content active">
+                <div class="admin-section">
+                    <h2 class="section-title"><i class="fas fa-tachometer-alt"></i> Dashboard Overview</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card"><div class="stat-value" id="system-status">Online</div><div class="stat-label">System Status</div></div>
+                        <div class="stat-card"><div class="stat-value" id="total-registrations">0</div><div class="stat-label">Total Registrations</div></div>
+                        <div class="stat-card"><div class="stat-value" id="total-pending">0</div><div class="stat-label">Pending</div></div>
+                        <div class="stat-card"><div class="stat-value" id="total-approved">0</div><div class="stat-label">Approved</div></div>
+                        <div class="stat-card"><div class="stat-value" id="total-rejected">0</div><div class="stat-label">Rejected</div></div>
+                        <div class="stat-card"><div class="stat-value" id="total-manual">0</div><div class="stat-label">Manual Accounts</div></div>
+                        <div class="stat-card"><div class="stat-value" id="data-size">0 KB</div><div class="stat-label">Data Size</div></div>
+                        <div class="stat-card"><div class="stat-value" id="last-updated">Never</div><div class="stat-label">Last Updated</div></div>
+                    </div>
+                    <div class="alert alert-success"><strong><i class="fas fa-check-circle"></i> System Ready!</strong> Manage registrations under <code>05_adminRegistration/0A_AdminRequests</code>.</div>
+                    <h3>Quick Actions</h3>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" id="preview-site-btn"><i class="fas fa-external-link-alt"></i> Preview Create Page</button>
+                        <button class="btn btn-secondary" id="export-data-btn"><i class="fas fa-download"></i> Export Registrations</button>
+                        <button class="btn btn-success" id="backup-data-btn"><i class="fas fa-database"></i> Backup</button>
+                        <button class="btn btn-warning" id="refresh-btn"><i class="fas fa-sync"></i> Refresh</button>
+                        <button class="btn btn-danger" id="clear-all-btn"><i class="fas fa-trash"></i> Clear All Data</button>
+                    </div>
+                </div>
+                <div class="admin-section"><h2 class="section-title"><i class="fas fa-history"></i> Recent Activity</h2><div id="recent-activity"><p style="color:var(--gray);text-align:center;"><i class="fas fa-clock"></i> Activity log...</p></div></div>
+                <div class="quick-guide-center"><div class="quick-guide-header"><h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2></div><div id="dashboard-guide" class="guide-section"><h4>Registration Admin</h4><p>Manage user registrations, approve/reject, create manual accounts, and edit hero text for CreateAnAccount page.</p><ul><li>Data stored under <code>05_adminRegistration/0A_AdminRequests</code></li><li>Hero content under <code>05_adminRegistration/0E_hero</code></li></ul></div></div>
+            </div>
+
+            <!-- REGISTRATIONS TAB (with sub-tabs) -->
+            <div id="registrations" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header"><h2 class="section-title"><i class="fas fa-users-cog"></i> Registration Management</h2><a href="CreateAnAccount.html" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> View Public Form</a></div>
+                    <div class="tabs">
+                        <div class="tab active" data-reg-tab="pending"><i class="fas fa-hourglass-half"></i> Pending</div>
+                        <div class="tab" data-reg-tab="approved"><i class="fas fa-check-circle"></i> Approved</div>
+                        <div class="tab" data-reg-tab="rejected"><i class="fas fa-times-circle"></i> Rejected</div>
+                        <div class="search-container"><input type="text" class="search-bar" id="reg-search" placeholder="Search..."><i class="fas fa-search search-icon"></i></div>
+                    </div>
+                    <!-- Pending sub-tab -->
+                    <div id="reg-pending" class="sub-tab-content active">
+                        <table class="data-table"><thead><tr><th>Control No.</th><th>Name</th><th>Email</th><th>Submitted</th><th>Actions</th></tr></thead><tbody id="pending-table-body"></tbody></table>
+                    </div>
+                    <!-- Approved sub-tab -->
+                    <div id="reg-approved" class="sub-tab-content">
+                        <table class="data-table"><thead><tr><th>Control No.</th><th>Name</th><th>Email</th><th>Approved</th><th>Actions</th></tr></thead><tbody id="approved-table-body"></tbody></table>
+                    </div>
+                    <!-- Rejected sub-tab -->
+                    <div id="reg-rejected" class="sub-tab-content">
+                        <table class="data-table"><thead><tr><th>Control No.</th><th>Name</th><th>Email</th><th>Rejected</th><th>Reason</th><th>Actions</th></tr></thead><tbody id="rejected-table-body"></tbody></table>
+                    </div>
+                </div>
+                <div class="quick-guide-center"><div class="guide-section"><h4>Registrations</h4><p>Review, approve, or reject applications. Click "View" for full details including uploaded images.</p></div></div>
+            </div>
+
+            <!-- ALL REGISTRATIONS TAB -->
+            <div id="all-registrations" class="tab-content">
+                <div class="admin-section">
+                    <h2 class="section-title"><i class="fas fa-list-alt"></i> All Registrations</h2>
+                    <div class="search-container"><input type="text" class="search-bar" id="all-search" placeholder="Search all..."><i class="fas fa-search search-icon"></i></div>
+                    <table class="data-table"><thead><tr><th>Control No.</th><th>Name</th><th>Email</th><th>Date</th><th>Status</th><th>Type</th><th>Actions</th></tr></thead><tbody id="all-table-body"></tbody></table>
+                </div>
+            </div>
+
+            <!-- CREATE MANUAL ACCOUNT TAB -->
+            <div id="create-manual" class="tab-content">
+                <div class="admin-section">
+                    <h2 class="section-title"><i class="fas fa-user-plus"></i> Create Account Manually</h2>
+                    <form id="manual-form">
+                        <div class="form-row"><div class="form-group"><label class="form-label">Last Name *</label><input type="text" class="form-control" id="manual-lastname" required></div><div class="form-group"><label class="form-label">First Name *</label><input type="text" class="form-control" id="manual-firstname" required></div></div>
+                        <div class="form-group"><label class="form-label">Middle Name</label><input type="text" class="form-control" id="manual-middlename"></div>
+                        <div class="form-row"><div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-control" id="manual-email" required></div><div class="form-group"><label class="form-label">Phone</label><input type="text" class="form-control" id="manual-phone"></div></div>
+                        <div class="form-row"><div class="form-group"><label class="form-label">Password *</label><input type="password" class="form-control" id="manual-password" required minlength="6"></div><div class="form-group"><label class="form-label">Confirm *</label><input type="password" class="form-control" id="manual-confirm" required></div></div>
+                        <div class="form-group"><label class="form-label">Address *</label><textarea class="form-control" id="manual-address" required></textarea></div>
+                        <div class="form-row"><div class="form-group"><label class="form-label">Date of Birth *</label><input type="date" class="form-control" id="manual-dob" required></div><div class="form-group"><label class="form-label">Gender *</label><select class="form-control" id="manual-gender" required><option value="">Select</option><option value="male">Male</option><option value="female">Female</option></select></div></div>
+                        <div class="form-group"><label class="form-label">Reason (admin notes)</label><textarea class="form-control" id="manual-reason"></textarea></div>
+                        <div class="action-buttons-container"><button type="submit" class="btn btn-success"><i class="fas fa-user-plus"></i> Create & Approve</button><button type="reset" class="btn btn-secondary">Reset</button></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ADMIN MANAGEMENT TAB (simple placeholder) -->
+            <div id="admin-management" class="tab-content">
+                <div class="admin-section">
+                    <h2 class="section-title"><i class="fas fa-user-shield"></i> Admin Management</h2>
+                    <p>Simple admin list (extend as needed).</p>
+                    <table class="data-table"><thead><tr><th>ID</th><th>Email</th><th>Role</th></tr></thead><tbody id="admin-table-body"><tr><td colspan="3" style="text-align:center;">No admin data yet.</td></tr></tbody></table>
+                </div>
+            </div>
+
+            <!-- CREATE HERO TAB (edit hero for CreateAnAccount page) -->
+            <div id="create-hero" class="tab-content">
+                <div class="admin-section">
+                    <h2 class="section-title"><i class="fas fa-pen"></i> Create Account Hero</h2>
+                    <form id="hero-form">
+                        <div class="form-group"><label class="form-label">Hero Title</label><input type="text" class="form-control" id="hero-title" placeholder="e.g. Create an Account"></div>
+                        <div class="form-group"><label class="form-label">Hero Description</label><textarea class="form-control" id="hero-description" placeholder="e.g. Register in minutes..."></textarea></div>
+                        <div class="action-buttons-container"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Update Hero</button><button type="button" class="btn btn-warning" id="hero-reset">Reset to Default</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL for viewing registration details -->
+    <div class="edit-modal" id="reg-modal">
+        <div class="modal-content">
+            <div class="modal-header"><h2 class="modal-title">Registration Details</h2><button class="close-modal" id="close-modal">&times;</button></div>
+            <div id="modal-body" class="modal-body"></div>
+            <div class="modal-footer" id="modal-footer-actions"></div>
+        </div>
+    </div>
+
+    <!-- Full image viewer -->
+    <div class="full-image-modal" id="full-image-modal">
+        <img id="full-image" src="" alt="Full size">
+        <button class="close-modal" id="close-full-modal" style="position:absolute; top:20px; right:30px; background:none; border:none; color:white; font-size:40px;">&times;</button>
+    </div>
+
+    <!-- SAVE STATUS -->
+    <div id="save-status" class="save-status">• Ready</div>
+
+    <!-- FIREBASE SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+    <script>
+        (function() {
+const firebaseConfig = {
+  apiKey: "AIzaSyADUN3zUupPLgB8Z0p_867XUK7FYKCkwoU",
+  authDomain: "barangay118-test-website.firebaseapp.com",
+  databaseURL: "https://barangay118-test-website-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "barangay118-test-website",
+  storageBucket: "barangay118-test-website.firebasestorage.app",
+  messagingSenderId: "459463926150",
+  appId: "1:459463926150:web:e66bc57f5e29c2dca24c07",
+  measurementId: "G-RQ8JYYJ1G7"
+};
+            let db = null;
+            try {
+                if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+                db = firebase.database();
+                console.log("Firebase connected (AdminAuthPanel)");
+            } catch (e) { console.error("Firebase init error", e); }
+
+            class RegistrationAdminPanel {
+                constructor() {
+                    this.registrations = {};  
+                    this.unsubscribe = null;
+                    this.activityLog = [];
+                    this.currentModalKey = null;
+                    this.lastUpdated = new Date();
+                    this.init();
+                }
+
+                init() {
+                    this.setupFirebaseListener();
+                    this.setupEventListeners();
+                    this.switchTab('dashboard');
+                    this.updateSaveStatus('• Connected');
+                }
+
+                setupFirebaseListener() {
+                    if (!db) return;
+                    const regRef = db.ref('05_adminRegistration/0A_AdminRequests');
+                    this.unsubscribe = regRef.on('value', (snap) => {
+                        this.registrations = snap.val() || {};
+                        this.lastUpdated = new Date();
+                        this.updateDashboard();
+                        this.renderAllTables();
+                        this.logActivity('Registrations synced from Firebase', 'info');
+                    });
+                }
+
+                updateDashboard() {
+                    const list = Object.values(this.registrations);
+                    const pending = list.filter(r => r.status === 'pending').length;
+                    const approved = list.filter(r => r.status === 'approved').length;
+                    const rejected = list.filter(r => r.status === 'rejected').length;
+                    const manual = list.filter(r => r.manualCreation === true).length;
+                    document.getElementById('total-registrations').textContent = list.length;
+                    document.getElementById('total-pending').textContent = pending;
+                    document.getElementById('total-approved').textContent = approved;
+                    document.getElementById('total-rejected').textContent = rejected;
+                    document.getElementById('total-manual').textContent = manual;
+                    document.getElementById('last-updated').textContent = this.lastUpdated.toLocaleDateString('en-US');
+                    const size = JSON.stringify(this.registrations).length;
+                    document.getElementById('data-size').textContent = (size/1024).toFixed(1) + ' KB';
+                }
+
+                renderAllTables() {
+                    this.renderPendingTable();
+                    this.renderApprovedTable();
+                    this.renderRejectedTable();
+                    this.renderAllTable();
+                }
+
+                renderPendingTable() {
+                    const tbody = document.getElementById('pending-table-body');
+                    if (!tbody) return;
+                    const pendings = Object.entries(this.registrations).filter(([k,v]) => v.status === 'pending');
+                    if (!pendings.length) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No pending registrations</td></tr>'; return; }
+                    tbody.innerHTML = pendings.map(([key,reg]) => {
+                        const name = reg.personalInfo?.lastName + ', ' + reg.personalInfo?.firstName || 'N/A';
+                        return `<tr><td>${reg.controlNumber || key.slice(0,8)}</td><td>${name}</td><td>${reg.accountInfo?.email || ''}</td><td>${reg.submittedAt || ''}</td><td><button class="btn btn-primary btn-sm view-reg" data-key="${key}"><i class="fas fa-eye"></i> View</button></td></tr>`;
+                    }).join('');
+                }
+
+                renderApprovedTable() {
+                    const tbody = document.getElementById('approved-table-body');
+                    if (!tbody) return;
+                    const approved = Object.entries(this.registrations).filter(([k,v]) => v.status === 'approved');
+                    tbody.innerHTML = approved.length ? approved.map(([key,reg]) => {
+                        const name = reg.personalInfo?.lastName + ', ' + reg.personalInfo?.firstName || 'N/A';
+                        return `<tr><td>${reg.controlNumber || key.slice(0,8)}</td><td>${name}</td><td>${reg.accountInfo?.email || ''}</td><td>${reg.approvedAt || ''}</td><td><button class="btn btn-primary btn-sm view-reg" data-key="${key}"><i class="fas fa-eye"></i> View</button></td></tr>`;
+                    }).join('') : '<tr><td colspan="5" style="text-align:center;">No approved registrations</td></tr>';
+                }
+
+                renderRejectedTable() {
+                    const tbody = document.getElementById('rejected-table-body');
+                    if (!tbody) return;
+                    const rejected = Object.entries(this.registrations).filter(([k,v]) => v.status === 'rejected');
+                    tbody.innerHTML = rejected.length ? rejected.map(([key,reg]) => {
+                        const name = reg.personalInfo?.lastName + ', ' + reg.personalInfo?.firstName || 'N/A';
+                        return `<tr><td>${reg.controlNumber || key.slice(0,8)}</td><td>${name}</td><td>${reg.accountInfo?.email || ''}</td><td>${reg.rejectedAt || ''}</td><td>${reg.rejectionReason || ''}</td><td><button class="btn btn-primary btn-sm view-reg" data-key="${key}"><i class="fas fa-eye"></i> View</button></td></tr>`;
+                    }).join('') : '<tr><td colspan="6" style="text-align:center;">No rejected registrations</td></tr>';
+                }
+
+                renderAllTable() {
+                    const tbody = document.getElementById('all-table-body');
+                    if (!tbody) return;
+                    const all = Object.entries(this.registrations);
+                    tbody.innerHTML = all.length ? all.map(([key,reg]) => {
+                        const name = reg.personalInfo?.lastName + ', ' + reg.personalInfo?.firstName || 'N/A';
+                        const statusClass = reg.status === 'pending' ? 'status-pending' : (reg.status === 'approved' ? 'status-approved' : 'status-rejected');
+                        return `<tr><td>${reg.controlNumber || key.slice(0,8)}</td><td>${name}</td><td>${reg.accountInfo?.email || ''}</td><td>${reg.submittedAt || ''}</td><td><span class="status-badge ${statusClass}">${reg.status}</span></td><td>${reg.manualCreation ? 'Manual' : 'Online'}</td><td><button class="btn btn-primary btn-sm view-reg" data-key="${key}"><i class="fas fa-eye"></i> View</button></td></tr>`;
+                    }).join('') : '<tr><td colspan="7" style="text-align:center;">No registrations</td></tr>';
+                }
+
+                viewRegistration(key) {
+                    const reg = this.registrations[key];
+                    if (!reg) return;
+                    this.currentModalKey = key;
+                    const modal = document.getElementById('reg-modal');
+                    const body = document.getElementById('modal-body');
+                    const footer = document.getElementById('modal-footer-actions');
+                    
+                    let html = '<div class="feedback-detail-item"><span class="feedback-detail-label">Control No.</span><div class="feedback-detail-value">'+(reg.controlNumber||key)+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Full Name</span><div class="feedback-detail-value">'+reg.personalInfo?.lastName+', '+reg.personalInfo?.firstName+' '+ (reg.personalInfo?.middleName||'')+' '+ (reg.personalInfo?.extName||'')+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Email</span><div class="feedback-detail-value">'+reg.accountInfo?.email+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Phone</span><div class="feedback-detail-value">'+reg.personalInfo?.phone+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Address</span><div class="feedback-detail-value">'+reg.personalInfo?.address+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">DOB / Gender</span><div class="feedback-detail-value">'+reg.personalInfo?.dateOfBirth+' / '+reg.personalInfo?.gender+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Place of Birth</span><div class="feedback-detail-value">'+reg.personalInfo?.placeOfBirth+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Civil Status</span><div class="feedback-detail-value">'+reg.personalInfo?.civilStatus+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Citizenship</span><div class="feedback-detail-value">'+reg.personalInfo?.citizenship+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Occupation</span><div class="feedback-detail-value">'+reg.personalInfo?.occupation+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Special Categories</span><div class="feedback-detail-value">'+(reg.specialCategories ? reg.specialCategories.join(', ') : 'None')+'</div></div>';
+                    
+                    // Household info
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Household Members</span><div class="feedback-detail-value">'+reg.householdInfo?.householdMembers+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Owner Name</span><div class="feedback-detail-value">'+reg.householdInfo?.ownerName+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Precinct No.</span><div class="feedback-detail-value">'+reg.householdInfo?.precinctNo+'</div></div>';
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Years in Barangay</span><div class="feedback-detail-value">'+reg.householdInfo?.yearsInBarangay+'</div></div>';
+
+                    // Documents
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">ID Type</span><div class="feedback-detail-value">'+reg.documents?.idType+'</div></div>';
+                    if (reg.documents?.idFront) {
+                        html += '<div class="feedback-detail-item"><span class="feedback-detail-label">ID Front</span><div class="feedback-detail-value"><img src="'+reg.documents.idFront+'" class="image-thumb" onclick="openFullImage(\''+reg.documents.idFront+'\')"></div></div>';
+                    }
+                    if (reg.documents?.idBack) {
+                        html += '<div class="feedback-detail-item"><span class="feedback-detail-label">ID Back</span><div class="feedback-detail-value"><img src="'+reg.documents.idBack+'" class="image-thumb" onclick="openFullImage(\''+reg.documents.idBack+'\')"></div></div>';
+                    }
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Reason</span><div class="feedback-detail-value">'+reg.documents?.userReason+'</div></div>';
+
+                    // Face Captures
+                    if (reg.faceCaptures) {
+                        html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Face Captures</span><div class="feedback-detail-value"><div class="image-gallery">';
+                        const angles = ['front','left','right','closed'];
+                        angles.forEach(angle => {
+                            if (reg.faceCaptures[angle]) {
+                                html += `<img src="${reg.faceCaptures[angle]}" class="image-thumb" onclick="openFullImage('${reg.faceCaptures[angle]}')">`;
+                            }
+                        });
+                        html += '</div></div></div>';
+                    }
+
+                    html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Submitted</span><div class="feedback-detail-value">'+reg.submittedAt+'</div></div>';
+                    if (reg.approvedAt) html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Approved</span><div class="feedback-detail-value">'+reg.approvedAt+'</div></div>';
+                    if (reg.rejectedAt) html += '<div class="feedback-detail-item"><span class="feedback-detail-label">Rejected</span><div class="feedback-detail-value">'+reg.rejectedAt+' (Reason: '+reg.rejectionReason+')</div></div>';
+
+                    body.innerHTML = html;
+                    let actions = '';
+                    if (reg.status === 'pending') {
+                        actions = '<button class="btn btn-success" id="modal-approve">Approve</button><button class="btn btn-danger" id="modal-reject">Reject</button><button class="btn btn-secondary" id="modal-close">Close</button>';
+                    } else {
+                        actions = '<button class="btn btn-secondary" id="modal-close">Close</button>';
+                    }
+                    footer.innerHTML = actions;
+                    modal.classList.add('active');
+
+                    document.getElementById('modal-close')?.addEventListener('click', ()=> modal.classList.remove('active'));
+                    if (reg.status === 'pending') {
+                        document.getElementById('modal-approve')?.addEventListener('click', ()=> this.approveRegistration(key));
+                        document.getElementById('modal-reject')?.addEventListener('click', ()=> {
+                            const reason = prompt('Enter rejection reason:');
+                            if (reason) this.rejectRegistration(key, reason);
+                        });
+                    }
+                }
+
+                async approveRegistration(key) {
+                    if (!db || !key) return;
+                    const reg = this.registrations[key];
+                    if (!reg) return;
+                    reg.status = 'approved';
+                    reg.approvedAt = new Date().toLocaleString();
+                    reg.approvedBy = 'Admin';
+                    await db.ref('05_adminRegistration/0A_AdminRequests/'+key).update({ status:'approved', approvedAt:reg.approvedAt, approvedBy:'Admin' });
+                    document.getElementById('reg-modal').classList.remove('active');
+                    this.logActivity('Registration approved: '+key, 'success');
+                    this.showAlert('Registration approved','success');
+                }
+
+                async rejectRegistration(key, reason) {
+                    if (!db || !key) return;
+                    const reg = this.registrations[key];
+                    reg.status = 'rejected';
+                    reg.rejectedAt = new Date().toLocaleString();
+                    reg.rejectedBy = 'Admin';
+                    reg.rejectionReason = reason;
+                    await db.ref('05_adminRegistration/0A_AdminRequests/'+key).update({ status:'rejected', rejectedAt:reg.rejectedAt, rejectedBy:'Admin', rejectionReason:reason });
+                    document.getElementById('reg-modal').classList.remove('active');
+                    this.logActivity('Registration rejected: '+key, 'warning');
+                }
+
+                async createManualAccount(e) {
+                    e.preventDefault();
+                    const pwd = document.getElementById('manual-password').value;
+                    const confirm = document.getElementById('manual-confirm').value;
+                    if (pwd !== confirm) { alert('Passwords do not match'); return; }
+                    const control = 'MANUAL-'+Date.now().toString(36).toUpperCase();
+                    const newReg = {
+                        controlNumber: control,
+                        personalInfo: {
+                            lastName: document.getElementById('manual-lastname').value,
+                            firstName: document.getElementById('manual-firstname').value,
+                            middleName: document.getElementById('manual-middlename').value,
+                            address: document.getElementById('manual-address').value,
+                            dateOfBirth: document.getElementById('manual-dob').value,
+                            gender: document.getElementById('manual-gender').value,
+                            phone: document.getElementById('manual-phone').value
+                        },
+                        accountInfo: {
+                            email: document.getElementById('manual-email').value,
+                            emailVerified: true
+                        },
+                        status: 'approved',
+                        submittedAt: new Date().toLocaleString(),
+                        approvedAt: new Date().toLocaleString(),
+                        approvedBy: 'Admin',
+                        manualCreation: true,
+                        adminNotes: document.getElementById('manual-reason').value
+                    };
+                    if (!db) return;
+                    const newKey = db.ref('05_adminRegistration/0A_AdminRequests').push().key;
+                    await db.ref('05_adminRegistration/0A_AdminRequests/'+newKey).set(newReg);
+                    document.getElementById('manual-form').reset();
+                    this.showAlert('Manual account created','success');
+                    this.logActivity('Manual account: '+control, 'success');
+                }
+
+                async updateHero(e) {
+                    e.preventDefault();
+                    if (!db) return;
+                    const hero = {
+                        title: document.getElementById('hero-title').value,
+                        description: document.getElementById('hero-description').value
+                        // headerLogo removed as requested
+                    };
+                    await db.ref('05_adminRegistration/0E_hero').set(hero);
+                    this.showAlert('Hero updated','success');
+                }
+
+                async resetHero() {
+                    if (!db) return;
+                    const defaultHero = { 
+                        title: 'Create an Account', 
+                        description: 'Register in minutes to access secure and convenient barangay services online.'
+                        // no headerLogo
+                    };
+                    await db.ref('05_adminRegistration/0E_hero').set(defaultHero);
+                    document.getElementById('hero-title').value = defaultHero.title;
+                    document.getElementById('hero-description').value = defaultHero.description;
+                    this.showAlert('Hero reset','success');
+                }
+
+                loadHero() {
+                    if (!db) return;
+                    db.ref('05_adminRegistration/0E_hero').once('value', snap => {
+                        if (snap.exists()) {
+                            const h = snap.val();
+                            document.getElementById('hero-title').value = h.title || '';
+                            document.getElementById('hero-description').value = h.description || '';
+                        } else {
+                            // set defaults if none
+                            document.getElementById('hero-title').value = 'Create an Account';
+                            document.getElementById('hero-description').value = 'Register in minutes to access secure and convenient barangay services online.';
+                        }
+                    });
+                }
+
+                setupEventListeners() {
+                    // sidebar navigation
+                    document.querySelectorAll('.sidebar-menu a').forEach(a => {
+                        a.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const tab = a.dataset.tab;
+                            this.switchTab(tab);
+                        });
+                    });
+
+                    // registration sub-tabs
+                    document.querySelectorAll('[data-reg-tab]').forEach(tab => {
+                        tab.addEventListener('click', () => {
+                            const target = tab.dataset.regTab;
+                            document.querySelectorAll('[data-reg-tab]').forEach(t => t.classList.remove('active'));
+                            tab.classList.add('active');
+                            document.querySelectorAll('#registrations .sub-tab-content').forEach(c => c.classList.remove('active'));
+                            document.getElementById('reg-'+target).classList.add('active');
+                        });
+                    });
+
+                    // view buttons (delegation)
+                    document.addEventListener('click', (e) => {
+                        if (e.target.closest('.view-reg')) {
+                            const key = e.target.closest('.view-reg').dataset.key;
+                            this.viewRegistration(key);
+                        }
+                    });
+
+                    // close modal when clicking X
+                    document.getElementById('close-modal').addEventListener('click', ()=>{
+                        document.getElementById('reg-modal').classList.remove('active');
+                    });
+
+                    // manual form submit
+                    document.getElementById('manual-form').addEventListener('submit', (e) => this.createManualAccount(e));
+
+                    // hero form
+                    document.getElementById('hero-form').addEventListener('submit', (e) => this.updateHero(e));
+                    document.getElementById('hero-reset').addEventListener('click', () => this.resetHero());
+
+                    // quick actions
+                    document.getElementById('preview-site-btn').addEventListener('click', ()=> window.open('CreateAnAccount.html','_blank'));
+                    document.getElementById('export-data-btn').addEventListener('click', ()=> this.exportData());
+                    document.getElementById('backup-data-btn').addEventListener('click', ()=> this.backup());
+                    document.getElementById('refresh-btn').addEventListener('click', ()=> { this.renderAllTables(); this.showAlert('Refreshed','info'); });
+                    document.getElementById('clear-all-btn').addEventListener('click', ()=> this.clearAll());
+
+                    // search
+                    document.getElementById('reg-search').addEventListener('input', (e) => this.searchTables(e.target.value));
+                    document.getElementById('all-search').addEventListener('input', (e) => this.searchAll(e.target.value));
+
+                    // full image modal close
+                    document.getElementById('close-full-modal').addEventListener('click', ()=>{
+                        document.getElementById('full-image-modal').classList.remove('active');
+                    });
+                }
+
+                switchTab(tabId) {
+                    document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+                    document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+                    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+                    document.getElementById(tabId).classList.add('active');
+                    if (tabId === 'create-hero') this.loadHero();
+                }
+
+                searchTables(query) {
+                    const q = query.toLowerCase();
+                    document.querySelectorAll('#registrations .data-table tbody tr').forEach(row => {
+                        row.style.display = row.innerText.toLowerCase().includes(q) ? '' : 'none';
+                    });
+                }
+
+                searchAll(query) {
+                    const q = query.toLowerCase();
+                    document.querySelectorAll('#all-registrations .data-table tbody tr').forEach(row => {
+                        row.style.display = row.innerText.toLowerCase().includes(q) ? '' : 'none';
+                    });
+                }
+
+                exportData() {
+                    const blob = new Blob([JSON.stringify(this.registrations,null,2)], {type:'application/json'});
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'registrations_backup.json';
+                    a.click();
+                }
+
+                backup() { this.exportData(); this.showAlert('Backup created','success'); }
+
+                async clearAll() {
+                    if (!confirm('Delete ALL registrations? Cannot undo.')) return;
+                    if (!db) return;
+                    // Clear only 0A_AdminRequests, preserve 0E_hero
+                    await db.ref('05_adminRegistration/0A_AdminRequests').set({});
+                    this.showAlert('All registrations cleared','warning');
+                }
+
+                logActivity(msg, type) {
+                    this.activityLog.unshift({msg,type,time:new Date().toLocaleTimeString()});
+                    const cont = document.getElementById('recent-activity');
+                    if (cont) {
+                        cont.innerHTML = this.activityLog.slice(0,5).map(a => 
+                            `<div style="padding:8px; border-left:3px solid ${a.type==='success'?'var(--success)':a.type==='warning'?'var(--warning)':'var(--info)'}; margin-bottom:5px; background:var(--gray-light);"><span>${a.msg}</span> <small>${a.time}</small></div>`
+                        ).join('');
+                    }
+                }
+
+                showAlert(msg, type) {
+                    const alert = document.createElement('div');
+                    alert.className = `alert alert-${type}`;
+                    alert.innerHTML = `<strong>${msg}</strong>`;
+                    document.querySelector('.tab-content.active').prepend(alert);
+                    setTimeout(()=>alert.remove(), 4000);
+                }
+
+                updateSaveStatus(msg) {
+                    const el = document.getElementById('save-status');
+                    if (el) el.textContent = msg;
+                }
+            }
+
+            window.openFullImage = function(src) {
+                const modal = document.getElementById('full-image-modal');
+                const img = document.getElementById('full-image');
+                img.src = src;
+                modal.classList.add('active');
+            };
+
+            window.onload = () => {
+                window.panel = new RegistrationAdminPanel();
+            };
+        })();
+    </script>
+</body>
+</html>

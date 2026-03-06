@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #d8dbdf 0%, #c2c7cc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 12px;
+        }
+
+        .messenger-card {
+            width: 100%;
+            max-width: 420px;
+            height: 680px;
+            background-color: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.3), 0 8px 12px -4px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            padding: 18px 20px 12px 20px;
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-icon {
+            font-size: 24px;
+            color: #006ae4;
+            opacity: 0.9;
+        }
+
+        .header-info h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #65676b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .active-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #31a24c;
+            border-radius: 50%;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 14px 8px 14px;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .message-row {
+            display: flex;
+            width: 100%;
+        }
+
+        .message-row.user {
+            justify-content: flex-end;
+        }
+
+        .bubble {
+            max-width: 78%;
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.45;
+            word-wrap: break-word;
+            background-color: #0084ff;
+            color: white;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .input-footer {
+            background-color: #ffffff;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            padding: 14px 18px 18px 18px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .input-footer input {
+            flex: 1;
+            background-color: #f0f2f5;
+            border: none;
+            border-radius: 24px;
+            padding: 12px 18px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .input-footer button {
+            background-color: #0084ff;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .input-footer button svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="messenger-card">
+    <div class="chat-header">
+        <span class="back-icon">←</span>
+        <div class="header-info">
+            <h2>Message</h2>
+            <div class="subtitle">
+                <span class="active-dot"></span> Active now
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages"></div>
+
+    <div class="input-footer">
+        <input type="text" id="messageInput" placeholder="Type message..." autocomplete="off">
+        <button onclick="sendMessage()">
+            <svg viewBox="0 0 24 24">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+    const STORAGE_KEY = "messenger_clean_chat";
+    const chatMessagesEl = document.getElementById("chatMessages");
+    const inputEl = document.getElementById("messageInput");
+
+    function loadMessages() {
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            return stored ? JSON.parse(stored) : [];
+        } catch {
+            return [];
+        }
+    }
+
+    function saveMessages(list) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    }
+
+    function renderMessage(message) {
+        const row = document.createElement("div");
+        row.className = "message-row user";
+
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.innerText = message.text;
+
+        row.appendChild(bubble);
+        return row;
+    }
+
+    function renderAllMessages(messages) {
+        chatMessagesEl.innerHTML = "";
+        messages.forEach(m => chatMessagesEl.appendChild(renderMessage(m)));
+        chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+    }
+
+    let messages = loadMessages();
+    renderAllMessages(messages);
+
+    function sendMessage() {
+        const text = inputEl.value.trim();
+        if (text === "") return;
+
+        const msg = { text };
+        messages.push(msg);
+        saveMessages(messages);
+
+        chatMessagesEl.appendChild(renderMessage(msg));
+        chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+
+        inputEl.value = "";
+        inputEl.focus();
+    }
+
+    inputEl.addEventListener("keypress", e => {
+        if (e.key === "Enter") {
+            sendMessage();
+        }
+    });
+</script>
+
+</body>
+</html>

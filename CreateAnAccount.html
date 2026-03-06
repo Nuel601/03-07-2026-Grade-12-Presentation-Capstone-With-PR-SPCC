@@ -1,0 +1,4193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Barangay 118 Online System</title>
+    <meta name="description" content="Register for your Barangay 118 account to access online services and government transactions">
+    <meta name="keywords" content="barangay, registration, online system, government services">
+    <link rel="icon" type="image/png" href="Logo-Favicon-removebg-preview.png">
+    <link rel="shortcut icon" href="Logo-Favicon-removebg-preview.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --primary-soft: #dbeafe;
+            --primary-hover: rgba(37, 99, 235, 0.08);
+            --primary-10: rgba(37, 99, 235, 0.1);
+            
+            --light: #ffffff;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --gray-light: #f8fafc;
+            --gray-border: #e2e8f0;
+            
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --shadow-nav: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            
+            --radius: 10px;
+            --radius-sm: 6px;
+            --radius-lg: 16px;
+            --radius-xl: 16px;
+            --radius-full: 9999px;
+            
+            --border: #cbd5e1;
+            
+            --error: #dc2626;
+            --error-light: #fef2f2;
+            --success: #16a34a;
+            --success-light: #f0fdf4;
+            --warning: #d97706;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            
+            --transition: all 0.25s ease;
+            --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1550px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER (identical) */
+        header {
+            background-color: var(--light);
+            box-shadow: var(--shadow-nav);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            height: 74px;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 74px;
+            padding: 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            padding: 8px 16px 8px 8px;
+            border-radius: var(--radius);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 36px;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-light), var(--primary), var(--primary-dark));
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+
+        .logo-image {
+            width: 52px;
+            height: 52px;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: var(--transition-smooth);
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, var(--primary-soft), var(--light));
+            border: 3px solid transparent;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+            padding: 2px;
+        }
+
+        .logo:hover .logo-image {
+            transform: scale(1.08) rotate(5deg);
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+        }
+
+        #system-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+    position: relative;
+    transition: var(--transition-smooth); 
+}
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px; 
+            padding: 0;
+            background: none;
+            border: none;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 17px;       
+            font-weight: 500;
+            padding: 6px 0;      
+            background: none;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a i {
+            font-size: 16px;    
+            color: inherit;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::before {
+            content: none;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 45px 0;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+
+        /* Main Content Layout - FULL WIDTH (sidebar removed) */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;  /* Only one column */
+            gap: 0;
+            margin: 50px 0;
+            align-items: start;
+            min-height: 600px;
+        }
+
+        /* Form Container - takes full width */
+        .form-container {
+            background: var(--light);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-border);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--gray-light);
+            position: relative;
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .step-counter {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Progress Steps */
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gray-light);
+            border-radius: 3px;
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+
+        .progress-bar {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            flex: 1 1 0;
+            min-width: 60px;
+        }
+
+        .step:hover {
+            transform: translateY(-2px);
+        }
+
+        .step-number {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 8px;
+            border: 3px solid var(--light);
+            box-shadow: var(--shadow);
+            font-size: 16px;
+            position: relative;
+        }
+
+        .step.active .step-number {
+            background: var(--primary);
+            color: #fff;
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .step.completed .step-number {
+            background: var(--success);
+            color: white;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+        }
+
+        .step.completed .step-number::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-align: center;
+            font-weight: 600;
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .step.active .step-label {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .step-status {
+            font-size: 0.7rem;
+            color: var(--gray);
+            margin-top: 2px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .step.active .step-status {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .step.completed .step-status {
+            color: var(--success);
+        }
+
+        /* Form Sections */
+        .form-section {
+            display: none;
+            animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px) scale(0.98);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--gray-light);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 24px;
+            background: linear-gradient(to bottom, var(--primary), var(--primary-light));
+            border-radius: 3px;
+        }
+
+        .section-description {
+            margin-bottom: 0;
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Form Elements */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-group label:hover {
+            color: var(--primary);
+        }
+
+        .required-marker {
+            color: var(--error);
+            font-weight: 700;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--gray-border);
+            border-radius: var(--radius);
+            font-size: 15px;
+            transition: var(--transition);
+            background-color: var(--light);
+            font-family: inherit;
+            color: var(--dark);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+            transform: translateY(-1px);
+        }
+
+        input:hover, select:hover, textarea:hover {
+            border-color: var(--primary-light);
+        }
+
+        input.error, select.error, textarea.error {
+            border-color: var(--error);
+            background-color: var(--error-light);
+            box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
+        }
+
+        input.success, select.success, textarea.success {
+            border-color: var(--success);
+            background-color: var(--success-light);
+        }
+
+        input:disabled {
+            background-color: var(--gray-light);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .note {
+            display: block;
+            margin-top: 8px;
+            color: var(--gray);
+            font-size: 0.8rem;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        /* Error and Success Messages */
+        .error-message {
+            color: var(--error);
+            font-size: 0.8rem;
+            margin-top: 6px;
+            display: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            background: var(--error-light);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--error);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .success-message {
+            color: var(--success);
+            font-size: 0.8rem;
+            margin-top: 6px;
+            display: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            background: var(--success-light);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--success);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Phone Number Input */
+        .phone-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .prefix {
+            background: var(--gray-light);
+            border: 2px solid var(--gray-border);
+            padding: 14px 16px;
+            border-radius: var(--radius);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark);
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .phone-wrapper input {
+            flex: 1;
+        }
+
+        /* Checkbox Group */
+        .checkbox-group {
+            display: grid;
+            gap: 12px;
+            margin-top: 12px;
+            padding: 20px;
+            background: var(--gray-light);
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-border);
+        }
+
+        .checkbox-group.six-columns {
+            display: grid;
+            gap: 12px;
+            margin-top: 12px;
+            padding: 20px;
+            background: var(--gray-light);
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-border);
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            cursor: pointer;
+            background: var(--light);
+        }
+
+        .checkbox-item:hover {
+            background: rgba(37, 99, 235, 0.05);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .checkbox-item input {
+            width: auto;
+            flex-shrink: 0;
+            transform: scale(1.2);
+        }
+
+        .checkbox-item label {
+            margin-bottom: 0;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        /* OTP Container */
+        .otp-container {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .otp-container input {
+            flex: 1;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .otp-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .otp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: var(--transition);
+        }
+
+        .otp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .otp-btn:hover::before {
+            left: 100%;
+        }
+
+        .otp-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .otp-btn:disabled::before {
+            display: none;
+        }
+
+        .otp-btn.loading {
+            color: transparent;
+            pointer-events: none;
+        }
+
+        .otp-btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 18px;
+            height: 18px;
+            margin: -9px 0 0 -9px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .otp-countdown, .otp-resend {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .otp-countdown {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Password Input */
+        .password-input-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .password-requirements {
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--gray-light);
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-border);
+        }
+
+        .password-requirements .requirements-title {
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .password-requirements ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 8px;
+        }
+
+        .password-requirements li {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 8px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .password-requirements li::before {
+            content: '●';
+            font-size: 0.7rem;
+            transition: var(--transition);
+        }
+
+        .password-requirements li.valid {
+            color: var(--success);
+            background: var(--success-light);
+        }
+
+        .password-requirements li.valid::before {
+            content: '✓';
+            font-weight: bold;
+        }
+
+        .password-requirements li.invalid {
+            color: var(--gray);
+        }
+
+        .password-match {
+            color: var(--success);
+            font-size: 0.85rem;
+            margin-top: 8px;
+            display: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            background: var(--success-light);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--success);
+            align-items: center;
+            gap: 8px;
+        }
+
+        .password-match.valid {
+            display: flex;
+        }
+
+        /* File Upload */
+        .file-upload-container {
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .file-upload-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 14px 24px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .file-upload-label::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: var(--transition);
+        }
+
+        .file-upload-label:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .file-upload-label:hover::before {
+            left: 100%;
+        }
+
+        .file-upload-input {
+            display: none;
+        }
+
+        .file-preview-container {
+            position: relative;
+            margin-top: 16px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            max-width: 300px;
+        }
+
+        .file-preview-container:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: var(--radius);
+            display: none;
+            transition: var(--transition);
+        }
+
+        .delete-file-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--error);
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .delete-file-btn:hover {
+            background: var(--error);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Face Scan Container */
+        .face-scan-container {
+            margin-bottom: 40px;
+            padding: 24px;
+            background: var(--gray-light);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--gray-border);
+        }
+
+        /* Face Progress */
+        .face-scan-progress {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            gap: 12px;
+        }
+
+        .progress-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            position: relative;
+            border: 3px solid var(--light);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .progress-circle.active {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1.1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .progress-circle.completed {
+            background: var(--success);
+            color: white;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+        }
+
+        .progress-number {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .progress-connector {
+            width: 80px;
+            height: 4px;
+            background: var(--gray-light);
+            margin: 0 8px;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .progress-connector.completed {
+            background: var(--success);
+            box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);
+        }
+
+        /* Instructions */
+        .face-scan-instructions {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            font-weight: 600;
+            color: var(--dark);
+            padding: 16px;
+            background: var(--light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Webcam container */
+        .webcam-container {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+        }
+
+        .face-capture-circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            margin: 0 auto 20px;
+            overflow: hidden;
+            position: relative;
+            background: var(--gray-light);
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.1), 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .face-guide {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            border: 2px dashed rgba(37, 99, 235, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .webcam-video, .webcam-canvas, .captured-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .captured-image {
+            display: none;
+        }
+
+        /* Status, controls */
+        .face-scan-status {
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: var(--dark);
+            padding: 12px 20px;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: var(--radius);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .face-scan-status.completed {
+            background: var(--success-light);
+            border-left-color: var(--success);
+            color: var(--success);
+        }
+
+        .capture-controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .capture-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        .capture-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: var(--transition);
+        }
+
+        .capture-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .capture-btn:hover::before {
+            left: 100%;
+        }
+
+        .capture-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .capture-btn:disabled::before {
+            display: none;
+        }
+
+        /* Steps grid and cards - fixed 2 per row */
+        .face-capture-steps {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .capture-step {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid var(--gray-border);
+            border-radius: var(--radius-xl);
+            transition: var(--transition);
+            background: var(--light);
+            position: relative;
+            overflow: visible;
+            min-height: 230px;
+        }
+
+        .capture-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gray-border);
+            transition: var(--transition);
+        }
+
+        .capture-step.active {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .capture-step.active::before {
+            background: var(--primary);
+        }
+
+        .capture-step.completed {
+            border-color: var(--success);
+            background: var(--success-light);
+        }
+
+        .capture-step.completed::before {
+            background: var(--success);
+        }
+
+        .step-header {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .step-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 2px solid var(--light);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .capture-step.active .step-indicator {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .capture-step.completed .step-indicator {
+            background: var(--success);
+            color: white;
+        }
+
+        .step-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--dark);
+            justify-self: start;
+        }
+
+        /* Delete button */
+        .retake-face-btn {
+            background: var(--error);
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+            flex-shrink: 0;
+            display: none;
+        }
+
+        .retake-face-btn:hover {
+            transform: scale(1.1);
+            background: #dc2626;
+        }
+
+        .capture-step.completed .retake-face-btn {
+            display: inline-flex;
+        }
+
+        /* Preview circle */
+        .face-capture-preview-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--gray-light);
+            border: 3px solid var(--light);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .face-capture-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            transition: var(--transition);
+        }
+
+        .preview-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--gray);
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        /* Capture button inside each step */
+        .step-capture-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+            box-shadow: var(--shadow);
+            margin-top: 10px;
+        }
+
+        .step-capture-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-capture-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Tips & privacy */
+        .face-scan-tips {
+            background: var(--light);
+            padding: 24px;
+            border-radius: var(--radius-xl);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent);
+        }
+
+        .face-scan-tips h4 {
+            margin-bottom: 16px;
+            color: var(--dark);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .face-scan-tips ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .face-scan-tips li {
+            margin-bottom: 10px;
+            padding-left: 24px;
+            position: relative;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .face-scan-tips li::before {
+            content: '•';
+            color: var(--accent);
+            position: absolute;
+            left: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .privacy-notice {
+            background: var(--gray-light);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-top: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .privacy-notice h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .privacy-notice p {
+            margin: 0;
+            line-height: 1.6;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        /* Success Page */
+        .success-container {
+            text-align: center;
+            padding: 48px 32px;
+            background: var(--light);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--success) 0%, var(--accent) 50%, var(--primary) 100%);
+        }
+
+        .success-checkmark {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--success) 0%, #22c55e 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 25px rgba(22, 163, 74, 0.3), inset 0 4px 8px rgba(255,255,255,0.3);
+            animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .control-number-container {
+            margin: 30px 0;
+            padding: 24px;
+            background: var(--gray-light);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            border: 2px dashed var(--primary);
+        }
+
+        .control-label {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .control-number-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .control-number {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 16px 32px;
+            border-radius: var(--radius);
+            font-size: 1.3rem;
+            font-weight: 800;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--light);
+            position: relative;
+            overflow: hidden;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .control-number::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .btn-copy {
+            background: var(--light);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 12px 20px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-copy:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .submission-message {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--dark);
+            margin-bottom: 32px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .next-steps {
+            background: var(--gray-light);
+            padding: 32px;
+            border-radius: var(--radius-xl);
+            margin-top: 32px;
+            text-align: left;
+            border-left: 4px solid var(--primary);
+        }
+
+        .next-steps h4 {
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 16px;
+            width: 2px;
+            background: var(--primary);
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            margin-right: 16px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-top: 4px;
+        }
+
+        .timeline-content strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 6px;
+            font-size: 1rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .contact-support {
+            margin-top: 32px;
+            padding: 24px;
+            background: var(--gray-light);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--accent);
+        }
+
+        .contact-support h4 {
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .contact-details p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .contact-details i {
+            color: var(--primary);
+            width: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 2px solid var(--gray-border);
+            gap: 16px;
+        }
+
+        .form-actions .btn {
+            min-width: 140px;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .form-actions .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: var(--transition);
+        }
+
+        .form-actions .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-prev {
+            background: var(--light);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-prev:hover {
+            background: rgba(37, 99, 235, 0.05);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-next:disabled {
+            background: var(--gray);
+            border-color: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-next:disabled::before {
+            display: none;
+        }
+
+        .btn-secondary {
+            background: var(--light);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(37, 99, 235, 0.05);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .success-actions {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease-out;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--light);
+            border-radius: var(--radius-xl);
+            max-width: 800px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--gray-border);
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: scale(0.8) translateY(-20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 28px 20px;
+            border-bottom: 2px solid var(--gray-light);
+            background: var(--light);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .modal-title {
+            font-size: 1.6rem;
+            color: var(--dark);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            color: var(--error);
+            background: var(--error-light);
+            transform: rotate(90deg);
+        }
+
+        .terms-content {
+            padding: 24px 28px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .terms-content h2 {
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+            color: var(--dark);
+            font-weight: 700;
+            border-bottom: 2px solid var(--gray-light);
+            padding-bottom: 8px;
+        }
+
+        .terms-content p, .terms-content ul {
+            margin-bottom: 16px;
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .terms-content ul {
+            padding-left: 24px;
+        }
+
+        .terms-content li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .terms-content li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+
+        .terms-options {
+            display: flex;
+            gap: 24px;
+            padding: 24px 28px;
+            border-top: 1px solid var(--gray-border);
+            background: var(--gray-light);
+        }
+
+        .terms-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            cursor: pointer;
+            flex: 1;
+            background: var(--light);
+            border: 2px solid var(--gray-border);
+        }
+
+        .terms-option:hover {
+            background: var(--gray-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+
+        .terms-option input {
+            width: auto;
+            transform: scale(1.3);
+        }
+
+        .terms-option label {
+            margin-bottom: 0;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--dark);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 16px;
+            padding: 24px 28px;
+            border-top: 1px solid var(--gray-border);
+            background: var(--gray-light);
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100000;
+            color: white;
+            backdrop-filter: blur(5px);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0 5px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 18px;
+            color: white;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            border-radius: 2px;
+        }
+
+        .footer-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: white;
+            margin: 0;
+            word-wrap: break-word;
+            max-width: 500px;
+        }
+
+        .footer-center .footer-row {
+            display: flex;
+            justify-content: flex-start; 
+            gap: 60px;                   
+            flex-wrap: wrap;            
+            margin: 0 auto;              
+            max-width: 900px;          
+        }
+
+        .footer-contact-info {
+            list-style: none;
+            display: flex;
+            flex-direction: column;     
+            gap: 8px;
+        }
+
+        .footer-contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-contact-info li i {
+            color: #3b82f6;
+            font-size: 16px;
+            width: 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-contact-info li span {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-weight: 400;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;    
+            gap: 8px;
+        }
+
+        .footer-links li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links li i {
+            color: #3b82f6;
+            font-size: 16px;
+            width: 20px;
+        }
+
+        .footer-links li a {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-size: 0.95rem;
+            color: white;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-links li a:hover {
+            color: #a0aec0;
+        }
+
+        .footer-center {
+            text-align: left;   
+            margin: 0 auto;     
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 15px 0 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aab6c5;
+            font-size: 0.75rem;
+            margin-top: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .checkbox-group.six-columns {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .face-capture-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .checkbox-group.six-columns {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .checkbox-group.six-columns {
+                grid-template-columns: 1fr;
+            }
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* Utility Classes */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .info-box {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 16px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+        }
+
+        .info-box i {
+            color: var(--accent);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .info-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        .verification-tips {
+            background: var(--light);
+            padding: 24px;
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-border);
+            margin-top: 24px;
+        }
+
+        .verification-tips h4 {
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tips-grid li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            background: var(--gray-light);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .tips-grid li:hover {
+            background: rgba(37, 99, 235, 0.05);
+            transform: translateX(4px);
+        }
+
+        .tips-grid li i {
+            color: var(--success);
+            font-size: 0.8rem;
+        }
+
+        .btn-link {
+            background: none;
+            border: none;
+            color: var(--primary);
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: inherit;
+            padding: 0;
+            font-weight: 600;
+        }
+
+        .btn-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .webcam-fallback {
+            background: var(--error-light);
+            border-left: 4px solid var(--error);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .webcam-fallback p {
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--error);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .webcam-fallback ol {
+            padding-left: 24px;
+            margin-bottom: 0;
+        }
+
+        .webcam-fallback li {
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container">
+            <div class="navbar">
+                <a href="CreateAnAccount.html" id="home-logo" class="logo" aria-label="Barangay 118 Online System Home">
+                    <img src="Logo-Favicon-removebg-preview.png" alt="Barangay 118 Official Logo" class="logo-image" id="header-logo-img" width="70" height="70">
+                    <h1 id="system-name">BARANGAY 118 ONLINE SYSTEM</h1>
+                </a>
+                <nav class="nav-links" aria-label="Main navigation">
+                    <a href="PanelHome.html" aria-label="Home page"><i class="fas fa-home" aria-hidden="true"></i><span>Home</span></a>
+                    <a href="AboutUs.html" aria-label="About Barangay 118 page"><i class="fas fa-info-circle" aria-hidden="true"></i><span>About Us</span></a>
+                    <a href="News.html" aria-label="Barangay News page"><i class="fas fa-newspaper" aria-hidden="true"></i><span>News</span></a>
+                    <a href="Emergency.html" aria-label="Barangay Emergency page"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i><span>Emergency</span></a>
+                    <a href="CreateAnAccount.html" class="active" aria-label="Create an account page"><i class="fas fa-user-plus" aria-hidden="true"></i><span>Create Account</span></a>
+                    <a href="LogIn.html" aria-label="Login page"><i class="fas fa-sign-in-alt" aria-hidden="true"></i><span>Login</span></a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 id="hero-title">Create an Account</h1>
+            <p id="hero-description">Register in minutes to access secure and convenient barangay services online.</p> 
+        </div>
+    </section>
+
+    <!-- Main Content (Full Width, No Sidebar) -->
+    <div class="container">
+        <div class="main-content" id="main-content">
+            <!-- Registration Form -->
+            <div class="form-container">
+                <!-- Form Header with Progress -->
+                <div class="form-header">
+                    <h2 class="form-title">CREATE YOUR BARANGAY ACCOUNT</h2>
+                    <div class="step-counter" aria-live="polite" aria-atomic="true">
+                        Step <span id="current-step-number">1</span> of 5
+                        <span class="step-description" id="step-description">- Personal Information</span>
+                    </div>
+                </div>
+
+                <!-- Progress Steps -->
+                <div class="progress-steps" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" aria-label="Registration progress">
+                    <div class="progress-bar" id="progress-bar" style="width: 20%;"></div>
+                    
+                    <div class="step active" id="step1-indicator" role="button" tabindex="0" onclick="showStepDirect(1)">
+                        <div class="step-number" aria-hidden="true">1</div>
+                        <div class="step-label">Personal Info</div>
+                        <div class="step-status" aria-live="polite">Current</div>
+                    </div>
+                    
+                    <div class="step" id="step2-indicator" role="button" tabindex="0" onclick="showStepDirect(2)">
+                        <div class="step-number" aria-hidden="true">2</div>
+                        <div class="step-label">Household</div>
+                        <div class="step-status" aria-live="polite">Pending</div>
+                    </div>
+                    
+                    <div class="step" id="step3-indicator" role="button" tabindex="0" onclick="showStepDirect(3)">
+                        <div class="step-number" aria-hidden="true">3</div>
+                        <div class="step-label">Documents</div>
+                        <div class="step-status" aria-live="polite">Pending</div>
+                    </div>
+                    
+                    <div class="step" id="step4-indicator" role="button" tabindex="0" onclick="showStepDirect(4)">
+                        <div class="step-number" aria-hidden="true">4</div>
+                        <div class="step-label">Face Scan</div>
+                        <div class="step-status" aria-live="polite">Pending</div>
+                    </div>
+                    
+                    <div class="step" id="step5-indicator" role="button" tabindex="0" onclick="showStepDirect(5)">
+                        <div class="step-number" aria-hidden="true">5</div>
+                        <div class="step-label">Complete</div>
+                        <div class="step-status" aria-live="polite">Pending</div>
+                    </div>
+                </div>
+                
+                <!-- Step 1: Personal Information -->
+                <div class="form-section active" id="step1" role="tabpanel" aria-labelledby="step1-indicator">
+                    <div class="section-header">
+                        <h3 class="section-title">Personal Information</h3>
+                        <p class="section-description">Please provide your basic personal details. All fields marked with <span class="required-marker">*</span> are required.</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="lastName" class="required">Last Name <span class="required-marker">*</span></label>
+                            <input type="text" id="lastName" placeholder="Enter your last name" required aria-required="true">
+                            <small class="note">Example: Dela Cruz</small>
+                            <div class="error-message" id="lastName-error" role="alert" aria-live="polite">Please enter your last name</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName" class="required">First Name <span class="required-marker">*</span></label>
+                            <input type="text" id="firstName" placeholder="Enter your first name" required aria-required="true">
+                            <small class="note">Example: Juan</small>
+                            <div class="error-message" id="firstName-error" role="alert" aria-live="polite">Please enter your first name</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="middleName">Middle Name</label>
+                            <input type="text" id="middleName" placeholder="Enter your middle name" aria-describedby="middleName-help">
+                            <small class="note" id="middleName-help">Example: Santos</small>
+                            <div class="error-message" id="middleName-error" role="alert" aria-live="polite" style="display:none;">Please enter a valid middle name (at least 2 characters or N/A)</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="extName">Extension Name</label>
+                            <select id="extName" onchange="toggleOtherExt(this)" aria-describedby="extName-help">
+                                <option value="" disabled selected>Select Extension Name</option>
+                                <option value="Jr.">Jr.</option>
+                                <option value="Sr.">Sr.</option>
+                                <option value="II">II</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                                <option value="N/A">N/A</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <input type="text" id="otherExt" placeholder="Please specify your extension name" style="display:none; margin-top:8px;" aria-label="Other extension name">
+                            <div class="error-message" id="extName-error" role="alert" aria-live="polite" style="display:none;">Please select an extension name</div>
+                            <div class="error-message" id="otherExt-error" role="alert" aria-live="polite" style="display:none;">Please specify your extension name when 'Other' is selected</div>
+                            <small class="note" id="extName-help">Example: Jr., Sr., N/A, or enter other</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gender" class="required">Gender <span class="required-marker">*</span></label>
+                            <select id="gender" required aria-required="true">
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                            <small class="note">Example: Male or Female</small>
+                            <div class="error-message" id="gender-error" role="alert" aria-live="polite">Please select your gender</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateOfBirth" class="required">Date of Birth <span class="required-marker">*</span></label>
+                            <input type="date" id="dateOfBirth" required aria-required="true" aria-describedby="dob-help">
+                            <small class="note" id="dob-help">You must be at least 18 years old to register</small>
+                            <div class="error-message" id="dateOfBirth-error" role="alert" aria-live="polite">Please enter your date of birth</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address" class="required">Complete Address <span class="required-marker">*</span></label>
+                        <input type="text" id="address" placeholder="Enter your complete address including house number, street, and barangay" required aria-required="true">
+                        <small class="note">Example: 123 Mabini St., Brgy. San Roque, Caloocan City, Metro Manila</small>
+                        <div class="error-message" id="address-error" role="alert" aria-live="polite">Please enter your complete address</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="placeOfBirth" class="required">Place of Birth <span class="required-marker">*</span></label>
+                            <input type="text" id="placeOfBirth" placeholder="Enter city and province where you were born" required aria-required="true">
+                            <small class="note">Example: Caloocan City, Metro Manila, Philippines</small>
+                            <div class="error-message" id="placeOfBirth-error" role="alert" aria-live="polite">Please enter your place of birth</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="age" class="required">Age <span class="required-marker">*</span></label>
+                            <input type="number" id="age" placeholder="Enter your age" min="18" max="120" aria-describedby="age-help" readonly>
+                            <small class="note" id="age-help">Automatically calculated from your birth date</small>
+                            <div class="error-message" id="age-error" role="alert" aria-live="polite">Please enter your age</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone" class="required">Phone Number <span class="required-marker">*</span></label>
+                            <div class="phone-wrapper">
+                                <span class="prefix">+63</span>
+                                <input type="tel" id="phone" placeholder="912-345-6789" required aria-required="true" pattern="^9\d{2}[- ]?\d{3}[- ]?\d{4}$">
+                            </div>
+                            <small class="note">Format: 912-345-6789</small>
+                            <div class="error-message" id="phone-error" role="alert" aria-live="polite">Please enter a valid Philippine phone number</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="civilStatus" class="required">Civil Status <span class="required-marker">*</span></label>
+                            <select id="civilStatus" required aria-required="true">
+                                <option value="" disabled selected>Select Civil Status</option>
+                                <option value="single">Single</option>
+                                <option value="married">Married</option>
+                                <option value="widowed">Widowed</option>
+                                <option value="separated">Separated</option>
+                                <option value="divorced">Divorced</option>
+                            </select>
+                            <small class="note">Example: Single</small>
+                            <div class="error-message" id="civilStatus-error" role="alert" aria-live="polite">Please select your civil status</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="citizenship" class="required">Citizenship <span class="required-marker">*</span></label>
+                            <select id="citizenship" required aria-required="true" onchange="toggleOtherInput(this, 'otherCitizenship')">
+                                <option value="" disabled selected>Select Citizenship</option>
+                                <option value="Filipino">Filipino</option>
+                                <option value="Dual Citizen">Dual Citizen</option>
+                            </select>
+                            <input type="text" id="otherCitizenship" placeholder="Please specify your citizenship" style="display:none; margin-top:8px;" aria-label="Other citizenship">
+                            <small class="note">Example: Filipino</small>
+                            <div class="error-message" id="citizenship-error" role="alert" aria-live="polite">Please select your citizenship</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="occupation" class="required">Occupation <span class="required-marker">*</span></label>
+                            <select id="occupation" required aria-required="true" onchange="toggleOtherInput(this, 'otherOccupation')">
+                                <option value="" disabled selected>Select Occupation</option>
+                                <option value="Student">Student</option>
+                                <option value="Teacher">Teacher</option>
+                                <option value="Engineer">Engineer</option>
+                                <option value="Nurse">Nurse</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Business Owner">Business Owner</option>
+                                <option value="Government Employee">Government Employee</option>
+                                <option value="Private Employee">Private Employee</option>
+                                <option value="Unemployed">Unemployed</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <input type="text" id="otherOccupation" placeholder="Please specify your occupation" style="display:none; margin-top:8px;" aria-label="Other occupation">
+                            <small class="note">Example: Student, Teacher, or specify if other</small>
+                            <div class="error-message" id="occupation-error" role="alert" aria-live="polite">Please select your occupation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">Special Categories (Check all that apply) <span class="required-marker">*</span></label>
+                        <div class="checkbox-group six-columns" role="group" aria-labelledby="special-categories-label">
+                            <div class="checkbox-item"><input type="checkbox" id="4ps" name="indicateIf[]" value="4Ps"><label for="4ps">4Ps</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="employed" name="indicateIf[]" value="Employed"><label for="employed">Employed</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="labor" name="indicateIf[]" value="Labor"><label for="labor">Labor</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="ofw" name="indicateIf[]" value="OFW"><label for="ofw">OFW</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="osc" name="indicateIf[]" value="OSC"><label for="osc">OSC</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="osv" name="indicateIf[]" value="OSY"><label for="osv">OSY</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="pregnant" name="indicateIf[]" value="Pregnant"><label for="pregnant">Pregnant</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="pwd" name="indicateIf[]" value="PWD"><label for="pwd">PWD</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="senior" name="indicateIf[]" value="Senior Citizen"><label for="senior">Senior Citizen</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="soloParent" name="indicateIf[]" value="Solo Parent"><label for="soloParent">Solo Parent</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="student" name="indicateIf[]" value="Student"><label for="student">Student</label></div>
+                            <div class="checkbox-item"><input type="checkbox" id="unemployed" name="indicateIf[]" value="Unemployed"><label for="unemployed">Unemployed</label></div>
+                        </div>
+                        <small class="note">These categories help us provide appropriate services and assistance</small>
+                    </div>
+                
+                    <div class="section-header">
+                        <h3 class="section-title">Account Security</h3>
+                        <p class="section-description">Set up your login credentials and verify your email address.</p>
+                    </div>
+                    
+                    <div class="form-group email-otp-group">
+                        <label for="email" class="required">Email Address <span class="required-marker">*</span></label>
+                        <div class="otp-container">
+                            <input type="email" id="email" placeholder="Enter your active email address" required aria-required="true" aria-describedby="email-help">
+                            <button type="button" class="otp-btn" id="send-otp" aria-label="Send verification code to email">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i> Send OTP
+                            </button>
+                        </div>
+                        <small class="note" id="email-help">We'll send a 6-digit verification code to your email</small>
+                        <div class="error-message" id="email-error" role="alert" aria-live="polite">Please enter a valid email address</div>
+                        <div class="success-message" id="email-success" style="display:none;" role="alert" aria-live="polite">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i> Valid email format.
+                        </div>
+                        <div class="otp-countdown" id="otp-countdown" style="display:none;" aria-live="polite">
+                            <i class="fas fa-clock" aria-hidden="true"></i> Resend available in: <span id="countdown-timer">60</span>s
+                        </div>
+                    </div>
+                    
+                    <div class="form-group otp-verification-group" id="otp-input-group" style="display:none;">
+                        <label for="otpInput" class="required">OTP Verification <span class="required-marker">*</span></label>
+                        <div class="otp-container">
+                            <input type="text" id="otpInput" placeholder="Enter 6-digit OTP" maxlength="6" pattern="[0-9]{6}" aria-describedby="otp-help">
+                            <button type="button" class="otp-btn" id="verify-otp-btn" aria-label="Verify OTP code">
+                                <i class="fas fa-check-circle" aria-hidden="true"></i> Verify OTP
+                            </button>
+                        </div>
+                        <small class="note" id="otp-help">Enter the 6-digit code sent to your email</small>
+                        <div class="error-message" id="otp-error" role="alert" aria-live="polite">Incorrect OTP. Please try again.</div>
+                        <div class="success-message" id="otp-success" style="display:none;" role="alert" aria-live="polite">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i> Email verified successfully!
+                        </div>
+                        <div class="otp-resend" id="otp-resend" style="display:none;">
+                            <button type="button" class="otp-btn" id="resend-otp" aria-label="Resend OTP code">
+                                <i class="fas fa-redo" aria-hidden="true"></i> Resend OTP
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password" class="required">Password <span class="required-marker">*</span></label>
+                            <div class="password-input-container">
+                                <input type="password" id="password" placeholder="Create a strong password" required aria-required="true" aria-describedby="password-requirements">
+                                <button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">
+                                    <i class="fas fa-eye" aria-hidden="true"></i> Show
+                                </button>
+                            </div>
+                            <small class="note">Example: MyStrongP@ssword1</small>
+                            <div class="error-message" id="password-error" role="alert" aria-live="polite">
+                                Please enter a valid password that meets all requirements
+                            </div>
+                            <div class="password-requirements" id="password-requirements" role="region" aria-live="polite">
+                                <p class="requirements-title">Password must contain:</p>
+                                <ul>
+                                    <li id="req-length" class="invalid">At least <strong>10 characters</strong></li>
+                                    <li id="req-uppercase" class="invalid">At least <strong>1 uppercase letter</strong></li>
+                                    <li id="req-lowercase" class="invalid">At least <strong>1 lowercase letter</strong></li>
+                                    <li id="req-number" class="invalid">At least <strong>1 number</strong></li>
+                                    <li id="req-special" class="invalid">At least <strong>1 special character</strong> (e.g., @, _, >, <, ,, ?)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword" class="required">Confirm Password <span class="required-marker">*</span></label>
+                            <div class="password-input-container">
+                                <input type="password" id="confirmPassword" placeholder="Re-enter your password" required aria-required="true">
+                                <button type="button" class="password-toggle" id="toggleConfirmPassword" aria-label="Show password confirmation">
+                                    <i class="fas fa-eye" aria-hidden="true"></i> Show
+                                </button>
+                            </div>
+                            <small class="note">Re-type the password above</small>
+                            <div class="error-message" id="confirmPassword-error" role="alert" aria-live="polite">
+                                Passwords do not match
+                            </div>
+                            <div class="password-match" id="password-match-message" role="alert" aria-live="polite">
+                                <i class="fas fa-check-circle" aria-hidden="true"></i> Passwords match!
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-prev" disabled aria-label="Previous step">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i> Previous
+                        </button>
+                        <button type="button" class="btn btn-next" id="show-terms-btn" aria-label="Continue to terms and conditions">
+                            Continue to Terms <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Household Information -->
+                <div class="form-section" id="step2" role="tabpanel" aria-labelledby="step2-indicator">
+                    <div class="section-header">
+                        <h3 class="section-title">Household Information</h3>
+                        <p class="section-description">Provide details about your household and residence. If some information is not applicable, you may enter <strong>N/A</strong>.</p>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="householdMembers" class="required">Number of Household Members <span class="required-marker">*</span></label>
+                            <input type="number" id="householdMembers" placeholder="Enter number of members" min="1" max="20" aria-describedby="householdMembers-help" required>
+                            <small class="note" id="householdMembers-help">Example: 5 members including yourself</small>
+                            <div class="error-message" id="householdMembers-error" role="alert" aria-live="polite">Please enter number of household members</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ownerName">Property Owner's Name</label>
+                            <input type="text" id="ownerName" placeholder="Enter property owner's full name or N/A if not applicable">
+                            <small class="note">Example: Juan Dela Cruz (or N/A if you are not the owner)</small>
+                            <div class="error-message" id="ownerName-error" role="alert" aria-live="polite">Please enter owner's name or N/A</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="precinctNo">Precinct Number</label>
+                            <input type="text" id="precinctNo" placeholder="Enter precinct number or N/A" aria-describedby="precinct-help">
+                            <small class="note" id="precinct-help">Example: 123A (or N/A if not applicable)</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="yearsInBarangay" class="required">Years Residing in Barangay <span class="required-marker">*</span></label>
+                            <input type="number" id="yearsInBarangay" placeholder="Enter number of years" min="0" max="100" aria-describedby="years-help" required>
+                            <small class="note" id="years-help">Example: 10 years (0 if less than 1 year)</small>
+                            <div class="error-message" id="yearsInBarangay-error" role="alert" aria-live="polite">Please enter number of years</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-prev" aria-label="Go back to personal information">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i> Previous
+                        </button>
+                        <button type="button" class="btn btn-next" aria-label="Continue to document upload">
+                            Continue to Documents <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Upload your Valid ID's -->
+                <div class="form-section" id="step3" role="tabpanel" aria-labelledby="step3-indicator">
+                    <div class="section-header">
+                        <h3 class="section-title">Identity Verification</h3>
+                        <p class="section-description">Upload a valid government-issued ID for identity verification.</p>
+                    </div>
+                    
+                    <!-- ID Type -->
+                    <div class="form-group">
+                        <label for="idType" class="required">Select ID Type <span class="required-marker">*</span></label>
+                        <select id="idType" required aria-required="true" aria-describedby="idType-help" onchange="toggleIDUpload(this)">
+                            <option value="">Select ID Type</option>
+                            <option value="passport">Passport</option>
+                            <option value="driver">Driver's License</option>
+                            <option value="national">National ID (PhilID)</option>
+                            <option value="voter">Voter's ID</option>
+                            <option value="postal">Postal ID</option>
+                            <option value="student">Student ID</option>
+                            <option value="other">Other Government ID</option>
+                            <option value="none">None / No ID</option>
+                        </select>
+                        <small class="note" id="idType-help">Choose the primary government-issued ID you will upload. Select "None/No ID" if you don't have any.</small>
+                        <div class="error-message" id="idType-error" role="alert" aria-live="polite">Please select an ID type</div>
+                    </div>
+                    
+                    <!-- Upload Front of ID -->
+                    <div class="form-group id-upload-section" id="id-front-section">
+                        <label for="idFront" class="required">Upload Front of ID <span class="required-marker">*</span></label>
+                        <div class="file-upload-container">
+                            <label for="idFront" class="file-upload-label">
+                                <i class="fas fa-upload" aria-hidden="true"></i> Click to upload the front of your valid ID
+                            </label>
+                            <input type="file" id="idFront" class="file-upload-input" accept="image/*" aria-describedby="idFront-help">
+                        </div>
+                        <small class="note" id="idFront-help">Ensure the front side is clear and readable (Max: 5MB)</small>
+                        <div class="error-message" id="idFront-error" role="alert" aria-live="polite">Please upload the front of your ID</div>
+                        <div class="file-preview-container" id="idFrontPreviewContainer" style="display: none;">
+                            <img id="idFrontImagePreview" class="image-preview" alt="Uploaded front ID preview">
+                            <button type="button" class="delete-file-btn" id="deleteIdFront" aria-label="Remove front ID file">×</button>
+                        </div>
+                    </div>
+
+                    <!-- Upload Back of ID -->
+                    <div class="form-group id-upload-section" id="id-back-section">
+                        <label for="idBack" class="required">Upload Back of ID <span class="required-marker">*</span></label>
+                        <div class="file-upload-container">
+                            <label for="idBack" class="file-upload-label">
+                                <i class="fas fa-upload" aria-hidden="true"></i> Click to upload the back of your valid ID
+                            </label>
+                            <input type="file" id="idBack" class="file-upload-input" accept="image/*" aria-describedby="idBack-help">
+                        </div>
+                        <small class="note" id="idBack-help">Ensure the back side is clear and readable (Max: 5MB)</small>
+                        <div class="error-message" id="idBack-error" role="alert" aria-live="polite">Please upload the back of your ID</div>
+                        <div class="file-preview-container" id="idBackPreviewContainer" style="display: none;">
+                            <img id="idBackImagePreview" class="image-preview" alt="Uploaded back ID preview">
+                            <button type="button" class="delete-file-btn" id="deleteIdBack" aria-label="Remove back ID file">×</button>
+                        </div>
+                    </div>
+
+                    <!-- Alternative for No ID -->
+                    <div class="form-group no-id-section" id="no-id-section" style="display: none;">
+                        <div class="info-box">
+                            <i class="fas fa-info-circle"></i>
+                            <p>If you don't have a government-issued ID, you may proceed and barangay officials will verify your identity through other means. Please provide additional information in the reason field below.</p>
+                        </div>
+                    </div>
+
+                    <!-- User Reason -->
+                    <div class="form-group">
+                        <label for="userReason" class="required">Reason for creating an account <span class="required-marker">*</span></label>
+                        <textarea id="userReason" placeholder="Explain why you are creating this account (e.g., residency registration, document request, etc.)" required aria-required="true" rows="3"></textarea>
+                        <div class="error-message" id="userReason-error" role="alert" aria-live="polite">
+                            Please provide a reason
+                        </div>
+                    </div>
+
+                    <!-- Verification Tips -->
+                    <div class="verification-tips">
+                        <h4><i class="fas fa-lightbulb" aria-hidden="true"></i> ID Upload Tips</h4>
+                        <ul class="tips-grid">
+                            <li><i class="fas fa-check"></i> Ensure the ID is not expired</li>
+                            <li><i class="fas fa-check"></i> Photo and details should be clear and readable</li>
+                            <li><i class="fas fa-check"></i> File should be well-lit without glare</li>
+                            <li><i class="fas fa-check"></i> Upload the front side of the ID</li>
+                            <li><i class="fas fa-check"></i> Upload the back side of the ID</li>
+                            <li><i class="fas fa-check"></i> File should not be blurry or edited</li>
+                            <li><i class="fas fa-check"></i> Make sure all corners of the ID are visible</li>
+                            <li><i class="fas fa-check"></i> Do not cover any part of the ID</li>
+                            <li><i class="fas fa-check"></i> Upload only one file per ID</li>
+                            <li><i class="fas fa-check"></i> Ensure file size does not exceed 5 MB</li>
+                        </ul>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-prev" aria-label="Go back to household information">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i> Previous
+                        </button>
+                        <button type="button" class="btn btn-next" aria-label="Continue to face verification">
+                            Continue to Face Verification <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Face Scan -->
+                <div class="form-section" id="step4" role="tabpanel" aria-labelledby="step4-indicator">
+                    <div class="section-header">
+                        <h3 class="section-title">Face Verification</h3>
+                        <p class="section-description">We need to capture your face from different angles to verify your identity against your ID.</p>
+                    </div>
+                    
+                    <div class="face-scan-container">
+                        <div class="face-scan-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Face capture progress">
+                            <div class="progress-circle active" id="progress-front">
+                                <span class="sr-only">Front face - pending</span>
+                                <span class="progress-number">1</span>
+                            </div>
+                            <div class="progress-connector" id="connector-1" aria-hidden="true"></div>
+                            <div class="progress-circle" id="progress-left">
+                                <span class="sr-only">Left side - pending</span>
+                                <span class="progress-number">2</span>
+                            </div>
+                            <div class="progress-connector" id="connector-2" aria-hidden="true"></div>
+                            <div class="progress-circle" id="progress-right">
+                                <span class="sr-only">Right side - pending</span>
+                                <span class="progress-number">3</span>
+                            </div>
+                            <div class="progress-connector" id="connector-3" aria-hidden="true"></div>
+                            <div class="progress-circle" id="progress-closed">
+                                <span class="sr-only">Closed eyes - pending</span>
+                                <span class="progress-number">4</span>
+                            </div>
+                        </div>                        
+                        
+                        <div class="face-scan-instructions" id="face-instructions" role="status" aria-live="polite">
+                            Please look directly at the camera for the front face capture
+                        </div>
+                        
+                        <div class="webcam-container">
+                            <div class="face-capture-circle" role="img" aria-label="Face capture area">
+                                <video id="webcamVideo" class="webcam-video" autoplay playsinline aria-label="Live camera feed"></video>
+                                <canvas id="webcamCanvas" class="webcam-canvas" aria-hidden="true"></canvas>
+                                <img id="capturedImage" class="captured-image" alt="Captured face image">
+                                <div class="face-guide"></div>
+                            </div>
+                            
+                            <div class="face-scan-status" id="face-status" role="status" aria-live="polite">
+                                <i class="fas fa-sync-alt" aria-hidden="true"></i> Camera ready - Please start camera to begin
+                            </div>
+                            
+                            <div class="capture-controls">
+                                <button type="button" class="capture-btn" id="startWebcam" aria-label="Start camera for face capture">
+                                    <i class="fas fa-camera" aria-hidden="true"></i> Start Camera
+                                </button>
+                                <button type="button" class="capture-btn" id="captureImage" disabled aria-label="Capture current face image">
+                                    <i class="fas fa-circle" aria-hidden="true"></i> Capture Photo
+                                </button>
+                                <button type="button" class="capture-btn" id="retakeImage" style="display:none;" aria-label="Retake face capture">
+                                    <i class="fas fa-redo" aria-hidden="true"></i> Retake
+                                </button>
+                            </div>
+                            
+                            <!-- Fallback for no webcam -->
+                            <div class="webcam-fallback" id="webcam-fallback" style="display: none;">
+                                <p><i class="fas fa-exclamation-triangle"></i> Camera not accessible. Please:</p>
+                                <ol>
+                                    <li>Check camera permissions</li>
+                                    <li>Try another device</li>
+                                    <li>Or <button type="button" class="btn-link" id="upload-photo-btn">upload a photo instead</button></li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="face-capture-steps">
+                            <!-- Front Face -->
+                            <div class="capture-step active" id="step-front">
+                                <div class="step-header">
+                                    <div class="step-indicator">1</div>
+                                    <div class="step-title">Front Face</div>
+                                    <button type="button" class="retake-face-btn" data-face="front" aria-label="Retake front face photo">↺</button>
+                                </div>
+                                <div class="face-capture-preview-container">
+                                    <img id="frontFacePreview" class="face-capture-preview" alt="Front face capture preview">
+                                </div>
+                                <button class="step-capture-btn" id="capture-front" disabled aria-label="Capture front face">Capture Front</button>
+                            </div>
+                        
+                            <!-- Left Side -->
+                            <div class="capture-step" id="step-left">
+                                <div class="step-header">
+                                    <div class="step-indicator">2</div>
+                                    <div class="step-title">Left Side</div>
+                                    <button type="button" class="retake-face-btn" data-face="left" aria-label="Retake left side photo">↺</button>
+                                </div>
+                                <div class="face-capture-preview-container">
+                                    <img id="leftFacePreview" class="face-capture-preview" alt="Left side face capture preview">
+                                </div>
+                                <button class="step-capture-btn" id="capture-left" disabled aria-label="Capture left side face">Capture Left</button>
+                            </div>
+                        
+                            <!-- Right Side -->
+                            <div class="capture-step" id="step-right">
+                                <div class="step-header">
+                                    <div class="step-indicator">3</div>
+                                    <div class="step-title">Right Side</div>
+                                    <button type="button" class="retake-face-btn" data-face="right" aria-label="Retake right side photo">↺</button>
+                                </div>
+                                <div class="face-capture-preview-container">
+                                    <img id="rightFacePreview" class="face-capture-preview" alt="Right side face capture preview">
+                                </div>
+                                <button class="step-capture-btn" id="capture-right" disabled aria-label="Capture right side face">Capture Right</button>
+                            </div>
+                        
+                            <!-- Closed Eyes -->
+                            <div class="capture-step" id="step-closed">
+                                <div class="step-header">
+                                    <div class="step-indicator">4</div>
+                                    <div class="step-title">Closed Eyes</div>
+                                    <button type="button" class="retake-face-btn" data-face="closed" aria-label="Retake closed eyes photo">↺</button>
+                                </div>
+                                <div class="face-capture-preview-container">
+                                    <img id="closedFacePreview" class="face-capture-preview" alt="Closed eyes face capture preview">
+                                </div>
+                                <button class="step-capture-btn" id="capture-closed" disabled aria-label="Capture closed eyes">Capture Closed</button>
+                            </div>
+                        </div>                        
+                    </div>
+                    
+                    <div class="face-scan-tips">
+                        <h4><i class="fas fa-lightbulb" aria-hidden="true"></i> Face Scan Tips:</h4>
+                        <ul>
+                            <li>Make sure there is enough light around you, but avoid direct light on your face</li>
+                            <li>Remove accessories like glasses, hats, or large earrings</li>
+                            <li>Keep your face within the circular frame</li>
+                            <li>Follow the instructions for each capture angle</li>
+                            <li>For the closed eyes photo, gently close your eyes - don't squeeze them shut</li>
+                            <li>Ensure your face matches your ID photo</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="privacy-notice">
+                        <h4><i class="fas fa-shield-alt" aria-hidden="true"></i> Privacy Assurance</h4>
+                        <p>Your facial data is securely encrypted and used only for identity verification purposes. We do not store biometric data after verification is complete.</p>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-prev" aria-label="Go back to document upload">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i> Previous
+                        </button>
+                        <button type="button" class="btn btn-next" id="completeFaceScan" disabled aria-label="Complete face verification and proceed to review">
+                            Complete Verification <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 5: Success Page -->
+                <div class="form-section" id="step5" role="tabpanel" aria-labelledby="step5-indicator">
+                    <div class="success-container">
+                        <div class="success-checkmark" aria-hidden="true">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h2 class="form-title">Account Registration Submitted Successfully!</h2>
+
+                        <div class="control-number-container">
+                            <p class="control-label">Your Registration Control Number:</p>
+                            <div class="control-number-display">
+                                <span class="control-number" id="controlNumber" aria-label="Your registration control number">BRGY118-20251218-001</span>
+                                <button type="button" class="btn-copy" id="copy-control-number" aria-label="Copy control number">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <small class="note">Please save this number for future reference. You can also take a screenshot.</small>
+                        </div>
+
+                        <p class="submission-message">
+                            Your account registration has been successfully submitted for review.
+                            Please allow <strong>1 to 4 business days</strong> for our admin to verify your information and process your account.
+                            <br><br>
+                            <strong>Estimated processing date:</strong> <span id="estimated-date"></span>
+                        </p>
+
+                        <div class="next-steps">
+                            <h4><i class="fas fa-list-alt" aria-hidden="true"></i> What Happens Next</h4>
+                            <div class="timeline" role="list">
+                                <div class="timeline-item" role="listitem">
+                                    <div class="timeline-marker" aria-hidden="true"></div>
+                                    <div class="timeline-content">
+                                        <strong>Document Verification</strong>
+                                        <p>Our administrator will carefully review your submitted information and documents.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item" role="listitem">
+                                    <div class="timeline-marker" aria-hidden="true"></div>
+                                    <div class="timeline-content">
+                                        <strong>Email Notification</strong>
+                                        <p>You will receive an email notification once your account is approved or if additional information is needed.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item" role="listitem">
+                                    <div class="timeline-marker" aria-hidden="true"></div>
+                                    <div class="timeline-content">
+                                        <strong>Account Activation</strong>
+                                        <p>Once approved, you can log in using your registered email and password to access barangay services.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-support">
+                            <h4><i class="fas fa-headset" aria-hidden="true"></i> Need Assistance?</h4>
+                            <p>If you have any questions or need to update your application, please contact our support team:</p>
+                            <div class="contact-details">
+                                <p><i class="fas fa-phone" aria-hidden="true"></i> (02) 8123-4567</p>
+                                <p><i class="fas fa-envelope" aria-hidden="true"></i> support@barangay118.gov.ph</p>
+                                <p><i class="fas fa-clock" aria-hidden="true"></i> Mon-Fri: 8:00 AM - 5:00 PM</p>
+                                <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Barangay 118 Office, 402 2nd St, Grace Park East, Caloocan</p>
+                            </div>
+                        </div>
+
+                        <div class="form-actions success-actions">
+                            <button type="button" class="btn btn-prev" aria-label="Go back to face verification">
+                                <i class="fas fa-arrow-left" aria-hidden="true"></i> Previous Step
+                            </button>
+                            <button type="button" class="btn btn-next" id="returnToHome" aria-label="Return to home page">
+                                <i class="fas fa-home" aria-hidden="true"></i> Return to Home
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="printConfirmation" aria-label="Print registration confirmation">
+                                <i class="fas fa-print" aria-hidden="true"></i> Print Confirmation
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="shareEmail" aria-label="Share confirmation via email">
+                                <i class="fas fa-share-alt" aria-hidden="true"></i> Share via Email
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Terms and Conditions Modal -->
+    <div class="modal" id="termsModal" role="dialog" aria-labelledby="termsModalTitle" aria-modal="true" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="termsModalTitle">Terms and Conditions Agreement</h2>
+                <button class="close-modal" id="closeTermsModal" aria-label="Close terms and conditions">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            <div class="terms-content">
+                <div class="terms-intro">
+                    <p><strong>Last Updated:</strong> January 1, 2025</p>
+                    <p>These Terms and Conditions ("Terms") govern your use of the Barangay 118 Online System website www.barangay118.gov.ph ("the Website") and the services provided therein.</p>
+                </div>
+                
+                <h2>1. Privacy and Data Protection</h2>
+                <p>Your privacy is important to us. By using the Website, you consent to the collection, use, and disclosure of your personal information as described in our Privacy Policy.</p>
+                
+                <h2>2. Collection of Personal Information</h2>
+                <p>In order to access certain features or services on the Website, you may be required to provide personal information such as your name, birthdate, address, identification documents, and biometric data for verification purposes.</p>
+                
+                <h2>3. Use of Personal Information</h2>
+                <p>The personal information we collect may be used for the following purposes:</p>
+                <ul>
+                    <li>To provide and maintain our barangay services</li>
+                    <li>To verify your identity and eligibility for barangay services</li>
+                    <li>To communicate with you about your account or transactions</li>
+                    <li>To send you important updates, announcements, and emergency alerts</li>
+                    <li>To improve our services and user experience</li>
+                    <li>To comply with legal obligations and government requirements</li>
+                </ul>
+                
+                <h2>4. Data Retention and Security</h2>
+                <p>We will retain your personal information for as long as necessary to fulfill the purposes outlined in these Terms, unless a longer retention period is required or permitted by law. We implement appropriate security measures to protect your personal information.</p>
+                
+                <h2>5. User Responsibilities</h2>
+                <p>As a user of the Website, you agree to:</p>
+                <ul>
+                    <li>Provide accurate and complete information during registration</li>
+                    <li>Keep your login credentials secure and confidential</li>
+                    <li>Notify us immediately of any unauthorized use of your account</li>
+                    <li>Use the Website in compliance with all applicable laws and regulations</li>
+                    <li>Not attempt to circumvent any security measures</li>
+                </ul>
+                
+                <h2>6. Service Availability</h2>
+                <p>We strive to maintain the availability of our services but do not guarantee uninterrupted access. We may perform maintenance and updates that temporarily affect service availability.</p>
+                
+                <h2>7. Limitation of Liability</h2>
+                <p>Barangay 118 shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the services.</p>
+                
+                <p class="terms-acceptance">By using the Website, you acknowledge that you have read, understood, and agree to be bound by these Terms and our Privacy Policy.</p>
+            </div>
+            
+            <div class="terms-options">
+                <div class="terms-option">
+                    <input type="radio" id="modal-decline" name="modal-terms" value="decline">
+                    <label for="modal-decline">I Decline</label>
+                </div>
+                <div class="terms-option">
+                    <input type="radio" id="modal-accept" name="modal-terms" value="accept">
+                    <label for="modal-accept">I Accept Terms & Conditions</label>
+                </div>
+            </div>
+
+            <div class="error-message" id="modal-terms-error" role="alert" aria-live="polite" style="display: none;">You must accept the terms and conditions to proceed with registration</div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-prev" id="cancelTerms" aria-label="Cancel registration">
+                    Cancel Registration
+                </button>
+                <button type="button" class="btn btn-next" id="confirmTerms" aria-label="Confirm acceptance and proceed">
+                    Confirm & Proceed
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;" aria-live="polite" aria-label="Processing your request">
+        <div class="loading-spinner"></div>
+        <p>Processing your registration...</p>
+    </div>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <div class="container" id="footer-container">
+            <div class="footer-content" id="footer-content">
+                <div class="footer-column" id="footer-system-column">
+                    <h3 id="footer-title" class="footer-title">Barangay 118 Online System</h3>
+                    <p id="footer-description" class="footer-description">Secure and efficient online services for Barangay 118. Connecting our community through technology.</p>
+                </div>
+                <div class="footer-center" id="footer-center">
+                    <div class="footer-row" id="footer-row">
+                        <div class="footer-column" id="footer-contact-column">
+                            <h3 id="footer-contact-title">Contact Info</h3>
+                            <ul id="footer-contact-info" class="footer-contact-info">
+                                <li><i class="fas fa-map-marker-alt"></i><span id="footer-address-line1">402 2nd St, Grace Park East, Caloocan</span></li>
+                                <li><i class="fas fa-map-pin"></i><span id="footer-address-line2">Metro Manila, Philippines</span></li>
+                                <li><i class="fas fa-phone"></i><span id="footer-phone">(02) 8123-4567</span></li>
+                                <li><i class="fas fa-envelope"></i><span id="footer-email">info@barangay118.gov.ph</span></li>
+                                <li><i class="fas fa-clock"></i><span id="footer-office-hours">Mon–Fri: 8:00 AM – 5:00 PM</span></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column" id="footer-links-column">
+                            <h3 id="footer-social-title">Follow Us</h3>
+                            <ul class="footer-links" id="footer-social-links">
+                                <li id="footer-facebook-item"><a id="footer-facebook-link" href="https://facebook.com/barangay118" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                                <li id="footer-messenger-item"><a id="footer-messenger-link" href="https://m.me/barangay118" target="_blank"><i class="fab fa-facebook-messenger"></i> Messenger Chat</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright" id="footer-copyright">
+                <p id="copyright-text">&copy; 2025 Barangay 118 Online System. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyADUN3zUupPLgB8Z0p_867XUK7FYKCkwoU",
+  authDomain: "barangay118-test-website.firebaseapp.com",
+  databaseURL: "https://barangay118-test-website-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "barangay118-test-website",
+  storageBucket: "barangay118-test-website.firebasestorage.app",
+  messagingSenderId: "459463926150",
+  appId: "1:459463926150:web:e66bc57f5e29c2dca24c07",
+  measurementId: "G-RQ8JYYJ1G7"
+};
+
+        // Initialize Firebase
+        let db = null;
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            db = firebase.database();
+            console.log("Firebase initialized successfully!");
+        } catch (e) {
+            console.error('Firebase initialization error:', e);
+        }
+
+        // Initialize EmailJS with public key
+        (function(){
+            try {
+                if (typeof emailjs !== 'undefined' && emailjs.init) {
+                    emailjs.init("KkQSfG62Jg8W8uies");
+                    console.log("EmailJS initialized successfully");
+                } else {
+                    console.warn('EmailJS not available.');
+                }
+            } catch (e) {
+                console.error('Failed to init EmailJS:', e);
+            }
+        })();
+
+        // Global variables
+        let currentStep = 1;
+        let currentOTP = null;
+        let emailVerified = false;
+        let otpExpiry = null;
+        let countdownInterval = null;
+        let capturedFaces = { front: false, left: false, right: false, closed: false };
+        let webcamStream = null;
+        let currentFaceAngle = 'front'; // track which angle we are capturing
+        let formData = { 
+            personalInfo: {}, 
+            householdInfo: {}, 
+            documents: {}, 
+            faceCaptures: {}, 
+            accountInfo: {},
+            specialCategories: [],
+            controlNumber: null,
+            submittedAt: null,
+            status: 'pending'
+        };
+
+        // Helper functions
+        function getEl(id) { return document.getElementById(id) || null; }
+        function getVal(id) { const el = getEl(id); return el ? el.value : ''; }
+        function setVal(id, value) { const el = getEl(id); if (el) el.value = value; }
+        function toggleDisplay(id, display) { const el = getEl(id); if (el) el.style.display = display; }
+        function exists(id) { return !!getEl(id); }
+
+        // Load dynamic header/footer from Firebase
+        function loadDynamicContent() {
+            if (!db) {
+                console.warn('Firebase not initialized. Using default content.');
+                return;
+            }
+
+            const mainRef = db.ref('01_main');
+            mainRef.once('value').then((snapshot) => {
+                const data = snapshot.val() || {};
+                
+                // Update header
+                const systemName = data['01_systemName'] || 'BARANGAY 118 ONLINE SYSTEM';
+                const heroData = data['02_hero'] || {};
+                const logoUrl = heroData.headerLogo || 'Logo-Favicon-removebg-preview.png';
+
+                const headerLogoImg = getEl('header-logo-img');
+                if (headerLogoImg) headerLogoImg.src = logoUrl;
+                const systemNameEl = getEl('system-name');
+                if (systemNameEl) systemNameEl.textContent = systemName;
+
+                // Update hero title/description
+                const heroTitle = getEl('hero-title');
+                if (heroTitle && heroData.title) heroTitle.textContent = heroData.title;
+                const heroDesc = getEl('hero-description');
+                if (heroDesc && heroData.description) heroDesc.textContent = heroData.description;
+
+                // Update footer
+                const footerData = data['04_footer'] || {};
+                const footerTitle = getEl('footer-title');
+                if (footerTitle) footerTitle.textContent = footerData.title || 'Barangay 118 Online System';
+                const footerDesc = getEl('footer-description');
+                if (footerDesc) footerDesc.textContent = footerData.description || 'Secure and efficient online services for Barangay 118. Connecting our community through technology.';
+                
+                const contactInfo = footerData.contactInfo || {};
+                const addr1 = getEl('footer-address-line1');
+                if (addr1) addr1.textContent = contactInfo.addressLine1 || '402 2nd St, Grace Park East, Caloocan';
+                const addr2 = getEl('footer-address-line2');
+                if (addr2) addr2.textContent = contactInfo.addressLine2 || 'Metro Manila, Philippines';
+                const phone = getEl('footer-phone');
+                if (phone) phone.textContent = contactInfo.phone || '(02) 8123-4567';
+                const email = getEl('footer-email');
+                if (email) email.textContent = contactInfo.email || 'info@barangay118.gov.ph';
+                const officeHours = getEl('footer-office-hours');
+                if (officeHours) officeHours.textContent = contactInfo.officeHours || 'Mon–Fri: 8:00 AM – 5:00 PM';
+
+                const socialMedia = footerData.socialMedia || {};
+                const fbLink = getEl('footer-facebook-link');
+                if (fbLink) fbLink.href = socialMedia.facebook || 'https://facebook.com/barangay118';
+                const messengerLink = getEl('footer-messenger-link');
+                if (messengerLink) messengerLink.href = socialMedia.messenger || 'https://m.me/barangay118';
+
+                const copyright = getEl('copyright-text');
+                if (copyright) copyright.innerHTML = footerData.copyright || '&copy; 2025 Barangay 118 Online System. All Rights Reserved.';
+
+                console.log('Dynamic content loaded from Firebase');
+            }).catch((error) => {
+                console.error('Error loading dynamic content:', error);
+            });
+        }
+
+        // ========== STEP 1 VALIDATIONS ==========
+        function validateStep1() {
+            let isValid = true;
+            const requiredFields = ['lastName','firstName','gender','dateOfBirth','address','placeOfBirth','phone','civilStatus','citizenship','occupation','email','password','confirmPassword'];
+            requiredFields.forEach(id => {
+                const field = getEl(id);
+                if (!field || !field.value.trim()) {
+                    showFieldError(id, 'This field is required');
+                    isValid = false;
+                } else {
+                    clearFieldError(id);
+                }
+            });
+
+            // Email format
+            const email = getVal('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email && !emailRegex.test(email)) {
+                showFieldError('email', 'Invalid email format');
+                isValid = false;
+            }
+
+            // Phone format
+            const phone = getVal('phone').replace(/[^0-9]/g, '');
+            if (phone && !/^9\d{9}$/.test(phone)) {
+                showFieldError('phone', 'Phone must start with 9 and be 10 digits');
+                isValid = false;
+            }
+
+            // Age validation (>=18)
+            const age = parseInt(getVal('age')) || 0;
+            if (age < 18) {
+                showFieldError('age', 'You must be at least 18 years old');
+                isValid = false;
+            }
+
+            // Password match and strength
+            const pwd = getVal('password');
+            const confirm = getVal('confirmPassword');
+            if (!validatePasswordStrength(pwd)) {
+                showFieldError('password', 'Password does not meet requirements');
+                isValid = false;
+            }
+            if (pwd !== confirm) {
+                showFieldError('confirmPassword', 'Passwords do not match');
+                isValid = false;
+            }
+
+            // OTP verified
+            if (!emailVerified) {
+                showToast('Please verify your email with OTP first', 'error');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function showFieldError(id, message) {
+            const errorEl = getEl(id + '-error');
+            if (errorEl) {
+                errorEl.textContent = message;
+                errorEl.style.display = 'block';
+            }
+            const field = getEl(id);
+            if (field) field.classList.add('error');
+        }
+
+        function clearFieldError(id) {
+            const errorEl = getEl(id + '-error');
+            if (errorEl) errorEl.style.display = 'none';
+            const field = getEl(id);
+            if (field) field.classList.remove('error');
+        }
+
+        function validatePasswordStrength(password) {
+            const checks = {
+                length: password.length >= 10,
+                upper: /[A-Z]/.test(password),
+                lower: /[a-z]/.test(password),
+                number: /[0-9]/.test(password),
+                special: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
+            };
+            Object.keys(checks).forEach(key => {
+                const li = getEl('req-'+key);
+                if (li) {
+                    li.classList.toggle('valid', checks[key]);
+                    li.classList.toggle('invalid', !checks[key]);
+                }
+            });
+            return Object.values(checks).every(v => v === true);
+        }
+
+        function validatePassword() {
+            const pwd = getVal('password');
+            validatePasswordStrength(pwd);
+            validatePasswordConfirmation();
+        }
+
+        function validatePasswordConfirmation() {
+            const pwd = getVal('password');
+            const confirm = getVal('confirmPassword');
+            const matchMsg = getEl('password-match-message');
+            const errorEl = getEl('confirmPassword-error');
+            if (pwd && confirm && pwd === confirm) {
+                matchMsg.classList.add('valid');
+                errorEl.style.display = 'none';
+                getEl('confirmPassword').classList.remove('error');
+            } else {
+                matchMsg.classList.remove('valid');
+                if (confirm) {
+                    errorEl.style.display = 'block';
+                    getEl('confirmPassword').classList.add('error');
+                }
+            }
+        }
+
+        function calculateAge() {
+            const dob = getVal('dateOfBirth');
+            if (!dob) return;
+            const birthDate = new Date(dob);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+            setVal('age', age);
+            if (age < 18) {
+                showFieldError('age', 'You must be at least 18');
+            } else {
+                clearFieldError('age');
+            }
+        }
+
+        // ========== STEP 2 VALIDATION ==========
+        function validateStep2() {
+            let isValid = true;
+            const members = getVal('householdMembers');
+            if (!members || parseInt(members) < 1) {
+                showFieldError('householdMembers', 'Please enter valid number');
+                isValid = false;
+            } else {
+                clearFieldError('householdMembers');
+            }
+            const years = getVal('yearsInBarangay');
+            if (years === '' || parseInt(years) < 0) {
+                showFieldError('yearsInBarangay', 'Please enter valid years');
+                isValid = false;
+            } else {
+                clearFieldError('yearsInBarangay');
+            }
+            // ownerName optional, but if filled, not empty
+            return isValid;
+        }
+
+        // ========== STEP 3 VALIDATION ==========
+        function validateStep3() {
+            let isValid = true;
+            const idType = getVal('idType');
+            if (!idType) {
+                showFieldError('idType', 'Please select an ID type');
+                isValid = false;
+            } else {
+                clearFieldError('idType');
+            }
+
+            // If ID type is not "none", require front/back uploads (base64 present)
+            if (idType && idType !== 'none') {
+                if (!formData.documents.idFront) {
+                    showFieldError('idFront', 'Please upload front of ID');
+                    isValid = false;
+                } else {
+                    clearFieldError('idFront');
+                }
+                if (!formData.documents.idBack) {
+                    showFieldError('idBack', 'Please upload back of ID');
+                    isValid = false;
+                } else {
+                    clearFieldError('idBack');
+                }
+            }
+
+            const reason = getVal('userReason');
+            if (!reason.trim()) {
+                showFieldError('userReason', 'Please provide a reason');
+                isValid = false;
+            } else {
+                clearFieldError('userReason');
+            }
+            return isValid;
+        }
+
+        // ========== STEP 4 VALIDATION ==========
+        function validateStep4() {
+            const allCaptured = capturedFaces.front && capturedFaces.left && capturedFaces.right && capturedFaces.closed;
+            if (!allCaptured) {
+                showToast('Please capture all four face angles', 'error');
+            }
+            return allCaptured;
+        }
+
+        // ========== OTP FUNCTIONS ==========
+        async function sendOTP() {
+            const email = getVal('email').trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                showFieldError('email', 'Please enter a valid email address first');
+                return;
+            }
+
+            const btn = getEl('send-otp');
+            const resendBtn = getEl('resend-otp');
+            if (btn) { btn.disabled = true; btn.classList.add('loading'); btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...'; }
+            if (resendBtn) resendBtn.disabled = true;
+
+            try {
+                currentOTP = Math.floor(100000 + Math.random() * 900000).toString();
+                otpExpiry = Date.now() + 5 * 60 * 1000;
+
+                const templateParams = {
+                    to_email: email,
+                    user_email: email,
+                    email: email,
+                    otp_code: currentOTP,
+                    from_name: 'Barangay 118 Online System',
+                    message: `Your OTP verification code is: ${currentOTP}. This code will expire in 5 minutes.`,
+                    user_name: getVal('firstName') || 'User'
+                };
+
+                const response = await emailjs.send(
+                    'service_vdi4xh7',
+                    'template_vdbhhq5',
+                    templateParams
+                );
+
+                console.log('Email sent:', response);
+                showToast('OTP has been sent to your email!', 'success');
+
+                getEl('otp-input-group').style.display = 'block';
+                getEl('otp-resend').style.display = 'block';
+                getEl('otp-countdown').style.display = 'block';
+
+                startCountdown(120);
+                getEl('otp-error').style.display = 'none';
+
+                if (btn) { 
+                    btn.disabled = false; 
+                    btn.classList.remove('loading'); 
+                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send OTP'; 
+                }
+                if (resendBtn) resendBtn.disabled = false;
+            } catch (error) {
+                console.error('Failed to send OTP:', error);
+                showToast('Failed to send OTP. Please try again.', 'error');
+                if (btn) { 
+                    btn.disabled = false; 
+                    btn.classList.remove('loading'); 
+                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send OTP'; 
+                }
+                if (resendBtn) resendBtn.disabled = false;
+            }
+        }
+
+        function startCountdown(seconds) {
+            if (countdownInterval) clearInterval(countdownInterval);
+            const timerSpan = getEl('countdown-timer');
+            const countdownDiv = getEl('otp-countdown');
+            const resendBtn = getEl('resend-otp');
+            const sendBtn = getEl('send-otp');
+            let remaining = seconds;
+            timerSpan.textContent = remaining;
+            countdownDiv.style.display = 'block';
+            if (resendBtn) resendBtn.disabled = true;
+            if (sendBtn) sendBtn.disabled = true;
+            countdownInterval = setInterval(() => {
+                remaining--;
+                timerSpan.textContent = remaining;
+                if (remaining <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownDiv.style.display = 'none';
+                    if (resendBtn) resendBtn.disabled = false;
+                    if (sendBtn) sendBtn.disabled = false;
+                }
+            }, 1000);
+        }
+
+        function verifyOTP() {
+            const otpInput = getVal('otpInput');
+            if (!otpInput || otpInput.length !== 6) {
+                getEl('otp-error').textContent = 'Please enter a 6-digit code';
+                getEl('otp-error').style.display = 'block';
+                return;
+            }
+            if (Date.now() > otpExpiry) {
+                getEl('otp-error').textContent = 'OTP has expired. Please request a new one.';
+                getEl('otp-error').style.display = 'block';
+                return;
+            }
+            if (otpInput === currentOTP) {
+                emailVerified = true;
+                getEl('otp-success').style.display = 'block';
+                getEl('otp-error').style.display = 'none';
+                getEl('otp-input-group').style.display = 'none';
+                getEl('otp-resend').style.display = 'none';
+                getEl('otp-countdown').style.display = 'none';
+                if (countdownInterval) clearInterval(countdownInterval);
+                showToast('Email verified successfully!', 'success');
+            } else {
+                getEl('otp-error').textContent = 'Incorrect OTP. Please try again.';
+                getEl('otp-error').style.display = 'block';
+            }
+        }
+
+        // ========== FILE UPLOAD HANDLING ==========
+        function handleIdFileUpload(side) {
+            const input = getEl('id' + (side === 'front' ? 'Front' : 'Back'));
+            const file = input.files[0];
+            if (!file) return;
+
+            if (file.size > 5 * 1024 * 1024) {
+                showToast('File size must be less than 5MB', 'error');
+                input.value = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const dataUrl = e.target.result;
+                if (side === 'front') {
+                    formData.documents.idFront = dataUrl;
+                    showPreview('idFront', dataUrl);
+                } else {
+                    formData.documents.idBack = dataUrl;
+                    showPreview('idBack', dataUrl);
+                }
+                clearFieldError('id' + (side === 'front' ? 'Front' : 'Back'));
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function showPreview(fileId, dataUrl) {
+            const container = getEl(fileId + 'PreviewContainer');
+            const img = getEl(fileId + 'ImagePreview');
+            if (container && img) {
+                img.src = dataUrl;
+                img.style.display = 'block';
+                container.style.display = 'block';
+            }
+        }
+
+        function deleteFile(fileType) {
+            if (fileType === 'idFront') {
+                formData.documents.idFront = null;
+                getEl('idFront').value = '';
+                getEl('idFrontPreviewContainer').style.display = 'none';
+            } else if (fileType === 'idBack') {
+                formData.documents.idBack = null;
+                getEl('idBack').value = '';
+                getEl('idBackPreviewContainer').style.display = 'none';
+            }
+        }
+
+        // ========== FACE CAPTURE ==========
+        async function startWebcam() {
+            try {
+                webcamStream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const video = getEl('webcamVideo');
+                video.srcObject = webcamStream;
+                video.play();
+                getEl('startWebcam').disabled = true;
+                getEl('captureImage').disabled = false;
+                getEl('face-status').innerHTML = '<i class="fas fa-video"></i> Camera active - click Capture Photo';
+                // Enable all capture step buttons
+                document.querySelectorAll('.step-capture-btn').forEach(btn => btn.disabled = false);
+            } catch (err) {
+                console.error('Webcam error:', err);
+                getEl('webcam-fallback').style.display = 'block';
+                getEl('face-status').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Camera access denied';
+            }
+        }
+
+        function captureImage() {
+            const video = getEl('webcamVideo');
+            const canvas = getEl('webcamCanvas');
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+            // Determine current active face angle based on which step is active
+            const activeStep = document.querySelector('.capture-step.active');
+            if (activeStep) {
+                const faceType = activeStep.id.replace('step-', '');
+                captureFace(faceType, dataUrl);
+            } else {
+                // default to front
+                captureFace('front', dataUrl);
+            }
+        }
+
+        function captureFace(angle, dataUrl = null) {
+            if (!dataUrl) {
+                // capture from canvas if not provided
+                const canvas = getEl('webcamCanvas');
+                const context = canvas.getContext('2d');
+                const video = getEl('webcamVideo');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+            }
+
+            // Store in formData
+            formData.faceCaptures[angle] = dataUrl;
+            capturedFaces[angle] = true;
+
+            // Update UI preview
+            const previewImg = getEl(angle + 'FacePreview');
+            if (previewImg) {
+                previewImg.src = dataUrl;
+                previewImg.style.display = 'block';
+            }
+
+            // Mark step as completed
+            const stepDiv = getEl('step-' + angle);
+            if (stepDiv) {
+                stepDiv.classList.remove('active');
+                stepDiv.classList.add('completed');
+            }
+
+            // Update progress circles
+            const progressCircle = getEl('progress-' + angle);
+            if (progressCircle) {
+                progressCircle.classList.remove('active');
+                progressCircle.classList.add('completed');
+            }
+            // Update connectors
+            if (angle === 'front') {
+                getEl('connector-1').classList.add('completed');
+            } else if (angle === 'left') {
+                getEl('connector-2').classList.add('completed');
+            } else if (angle === 'right') {
+                getEl('connector-3').classList.add('completed');
+            }
+
+            // Activate next step if any
+            const angles = ['front','left','right','closed'];
+            const currentIndex = angles.indexOf(angle);
+            if (currentIndex < angles.length - 1) {
+                const nextAngle = angles[currentIndex + 1];
+                const nextStep = getEl('step-' + nextAngle);
+                if (nextStep) {
+                    nextStep.classList.add('active');
+                }
+                const nextProgress = getEl('progress-' + nextAngle);
+                if (nextProgress) {
+                    nextProgress.classList.add('active');
+                }
+                updateInstructions(nextAngle);
+            }
+
+            // Check if all captured
+            if (capturedFaces.front && capturedFaces.left && capturedFaces.right && capturedFaces.closed) {
+                getEl('completeFaceScan').disabled = false;
+                getEl('face-status').innerHTML = '<i class="fas fa-check-circle"></i> All angles captured successfully!';
+            }
+        }
+
+        function updateInstructions(angle) {
+            const instr = getEl('face-instructions');
+            const texts = {
+                front: 'Please look directly at the camera for the front face capture',
+                left: 'Turn your head slightly to the left',
+                right: 'Turn your head slightly to the right',
+                closed: 'Gently close your eyes'
+            };
+            instr.textContent = texts[angle] || texts.front;
+        }
+
+        function retakeFaceCapture(faceType) {
+            // Mark as not captured
+            capturedFaces[faceType] = false;
+            delete formData.faceCaptures[faceType];
+            // Reset UI
+            const stepDiv = getEl('step-' + faceType);
+            if (stepDiv) {
+                stepDiv.classList.remove('completed');
+                stepDiv.classList.add('active');
+            }
+            const progressCircle = getEl('progress-' + faceType);
+            if (progressCircle) {
+                progressCircle.classList.remove('completed');
+                progressCircle.classList.add('active');
+            }
+            // Reset connectors if needed
+            if (faceType === 'front') {
+                getEl('connector-1').classList.remove('completed');
+            } else if (faceType === 'left') {
+                getEl('connector-2').classList.remove('completed');
+            } else if (faceType === 'right') {
+                getEl('connector-3').classList.remove('completed');
+            }
+            // Disable complete button
+            getEl('completeFaceScan').disabled = true;
+            // Show capture button again? Already enabled.
+            // Update instructions
+            updateInstructions(faceType);
+        }
+
+        function retakeImage() {
+            // Hide captured image, show video
+            getEl('capturedImage').style.display = 'none';
+            getEl('webcamVideo').style.display = 'block';
+            getEl('retakeImage').style.display = 'none';
+            getEl('captureImage').style.display = 'inline-flex';
+        }
+
+        // ========== TERMS MODAL ==========
+        function showTermsModal() {
+            if (!validateStep1()) {
+                showToast('Please complete all required fields in Personal Information', 'error');
+                return;
+            }
+            getEl('termsModal').style.display = 'flex';
+        }
+
+        function closeTermsModal() {
+            getEl('termsModal').style.display = 'none';
+            // Reset radio
+            document.querySelectorAll('input[name="modal-terms"]').forEach(r => r.checked = false);
+            getEl('modal-terms-error').style.display = 'none';
+        }
+
+        function confirmTerms() {
+            const accept = getEl('modal-accept').checked;
+            if (!accept) {
+                getEl('modal-terms-error').style.display = 'block';
+                return;
+            }
+            closeTermsModal();
+            // Proceed to step 2
+            showStep(2);
+        }
+
+        // ========== STEP NAVIGATION ==========
+        function showStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+            getEl('step' + step).classList.add('active');
+            // Update progress indicators
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active', 'completed'));
+            for (let i = 1; i <= 5; i++) {
+                const stepInd = getEl('step' + i + '-indicator');
+                if (i < step) {
+                    stepInd.classList.add('completed');
+                    stepInd.classList.remove('active');
+                } else if (i === step) {
+                    stepInd.classList.add('active');
+                    stepInd.classList.remove('completed');
+                } else {
+                    stepInd.classList.remove('active', 'completed');
+                }
+            }
+            // Update progress bar width
+            const progressWidth = ((step - 1) / 4) * 100;
+            getEl('progress-bar').style.width = progressWidth + '%';
+            getEl('current-step-number').textContent = step;
+            const desc = ['Personal Information','Household Information','Document Upload','Face Verification','Completion'];
+            getEl('step-description').textContent = '- ' + desc[step-1];
+
+            // Enable/disable prev/next buttons
+            const prevBtns = document.querySelectorAll('.btn-prev');
+            const nextBtns = document.querySelectorAll('.btn-next');
+            if (step === 1) {
+                prevBtns.forEach(b => b.disabled = true);
+            } else {
+                prevBtns.forEach(b => b.disabled = false);
+            }
+            if (step === 5) {
+                nextBtns.forEach(b => b.disabled = true);
+            } else {
+                nextBtns.forEach(b => b.disabled = false);
+            }
+            currentStep = step;
+        }
+
+        function handleNextStep(e) {
+            e.preventDefault();
+            if (currentStep === 1) {
+                // handled by show-terms-btn
+                return;
+            }
+            if (currentStep === 2 && !validateStep2()) return;
+            if (currentStep === 3 && !validateStep3()) return;
+            if (currentStep === 4 && !validateStep4()) return;
+
+            if (currentStep === 4) {
+                // Submit all to Firebase
+                submitRegistration();
+                showStep(5);
+            } else {
+                showStep(currentStep + 1);
+            }
+        }
+
+        function handlePrevStep(e) {
+            e.preventDefault();
+            if (currentStep > 1) showStep(currentStep - 1);
+        }
+
+        function showStepDirect(step) {
+            // Only allow if previous steps validated
+            if (step > currentStep) {
+                if (step === 2 && !validateStep1()) return;
+                if (step === 3 && !validateStep2()) return;
+                if (step === 4 && !validateStep3()) return;
+                if (step === 5 && !validateStep4()) return;
+            }
+            showStep(step);
+        }
+
+        // ========== SUBMIT TO FIREBASE ==========
+        async function submitRegistration() {
+            if (!db) {
+                showToast('Firebase not connected', 'error');
+                return;
+            }
+
+            // Collect all data from form
+            collectFormData();
+
+            // Generate control number
+            const now = new Date();
+            const dateStr = now.toISOString().slice(0,10).replace(/-/g,'');
+            const random = Math.floor(Math.random() * 1000).toString().padStart(3,'0');
+            const controlNumber = `BRGY118-${dateStr}-${random}`;
+            formData.controlNumber = controlNumber;
+            formData.submittedAt = now.toLocaleString();
+            formData.status = 'pending';
+
+            // Remove password from data before saving
+            const { accountInfo } = formData;
+            const { password, ...accountInfoWithoutPassword } = accountInfo;
+            const dataToSave = {
+                ...formData,
+                accountInfo: accountInfoWithoutPassword
+            };
+
+            try {
+                getEl('loadingOverlay').style.display = 'flex';
+                const newRef = db.ref('05_adminRegistration').push();
+                await newRef.set(dataToSave);
+                console.log('Registration saved with key:', newRef.key);
+                getEl('loadingOverlay').style.display = 'none';
+                getEl('controlNumber').textContent = controlNumber;
+                // Clear local storage draft
+                localStorage.removeItem('barangay118_reg_draft');
+                showToast('Registration submitted successfully!', 'success');
+            } catch (error) {
+                console.error('Error saving to Firebase:', error);
+                getEl('loadingOverlay').style.display = 'none';
+                showToast('Error submitting registration. Please try again.', 'error');
+            }
+        }
+
+        function collectFormData() {
+            // Personal Info
+            formData.personalInfo = {
+                lastName: getVal('lastName'),
+                firstName: getVal('firstName'),
+                middleName: getVal('middleName'),
+                extName: getVal('extName') === 'Other' ? getVal('otherExt') : getVal('extName'),
+                gender: getVal('gender'),
+                dateOfBirth: getVal('dateOfBirth'),
+                address: getVal('address'),
+                placeOfBirth: getVal('placeOfBirth'),
+                age: getVal('age'),
+                phone: getVal('phone'),
+                civilStatus: getVal('civilStatus'),
+                citizenship: getVal('citizenship') === 'Dual Citizen' ? getVal('otherCitizenship') : getVal('citizenship'),
+                occupation: getVal('occupation') === 'Other' ? getVal('otherOccupation') : getVal('occupation')
+            };
+
+            // Special categories
+            formData.specialCategories = [];
+            document.querySelectorAll('input[name="indicateIf[]"]:checked').forEach(cb => {
+                formData.specialCategories.push(cb.value);
+            });
+
+            // Account Info (excluding password)
+            formData.accountInfo = {
+                email: getVal('email'),
+                emailVerified: emailVerified
+            };
+
+            // Household Info
+            formData.householdInfo = {
+                householdMembers: getVal('householdMembers'),
+                ownerName: getVal('ownerName'),
+                precinctNo: getVal('precinctNo'),
+                yearsInBarangay: getVal('yearsInBarangay')
+            };
+
+            // Documents
+            formData.documents.idType = getVal('idType');
+            // idFront, idBack already stored as base64 in formData.documents via upload handlers
+            formData.documents.userReason = getVal('userReason');
+
+            // Face captures already in formData.faceCaptures
+        }
+
+        // ========== AUTO-SAVE DRAFT ==========
+        function setupAutoSave() {
+            const fields = ['lastName','firstName','middleName','gender','dateOfBirth','address','placeOfBirth','phone','civilStatus','citizenship','occupation','email','householdMembers','ownerName','precinctNo','yearsInBarangay','idType','userReason'];
+            fields.forEach(id => {
+                const el = getEl(id);
+                if (el) el.addEventListener('input', saveFormDataLocally);
+            });
+            document.querySelectorAll('input[name="indicateIf[]"]').forEach(cb => cb.addEventListener('change', saveFormDataLocally));
+        }
+
+        function saveFormDataLocally() {
+            // Simplified: just collect and store in localStorage
+            const draft = {
+                personalInfo: {
+                    lastName: getVal('lastName'),
+                    firstName: getVal('firstName'),
+                    middleName: getVal('middleName'),
+                    extName: getVal('extName'),
+                    otherExt: getVal('otherExt'),
+                    gender: getVal('gender'),
+                    dateOfBirth: getVal('dateOfBirth'),
+                    address: getVal('address'),
+                    placeOfBirth: getVal('placeOfBirth'),
+                    age: getVal('age'),
+                    phone: getVal('phone'),
+                    civilStatus: getVal('civilStatus'),
+                    citizenship: getVal('citizenship'),
+                    otherCitizenship: getVal('otherCitizenship'),
+                    occupation: getVal('occupation'),
+                    otherOccupation: getVal('otherOccupation')
+                },
+                specialCategories: Array.from(document.querySelectorAll('input[name="indicateIf[]"]:checked')).map(cb => cb.value),
+                accountInfo: {
+                    email: getVal('email')
+                },
+                householdInfo: {
+                    householdMembers: getVal('householdMembers'),
+                    ownerName: getVal('ownerName'),
+                    precinctNo: getVal('precinctNo'),
+                    yearsInBarangay: getVal('yearsInBarangay')
+                },
+                documents: {
+                    idType: getVal('idType'),
+                    userReason: getVal('userReason')
+                }
+                // Note: images not saved in localStorage due to size
+            };
+            localStorage.setItem('barangay118_reg_draft', JSON.stringify(draft));
+        }
+
+        function loadSavedData() {
+            const saved = localStorage.getItem('barangay118_reg_draft');
+            if (!saved) return;
+            try {
+                const draft = JSON.parse(saved);
+                // Populate fields
+                if (draft.personalInfo) {
+                    setVal('lastName', draft.personalInfo.lastName || '');
+                    setVal('firstName', draft.personalInfo.firstName || '');
+                    setVal('middleName', draft.personalInfo.middleName || '');
+                    setVal('extName', draft.personalInfo.extName || '');
+                    setVal('otherExt', draft.personalInfo.otherExt || '');
+                    setVal('gender', draft.personalInfo.gender || '');
+                    setVal('dateOfBirth', draft.personalInfo.dateOfBirth || '');
+                    setVal('address', draft.personalInfo.address || '');
+                    setVal('placeOfBirth', draft.personalInfo.placeOfBirth || '');
+                    setVal('age', draft.personalInfo.age || '');
+                    setVal('phone', draft.personalInfo.phone || '');
+                    setVal('civilStatus', draft.personalInfo.civilStatus || '');
+                    setVal('citizenship', draft.personalInfo.citizenship || '');
+                    setVal('otherCitizenship', draft.personalInfo.otherCitizenship || '');
+                    setVal('occupation', draft.personalInfo.occupation || '');
+                    setVal('otherOccupation', draft.personalInfo.otherOccupation || '');
+                }
+                if (draft.specialCategories) {
+                    document.querySelectorAll('input[name="indicateIf[]"]').forEach(cb => {
+                        cb.checked = draft.specialCategories.includes(cb.value);
+                    });
+                }
+                if (draft.accountInfo) {
+                    setVal('email', draft.accountInfo.email || '');
+                }
+                if (draft.householdInfo) {
+                    setVal('householdMembers', draft.householdInfo.householdMembers || '');
+                    setVal('ownerName', draft.householdInfo.ownerName || '');
+                    setVal('precinctNo', draft.householdInfo.precinctNo || '');
+                    setVal('yearsInBarangay', draft.householdInfo.yearsInBarangay || '');
+                }
+                if (draft.documents) {
+                    setVal('idType', draft.documents.idType || '');
+                    setVal('userReason', draft.documents.userReason || '');
+                }
+                // Recalculate age
+                calculateAge();
+            } catch (e) {
+                console.error('Error loading saved data', e);
+            }
+        }
+
+        // ========== UTILITIES ==========
+        function showToast(message, type = 'info') {
+            // Simple alert for now
+            alert(message);
+        }
+
+        function toggleOtherInput(select, otherId) {
+            const otherInput = getEl(otherId);
+            if (select.value === 'Other' || select.value === 'Dual Citizen' && otherId.includes('Citizenship')) {
+                otherInput.style.display = 'block';
+                otherInput.required = true;
+            } else {
+                otherInput.style.display = 'none';
+                otherInput.required = false;
+            }
+        }
+
+        function toggleOtherExt(select) {
+            const otherExt = getEl('otherExt');
+            if (select.value === 'Other') {
+                otherExt.style.display = 'block';
+                otherExt.required = true;
+            } else {
+                otherExt.style.display = 'none';
+                otherExt.required = false;
+            }
+        }
+
+        function toggleIDUpload(select) {
+            const val = select.value;
+            if (val === 'none') {
+                getEl('id-front-section').style.display = 'none';
+                getEl('id-back-section').style.display = 'none';
+                getEl('no-id-section').style.display = 'block';
+            } else if (val) {
+                getEl('id-front-section').style.display = 'block';
+                getEl('id-back-section').style.display = 'block';
+                getEl('no-id-section').style.display = 'none';
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const pwd = getEl('password');
+            const toggle = getEl('togglePassword');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                toggle.innerHTML = '<i class="fas fa-eye-slash"></i> Hide';
+            } else {
+                pwd.type = 'password';
+                toggle.innerHTML = '<i class="fas fa-eye"></i> Show';
+            }
+        }
+
+        function toggleConfirmPasswordVisibility() {
+            const pwd = getEl('confirmPassword');
+            const toggle = getEl('toggleConfirmPassword');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                toggle.innerHTML = '<i class="fas fa-eye-slash"></i> Hide';
+            } else {
+                pwd.type = 'password';
+                toggle.innerHTML = '<i class="fas fa-eye"></i> Show';
+            }
+        }
+
+        function returnToHome() { window.location.href = 'PanelHome.html'; }
+        function printConfirmation() { window.print(); }
+        function copyControlNumber() {
+            const num = getEl('controlNumber').textContent;
+            navigator.clipboard.writeText(num).then(() => {
+                alert('Control number copied to clipboard!');
+            });
+        }
+        function shareEmail() {
+            const num = getEl('controlNumber').textContent;
+            window.location.href = `mailto:?subject=My Barangay 118 Registration&body=My control number is: ${num}`;
+        }
+
+        function setupPhoneFormatting() {
+            const phone = getEl('phone');
+            phone.addEventListener('input', function(e) {
+                let x = e.target.value.replace(/\D/g, '').substring(0,10);
+                if (x.length > 3) x = x.slice(0,3) + '-' + x.slice(3);
+                if (x.length > 7) x = x.slice(0,7) + '-' + x.slice(7);
+                e.target.value = x;
+            });
+        }
+
+        function setupFileUploads() {
+            // Already set up via event listeners
+        }
+
+        function setupOtherInputs() {
+            // Already set up via onchange attributes
+        }
+
+        // ========== INIT ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDynamicContent();
+            updateProgress();
+            setupEventListeners();
+            setupOtherInputs();
+            setupFileUploads();
+            setupPhoneFormatting();
+            loadSavedData();
+
+            const estimatedDateEl = getEl('estimated-date');
+            if (estimatedDateEl) {
+                const today = new Date();
+                const estimatedDate = new Date(today);
+                estimatedDate.setDate(today.getDate() + 3);
+                estimatedDateEl.textContent = estimatedDate.toLocaleDateString('en-PH', { 
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+                });
+            }
+
+            // Disable next on step 4 until all faces captured
+            getEl('completeFaceScan').disabled = true;
+        });
+
+        function setupEventListeners() {
+            document.querySelectorAll('.btn-next').forEach(btn => btn?.addEventListener('click', handleNextStep));
+            document.querySelectorAll('.btn-prev').forEach(btn => btn?.addEventListener('click', handlePrevStep));
+
+            if (exists('show-terms-btn')) getEl('show-terms-btn').addEventListener('click', showTermsModal);
+            if (exists('closeTermsModal')) getEl('closeTermsModal').addEventListener('click', closeTermsModal);
+            if (exists('cancelTerms')) getEl('cancelTerms').addEventListener('click', closeTermsModal);
+            if (exists('confirmTerms')) getEl('confirmTerms').addEventListener('click', confirmTerms);
+
+            if (exists('send-otp')) getEl('send-otp').addEventListener('click', sendOTP);
+            if (exists('verify-otp-btn')) getEl('verify-otp-btn').addEventListener('click', verifyOTP);
+            if (exists('resend-otp')) getEl('resend-otp').addEventListener('click', sendOTP);
+
+            if (exists('togglePassword')) getEl('togglePassword').addEventListener('click', togglePasswordVisibility);
+            if (exists('toggleConfirmPassword')) getEl('toggleConfirmPassword').addEventListener('click', toggleConfirmPasswordVisibility);
+
+            if (exists('password')) getEl('password').addEventListener('input', validatePassword);
+            if (exists('confirmPassword')) getEl('confirmPassword').addEventListener('input', validatePasswordConfirmation);
+            if (exists('dateOfBirth')) getEl('dateOfBirth').addEventListener('change', calculateAge);
+
+            if (exists('startWebcam')) getEl('startWebcam').addEventListener('click', startWebcam);
+            if (exists('captureImage')) getEl('captureImage').addEventListener('click', captureImage);
+            if (exists('retakeImage')) getEl('retakeImage').addEventListener('click', retakeImage);
+
+            ['front','left','right','closed'].forEach(face => {
+                const btnId = `capture-${face}`;
+                if (exists(btnId)) getEl(btnId).addEventListener('click', () => captureFace(face));
+            });
+
+            document.querySelectorAll('.retake-face-btn').forEach(btn => {
+                btn?.addEventListener('click', function() {
+                    const faceType = this.getAttribute('data-face');
+                    if (faceType) retakeFaceCapture(faceType);
+                });
+            });
+
+            if (exists('idFront')) getEl('idFront').addEventListener('change', () => handleIdFileUpload('front'));
+            if (exists('idBack')) getEl('idBack').addEventListener('change', () => handleIdFileUpload('back'));
+            if (exists('deleteIdFront')) getEl('deleteIdFront').addEventListener('click', () => deleteFile('idFront'));
+            if (exists('deleteIdBack')) getEl('deleteIdBack').addEventListener('click', () => deleteFile('idBack'));
+
+            if (exists('returnToHome')) getEl('returnToHome').addEventListener('click', returnToHome);
+            if (exists('printConfirmation')) getEl('printConfirmation').addEventListener('click', printConfirmation);
+            if (exists('copy-control-number')) getEl('copy-control-number').addEventListener('click', copyControlNumber);
+            if (exists('shareEmail')) getEl('shareEmail').addEventListener('click', shareEmail);
+
+            if (exists('citizenship')) getEl('citizenship').addEventListener('change', function() { toggleOtherInput(this, 'otherCitizenship'); });
+            if (exists('occupation')) getEl('occupation').addEventListener('change', function() { toggleOtherInput(this, 'otherOccupation'); });
+            if (exists('extName')) getEl('extName').addEventListener('change', function() { toggleOtherExt(this); });
+
+            setupAutoSave();
+        }
+
+        window.toggleOtherExt = toggleOtherExt;
+        window.toggleOtherInput = toggleOtherInput;
+        window.toggleIDUpload = toggleIDUpload;
+        window.showStepDirect = showStepDirect;
+    </script>
+</body>
+</html>

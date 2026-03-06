@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Login - Barangay 118 Online System</title>
+    <link rel="shortcut icon" type="image/png" href="Logo-Favicon-removebg-preview.png"/>
+    <meta name="description" content="Login to Barangay 118 Online System - Community Services and Management"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <style>
+        /* ===== MERGED CSS: PanelHome.css + LogIn.css ===== */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --primary-soft: #dbeafe;
+            --primary-hover: rgba(37, 99, 235, 0.08);
+            --primary-10: rgba(37, 99, 235, 0.1);
+            --header: #346ce5;
+            --light: #ffffff;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --gray-light: #f8fafc;
+            --gray-border: #e2e8f0;
+            --border: #cbd5e1;
+            --error: #dc2626;
+            --error-light: #fef2f2;
+            --success: #16a34a;
+            --success-light: #f0fdf4;
+            --warning: #d97706;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --shadow-nav: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+
+            --radius: 10px;
+            --radius-sm: 6px;
+            --radius-lg: 16px;
+            --radius-xl: 16px;
+            --radius-full: 9999px;
+
+            --transition: all 0.25s ease;
+            --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1550px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- HEADER (enhanced from PanelHome) ---------- */
+        header {
+            background-color: var(--light);
+            box-shadow: var(--shadow-nav);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            height: 74px;
+            border-bottom: 5px solid var(--header);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 74px;
+            padding: 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            padding: 8px 16px 8px 8px;
+            border-radius: var(--radius);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 36px;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-light), var(--primary), var(--primary-dark));
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+
+        .logo-image {
+            width: 52px;
+            height: 52px;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: var(--transition-smooth);
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, var(--primary-soft), var(--light));
+            border: 3px solid transparent;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+            padding: 2px;
+        }
+
+        #system-name {
+            font-size: 24.2px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+            transition: var(--transition-smooth);
+        }
+
+        .logo:hover #system-name {
+            background: linear-gradient(135deg, #1e40af 0%, var(--primary-dark) 50%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* menu toggle (hamburger) */
+        .menu-toggle {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 100;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 3px 0;
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 0;
+            background: none;
+            border: none;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 17px;
+            font-weight: 500;
+            padding: 6px 0;
+            background: none;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a i {
+            font-size: 16px;
+            color: inherit;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* ---------- PAGE HERO (from LogIn) ---------- */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 45px 0;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* ---------- LOGIN SECTION (from LogIn) ---------- */
+        #login-section {
+            padding: 30px 0;
+            background: var(--gray-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 0;
+        }
+
+        .login-container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 780px;
+            width: 95%;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            min-height: 440px;
+            margin: 10px 0;
+        }
+
+        .login-left {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .welcome-text h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .welcome-text p {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            padding: 4px 0;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .login-right {
+            flex: 1;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-header h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .login-header p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.88rem;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-10);
+        }
+
+        .password-input-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.85rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+        }
+
+        .password-toggle:hover {
+            background-color: var(--gray-light);
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .remember-me label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            font-size: 0.85rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .btn-login, .btn-register {
+            width: 100%;
+            padding: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+
+        .btn-login {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-login:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-login.loading {
+            background: var(--primary-dark);
+            opacity: 0.8;
+            cursor: not-allowed;
+        }
+
+        .btn-register {
+            background: white;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            margin-bottom: 0;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn-register:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 18px 0;
+            position: relative;
+            color: var(--gray);
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gray-border);
+            z-index: 1;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 15px;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-help {
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-border);
+        }
+
+        .login-help p {
+            margin-bottom: 12px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .contact-info span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- FOOTER (enhanced from PanelHome) ---------- */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0 5px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 18px;
+            color: white;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            border-radius: 2px;
+        }
+
+        .footer-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: white;
+            margin: 0;
+            word-wrap: break-word;
+            max-width: 500px;
+        }
+
+        .footer-center .footer-row {
+            display: flex;
+            justify-content: flex-start;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+
+        .footer-contact-info {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-contact-info li i {
+            color: #3b82f6;
+            font-size: 16px;
+            width: 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-contact-info li span {
+            font-weight: 400;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links li i {
+            color: #3b82f6;
+            font-size: 16px;
+            width: 20px;
+        }
+
+        .footer-links li a {
+            font-size: 0.95rem;
+            color: white;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-links li a:hover {
+            color: #a0aec0;
+        }
+
+        .footer-center {
+            text-align: left;
+            margin: 0 auto;
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 15px 0 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aab6c5;
+            font-size: 0.75rem;
+            margin-top: 20px;
+        }
+
+        /* ---------- TOAST ---------- */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            max-width: 350px;
+            animation: slideIn 0.3s ease forwards;
+        }
+
+        .toast.success {
+            background: var(--success);
+            color: white;
+        }
+
+        .toast.error {
+            background: var(--error);
+            color: white;
+        }
+
+        .toast.info {
+            background: var(--primary);
+            color: white;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* ===== RESPONSIVE (merged) ===== */
+        @media (max-width: 1200px) {
+            .container { width: 95%; }
+            header { height: 64px; }
+            .navbar { height: 64px; gap: 12px; }
+            .logo-image { width: 46px; height: 46px; }
+            #system-name { font-size: 22px; }
+            .page-hero { padding: 36px 0; }
+            .page-hero h1 { font-size: 2.2rem; }
+            .page-hero p { font-size: 1rem; }
+            .footer-content { gap: 28px; }
+            .footer-center .footer-row { gap: 28px; }
+        }
+
+        @media (max-width: 1024px) {
+            .container { width: 95%; padding: 0 18px; }
+            header { height: 64px; }
+            .logo-image { width: 44px; height: 44px; }
+            #system-name { font-size: 19.8px; }
+            .nav-links { gap: 20px; }
+            .page-hero { padding: 30px 0; }
+            .page-hero h1 { font-size: 2rem; }
+            .page-hero p { font-size: 1rem; max-width: 600px; }
+            .footer-content { gap: 26px; }
+            .footer-center .footer-row { gap: 24px; }
+        }
+
+        @media (max-width: 768px) {
+            .container { width: 100%; padding: 0 16px; }
+            header { height: 64px; }
+            .navbar { flex-direction: row; align-items: center; gap: 12px; }
+            .logo-image { width: 40px; height: 40px; }
+            #system-name { font-size: 15.4px; display: block; }
+
+            .hamburger {
+                display: flex;
+                order: 3;
+            }
+
+            .nav-links {
+                display: flex;
+                position: fixed;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                box-shadow: var(--shadow);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+                gap: 0px;
+                order: 4;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .menu-toggle:checked ~ .nav-links {
+                transform: translateY(0);
+            }
+
+            .nav-links a span {
+                display: inline;
+            }
+
+            .nav-links a {
+                padding: 12px 20px;
+                width: 100%;
+                justify-content: center;
+                font-size: 18px;
+                border-bottom: 1px solid #eee;
+            }
+
+            .nav-links a i {
+                font-size: 20px;
+            }
+
+            .logo {
+                margin-right: auto;
+            }
+
+            .page-hero { padding: 28px 0; margin-bottom: 20px; }
+            .page-hero h1 { font-size: 1.8rem; }
+            .page-hero p { font-size: 0.95rem; max-width: 100%; padding: 0 8px; }
+            .login-container { flex-direction: column; }
+            .footer-content { flex-direction: column; gap: 26px; text-align: left; }
+            .footer-center .footer-row { flex-direction: column; gap: 18px; align-items: flex-start; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 12px; }
+            header { height: 60px; }
+            .logo-image { width: 36px; height: 36px; }
+            #system-name { font-size: 13.2px; }
+            .nav-links a i { font-size: 18px; }
+            .nav-links a { padding: 12px; min-height: 48px; min-width: 48px; }
+            .page-hero { padding: 22px 0; }
+            .page-hero h1 { font-size: 1.6rem; }
+            .page-hero p { font-size: 0.9rem; }
+            .login-left, .login-right { padding: 20px 15px; }
+            .welcome-text h1 { font-size: 1.8rem; }
+            footer { padding: 20px 0 8px; }
+            .footer-column h3::after { left: 0; width: 30px; }
+            .footer-contact-info li span,
+            .footer-links li a { font-size: 0.9rem; }
+            .copyright { font-size: 0.7rem; padding: 12px 0 8px; }
+        }
+
+        @media (max-width: 360px) {
+            .page-hero h1 { font-size: 1.4rem; }
+            .page-hero p { font-size: 0.85rem; }
+            .logo-image { width: 34px; height: 34px; }
+            #system-name { font-size: 12.1px; }
+            .nav-links a i { font-size: 16px; }
+            .nav-links a { padding: 10px; min-height: 44px; min-width: 44px; }
+            .footer-contact-info li span { font-size: 0.85rem; }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .nav-links a,
+            .btn-login,
+            .btn-register,
+            .password-toggle,
+            .forgot-password {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; animation: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <header id="dynamic-header"></header>
+
+    <section class="page-hero" id="dynamic-hero">
+        <div class="container">
+            <h1 id="hero-title">Login to Your Account</h1>
+            <p id="hero-description">Sign in to access your dashboard and Barangay 118 services.</p>
+        </div>
+    </section>
+
+    <section id="login-section">
+        <div class="login-container">
+            <div class="login-left">
+                <div class="welcome-text">
+                    <h1 id="welcome-title">Welcome</h1>
+                    <p id="welcome-description">Access your barangay services and stay connected securely through our portal.</p>
+                </div>
+                <div class="features" id="features-container"></div>
+            </div>
+
+            <div class="login-right">
+                <div class="login-header">
+                    <h2>Sign In</h2>
+                    <p>Enter your credentials to access your account</p>
+                </div>
+
+                <form id="loginForm" novalidate>
+                    <div class="form-group">
+                        <label for="email" class="required">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                        <div class="error-message" id="email-error" style="display:none">Please enter a valid email</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="required">Password</label>
+                        <div class="password-input-container">
+                            <input type="password" id="password" placeholder="Enter your password" required>
+                            <button type="button" class="password-toggle" id="togglePassword">Show</button>
+                        </div>
+                        <div class="error-message" id="password-error" style="display:none">Please enter your password</div>
+                    </div>
+
+                    <div class="remember-forgot">
+                        <div class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            <label for="rememberMe">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-login" id="loginBtn">Sign In</button>
+                </form>
+
+                <div class="divider"><span>Don't have an account?</span></div>
+                <a href="CreateAnAccount.html" class="btn-register">Create New Account</a>
+
+                <div class="login-help">
+                    <p>Need help signing in?</p>
+                    <div class="contact-info">
+                        <span>Call us: <a href="tel:+021238567">(02) 8123-4567</a></span>
+                        <span>Email: <a href="mailto:info@barangay118.gov.ph">info@barangay118.gov.ph</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>  
+
+    <footer id="dynamic-footer"></footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyADUN3zUupPLgB8Z0p_867XUK7FYKCkwoU",
+            authDomain: "barangay118-test-website.firebaseapp.com",
+            databaseURL: "https://barangay118-test-website-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "barangay118-test-website",
+            storageBucket: "barangay118-test-website.firebasestorage.app",
+            messagingSenderId: "459463926150",
+            appId: "1:459463926150:web:e66bc57f5e29c2dca24c07",
+            measurementId: "G-RQ8JYYJ1G7"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        
+        const defaultData = {
+            header: {
+                systemName: "BARANGAY 118 ONLINE SYSTEM",
+                headerLogo: "Logo-Favicon-removebg-preview.png"
+            },
+            footer: {
+                title: "Barangay 118 Online System",
+                description: "Secure and efficient online services for Barangay 118. Connecting our community through technology.",
+                contactInfo: {
+                    addressLine1: "402 2nd St, Grace Park East, Caloocan",
+                    addressLine2: "Metro Manila, Philippines",
+                    phone: "(02) 8123-4567",
+                    email: "info@barangay118.gov.ph",
+                    officeHours: "Mon–Fri: 8:00 AM – 5:00 PM"
+                },
+                socialMedia: {
+                    facebook: "https://facebook.com/barangay118",
+                    messenger: "https://m.me/barangay118"
+                },
+                copyright: "&copy; 2025 Barangay 118 Online System. All Rights Reserved."
+            },
+            loginHero: {
+                title: "Login to Your Account",
+                subtitle: "Sign in to access your dashboard and Barangay 118 services.",
+                welcome: {
+                    title: "Welcome",
+                    description: "Access your barangay services and stay connected securely through our portal."
+                },
+                features: [
+                    { icon: "✓", text: "Quick document requests" },
+                    { icon: "✓", text: "Request Processing Overview" },
+                    { icon: "✓", text: "Community announcements" },
+                    { icon: "✓", text: "Secure and private" }
+                ]
+            }
+        };
+        
+        let currentData = JSON.parse(JSON.stringify(defaultData));
+        
+        function deepMergeData(target, source) {
+            for (const key in source) {
+                if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+                    if (!target[key]) target[key] = {};
+                    deepMergeData(target[key], source[key]);
+                } else {
+                    target[key] = source[key];
+                }
+            }
+        }
+        
+        function renderHeader() {
+            const headerContainer = document.getElementById('dynamic-header');
+            if (!headerContainer) return;
+            const h = currentData.header;
+            const currentPage = window.location.pathname.split('/').pop();
+            headerContainer.innerHTML = `
+                <div class="container">
+                    <div class="navbar">
+                        <a href="PanelHome.html" class="logo" aria-label="Barangay 118 Online System Home">
+                            <img src="${h.headerLogo}" alt="Barangay Logo" class="logo-image" width="50" height="50">
+                            <h1 id="system-name">${h.systemName}</h1>
+                        </a>
+
+                        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                        <label for="menu-toggle" class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </label>
+
+                        <nav class="nav-links" aria-label="Main navigation">
+                            <a href="PanelHome.html" ${currentPage === 'PanelHome.html' ? 'class="active"' : ''}><i class="fas fa-home"></i><span>Home</span></a>
+                            <a href="AboutUs.html" ${currentPage === 'AboutUs.html' ? 'class="active"' : ''}><i class="fas fa-info-circle"></i><span>About Us</span></a>
+                            <a href="News.html" ${currentPage === 'News.html' ? 'class="active"' : ''}><i class="fas fa-newspaper"></i><span>News</span></a>
+                            <a href="Emergency.html" ${currentPage === 'Emergency.html' ? 'class="active"' : ''}><i class="fas fa-exclamation-triangle"></i><span>Emergency</span></a>
+                            <a href="CreateAnAccount.html" ${currentPage === 'CreateAnAccount.html' ? 'class="active"' : ''}><i class="fas fa-user-plus"></i><span>Create Account</span></a>
+                            <a href="LogIn.html" class="active" aria-current="page"><i class="fas fa-sign-in-alt"></i><span>Login</span></a>
+                        </nav>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function renderHero() {
+            const heroTitle = document.getElementById('hero-title');
+            const heroDesc = document.getElementById('hero-description');
+            if (heroTitle) heroTitle.textContent = currentData.loginHero.title;
+            if (heroDesc) heroDesc.textContent = currentData.loginHero.subtitle;
+        }
+        
+        function renderWelcomeAndFeatures() {
+            const welcomeTitle = document.getElementById('welcome-title');
+            const welcomeDesc = document.getElementById('welcome-description');
+            if (welcomeTitle) welcomeTitle.textContent = currentData.loginHero.welcome.title;
+            if (welcomeDesc) welcomeDesc.textContent = currentData.loginHero.welcome.description;
+        
+            const featuresContainer = document.getElementById('features-container');
+            if (featuresContainer) {
+                featuresContainer.innerHTML = '';
+                (currentData.loginHero.features || []).forEach(f => {
+                    const div = document.createElement('div');
+                    div.className = 'feature-item';
+                    div.innerHTML = `<span class="feature-icon">${f.icon || '✓'}</span><span>${f.text}</span>`;
+                    featuresContainer.appendChild(div);
+                });
+            }
+        }
+        
+        function renderFooter() {
+            const footerContainer = document.getElementById('dynamic-footer');
+            if (!footerContainer) return;
+            const f = currentData.footer;
+            footerContainer.innerHTML = `
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-column">
+                            <h3 class="footer-title">${f.title}</h3>
+                            <p class="footer-description">${f.description}</p>
+                        </div>
+                        <div class="footer-center">
+                            <div class="footer-row">
+                                <div class="footer-column">
+                                    <h3>Quick Links</h3>
+                                    <ul class="footer-links">
+                                        <li><a href="LogIn.html">Home</a></li>
+                                    </ul>
+                                </div>
+                                <div class="footer-column">
+                                    <h3>Contact Info</h3>
+                                    <ul class="footer-contact-info">
+                                        <li><i class="fas fa-map-marker-alt"></i><span>${f.contactInfo.addressLine1}</span></li>
+                                        <li><i class="fas fa-map-pin"></i><span>${f.contactInfo.addressLine2}</span></li>
+                                        <li><i class="fas fa-phone"></i><span>${f.contactInfo.phone}</span></li>
+                                        <li><i class="fas fa-envelope"></i><span>${f.contactInfo.email}</span></li>
+                                        <li><i class="fas fa-clock"></i><span>${f.contactInfo.officeHours}</span></li>
+                                    </ul>
+                                </div>
+                                <div class="footer-column">
+                                    <h3>Follow Us</h3>
+                                    <ul class="footer-links">
+                                        <li><a href="${f.socialMedia.facebook}" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                                        <li><a href="${f.socialMedia.messenger}" target="_blank"><i class="fab fa-facebook-messenger"></i> Messenger Chat</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copyright">
+                        <p>${f.copyright}</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        async function loadData() {
+            try {
+                const panelSnapshot = await db.ref('01_PanelHome').once('value');
+                if (panelSnapshot.exists()) {
+                    const panelData = panelSnapshot.val();
+                    if (panelData['0A_Header']) deepMergeData(currentData.header, panelData['0A_Header']);
+                    if (panelData['0D_footer']) deepMergeData(currentData.footer, panelData['0D_footer']);
+                }
+        
+                const heroSnapshot = await db.ref('05_AdminAuthPanel/01_Loghero').once('value');
+                if (heroSnapshot.exists()) {
+                    deepMergeData(currentData.loginHero, heroSnapshot.val());
+                }
+            } catch (error) {
+                console.warn('Firebase load error, using defaults:', error);
+            }
+        
+            renderHeader();
+            renderHero();
+            renderWelcomeAndFeatures();
+            renderFooter();
+        }
+        
+        let unsubscribePanel = null;
+        let unsubscribeHero = null;
+        
+        function setupListeners() {
+            unsubscribePanel = db.ref('01_PanelHome').on('value', (snapshot) => {
+                if (snapshot.exists()) {
+                    const panelData = snapshot.val();
+                    if (panelData['0A_Header']) deepMergeData(currentData.header, panelData['0A_Header']);
+                    if (panelData['0D_footer']) deepMergeData(currentData.footer, panelData['0D_footer']);
+                    renderHeader();
+                    renderFooter();
+                }
+            }, console.error);
+        
+            unsubscribeHero = db.ref('05_AdminAuthPanel/01_Loghero').on('value', (snapshot) => {
+                if (snapshot.exists()) {
+                    deepMergeData(currentData.loginHero, snapshot.val());
+                    renderHero();
+                    renderWelcomeAndFeatures();
+                }
+            }, console.error);
+        }
+        
+        function initializeDefaultAccounts() {
+            let storedUsers = JSON.parse(localStorage.getItem('barangayUsers')) || [];
+            let storedAdmins = JSON.parse(localStorage.getItem('barangayAdmins')) || [];
+        
+            if (storedUsers.length === 0 && storedAdmins.length === 0) {
+                const accounts = [
+                    { id: 1, email: "mainadmin@barangay118.gov.ph", password: "mainadmin123", role: "main_admin", name: "Primary Administrator", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 2, email: "mainadmin2@barangay118.gov.ph", password: "mainadmin123", role: "main_admin", name: "Chief Administrator", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 3, email: "admin1@barangay118.gov.ph", password: "admin123", role: "admin", name: "Records Administrator", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 4, email: "admin2@barangay118.gov.ph", password: "admin123", role: "admin", name: "Operations Administrator", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 5, email: "admin3@barangay118.gov.ph", password: "admin123", role: "admin", name: "Logistics Administrator", status: "active", registered: new Date().toLocaleDateString() },
+        
+                    { id: 6, email: "almanzor_jhlox@barangay118.gov.ph", password: "user123", role: "user", name: "Jhlox ALMANZOR", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 7, email: "andaya_zantrix@barangay118.gov.ph", password: "user123", role: "user", name: "Zantrix ANDAYA", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 8, email: "aranas_john@barangay118.gov.ph", password: "user123", role: "user", name: "John ARANAS", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 9, email: "argallon_ezekiel@barangay118.gov.ph", password: "user123", role: "user", name: "Ezekiel ARGALLON", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 10, email: "badilla_carl@barangay118.gov.ph", password: "user123", role: "user", name: "Carl BADILLA", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 11, email: "bag-id_alvin@barangay118.gov.ph", password: "user123", role: "user", name: "Alvin BAG-ID", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 12, email: "blanco_zidane@barangay118.gov.ph", password: "user123", role: "user", name: "Zidane BLANCO", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 13, email: "burgos_alfred@barangay118.gov.ph", password: "user123", role: "user", name: "Alfred BURGOS", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 14, email: "canlas_chester@barangay118.gov.ph", password: "user123", role: "user", name: "Chester CANLAS", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 15, email: "castro_jomar@barangay118.gov.ph", password: "user123", role: "user", name: "Jomar CASTRO", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 16, email: "catimbang_john@barangay118.gov.ph", password: "user123", role: "user", name: "John Mark CATIMBANG", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 17, email: "cruz_jezrel@barangay118.gov.ph", password: "user123", role: "user", name: "Jezrel CRUZ", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 18, email: "espino_rance@barangay118.gov.ph", password: "user123", role: "user", name: "Rance ESPINO", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 19, email: "fernandez_mico@barangay118.gov.ph", password: "user123", role: "user", name: "Mico FERNANDEZ", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 20, email: "flores_calvin@barangay118.gov.ph", password: "user123", role: "user", name: "Calvin FLORES", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 21, email: "galibo_gemanuel@barangay118.gov.ph", password: "user123", role: "user", name: "Gemanuel GALIBO", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 22, email: "garcia_john@barangay118.gov.ph", password: "user123", role: "user", name: "John GARCIA", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 23, email: "gatmaitan_renz@barangay118.gov.ph", password: "user123", role: "user", name: "Renz GATMAITAN", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 24, email: "honradez_zacchary@barangay118.gov.ph", password: "user123", role: "user", name: "Zacchary HONRADEZ", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 25, email: "judaya_aedrick@barangay118.gov.ph", password: "user123", role: "user", name: "Aedrick JUDAYA", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 26, email: "lingan_andres@barangay118.gov.ph", password: "user123", role: "user", name: "Andres LINGAN", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 27, email: "mahilum_shcem@barangay118.gov.ph", password: "user123", role: "user", name: "Shcem Yae MAHILUM", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 28, email: "manalo_carlos@barangay118.gov.ph", password: "user123", role: "user", name: "Carlos MANALO", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 29, email: "mendina_john@barangay118.gov.ph", password: "user123", role: "user", name: "John Paul MENDINA", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 30, email: "moldez_john@barangay118.gov.ph", password: "user123", role: "user", name: "John Paul MOLDEZ", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 31, email: "ortega_danny@barangay118.gov.ph", password: "user123", role: "user", name: "Danny ORTEGA", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 32, email: "pangco_miguel@barangay118.gov.ph", password: "user123", role: "user", name: "Miguel PANGCO", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 33, email: "pontilan_neo@barangay118.gov.ph", password: "user123", role: "user", name: "Neo PONTILAN", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 34, email: "pozon_david@barangay118.gov.ph", password: "user123", role: "user", name: "David Bryant POZON", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 35, email: "pozon_john@barangay118.gov.ph", password: "user123", role: "user", name: "John Patrick POZON", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 36, email: "quindoza_mark@barangay118.gov.ph", password: "user123", role: "user", name: "Mark QUINDOZA", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 37, email: "saflor_jillian@barangay118.gov.ph", password: "user123", role: "user", name: "Jillian SAFLOR", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 38, email: "sandiego_mark@barangay118.gov.ph", password: "user123", role: "user", name: "Mark SAN DIEGO", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 39, email: "solis_jacob@barangay118.gov.ph", password: "user123", role: "user", name: "Jacob SOLIS", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 40, email: "sy_aarondave@barangay118.gov.ph", password: "user123", role: "user", name: "Aaron SY", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 41, email: "vasquez_terrence@barangay118.gov.ph", password: "user123", role: "user", name: "Terrence VASQUEZ", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 42, email: "villarosa_kris@barangay118.gov.ph", password: "user123", role: "user", name: "Kris VILLAROSA", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 43, email: "carlos_aaliyah@barangay118.gov.ph", password: "user123", role: "user", name: "Aaliyah CARLOS", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 44, email: "limbo_jewel@barangay118.gov.ph", password: "user123", role: "user", name: "Jewel LIMBO", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 45, email: "magampo_celestine@barangay118.gov.ph", password: "user123", role: "user", name: "Celestine MAGAMPO", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 46, email: "ong_clariza@barangay118.gov.ph", password: "user123", role: "user", name: "Clariza ONG", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 47, email: "orpilla_jemilhyn@barangay118.gov.ph", password: "user123", role: "user", name: "Jemilhyn ORPILLA", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 48, email: "ruiz_angel@barangay118.gov.ph", password: "user123", role: "user", name: "Angel RUIZ", status: "active", registered: new Date().toLocaleDateString() },
+                    { id: 49, email: "tester_@barangay118.gov.ph", password: "test123", role: "user", name: "Guests tester", status: "active", registered: new Date().toLocaleDateString() }
+                ];
+                const users = accounts.filter(acc => acc.role === 'user');
+                const admins = accounts.filter(acc => acc.role === 'admin' || acc.role === 'main_admin');
+                localStorage.setItem('barangayUsers', JSON.stringify(users));
+                localStorage.setItem('barangayAdmins', JSON.stringify(admins));
+                console.log('Default accounts seeded.');
+            }
+        }
+        
+        function authenticateUser(email, password) {
+            const storedUsers = JSON.parse(localStorage.getItem('barangayUsers')) || [];
+            const storedAdmins = JSON.parse(localStorage.getItem('barangayAdmins')) || [];
+            const allStored = [...storedUsers, ...storedAdmins];
+            let user = allStored.find(acc => acc.email === email && acc.password === password);
+            if (user) return user;
+            const hardcodedAdmins = [
+                { email: "mainadmin@barangay118.gov.ph", password: "mainadmin123", role: "main_admin", name: "Primary Administrator" },
+                { email: "mainadmin2@barangay118.gov.ph", password: "mainadmin123", role: "main_admin", name: "Chief Administrator" },
+                { email: "admin1@barangay118.gov.ph", password: "admin123", role: "admin", name: "Records Administrator" },
+                { email: "admin2@barangay118.gov.ph", password: "admin123", role: "admin", name: "Operations Administrator" },
+                { email: "admin3@barangay118.gov.ph", password: "admin123", role: "admin", name: "Logistics Administrator" }
+            ];
+            return hardcodedAdmins.find(acc => acc.email === email && acc.password === password) || null;
+        }
+        
+        function redirectBasedOnRole(role, email) {
+            const panelAdminEmails = ["admin1@barangay118.gov.ph", "admin2@barangay118.gov.ph", "admin3@barangay118.gov.ph"];
+            switch(role) {
+                case "main_admin": window.location.href = "MainAdmin.html"; break;
+                case "admin":
+                    if (panelAdminEmails.includes(email)) window.location.href = "PanelAdmin.html";
+                    else window.location.href = "LogIn.html";
+                    break;
+                default: window.location.href = "MainPage.html";
+            }
+        }
+        
+        function showToast(message, type = 'info') {
+            const existing = document.querySelectorAll('.toast'); existing.forEach(t => t.remove());
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => { toast.style.transform = 'translateX(0)'; toast.style.opacity = '1'; }, 10);
+            setTimeout(() => {
+                toast.style.transform = 'translateX(100%)'; toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 5000);
+        }
+        
+        function validateEmail() {
+            const email = document.getElementById('email').value.trim();
+            const err = document.getElementById('email-error');
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email) { err.textContent = 'Please enter your email'; err.style.display = 'block'; return false; }
+            else if (!regex.test(email)) { err.textContent = 'Invalid email format'; err.style.display = 'block'; return false; }
+            else { err.style.display = 'none'; return true; }
+        }
+        
+        function validatePassword() {
+            const pwd = document.getElementById('password').value;
+            const err = document.getElementById('password-error');
+            if (!pwd) { err.textContent = 'Please enter password'; err.style.display = 'block'; return false; }
+            else if (pwd.length < 6) { err.textContent = 'Password must be at least 6 characters'; err.style.display = 'block'; return false; }
+            else { err.style.display = 'none'; return true; }
+        }
+        
+        function togglePassword() {
+            const pwd = document.getElementById('password');
+            const btn = document.getElementById('togglePassword');
+            const type = pwd.type === 'password' ? 'text' : 'password';
+            pwd.type = type;
+            btn.textContent = type === 'password' ? 'Show' : 'Hide';
+        }
+        
+        function checkRemembered() {
+            const remembered = localStorage.getItem('rememberedEmail');
+            if (remembered) {
+                document.getElementById('email').value = remembered;
+                document.getElementById('rememberMe').checked = true;
+            }
+        }
+        
+        function handleLogin(e) {
+            e.preventDefault();
+            if (!validateEmail() || !validatePassword()) return;
+        
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('rememberMe').checked;
+            const loginBtn = document.getElementById('loginBtn');
+        
+            loginBtn.disabled = true;
+            loginBtn.classList.add('loading');
+            loginBtn.textContent = 'Signing In...';
+        
+            setTimeout(() => {
+                const user = authenticateUser(email, password);
+                if (user) {
+                    if (remember) localStorage.setItem('rememberedEmail', email);
+                    else localStorage.removeItem('rememberedEmail');
+        
+                    sessionStorage.setItem('userLoggedIn', 'true');
+                    sessionStorage.setItem('userEmail', email);
+                    sessionStorage.setItem('userRole', user.role);
+                    sessionStorage.setItem('userName', user.name);
+        
+                    const logs = JSON.parse(localStorage.getItem('systemLogs')) || [];
+                    logs.push({ timestamp: new Date().toLocaleString(), user: user.name, action: "USER_LOGIN", details: `User ${user.name} logged in`, type: "login" });
+                    localStorage.setItem('systemLogs', JSON.stringify(logs));
+        
+                    showToast('Login successful! Redirecting...', 'success');
+                    setTimeout(() => redirectBasedOnRole(user.role, email), 1500);
+                } else {
+                    loginBtn.disabled = false;
+                    loginBtn.classList.remove('loading');
+                    loginBtn.textContent = 'Sign In';
+                    showToast('Invalid email or password.', 'error');
+                    document.getElementById('password-error').textContent = 'Invalid email or password';
+                    document.getElementById('password-error').style.display = 'block';
+                }
+            }, 1500);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDefaultAccounts();
+            loadData().then(() => {
+                setupListeners();
+            });
+            checkRemembered();
+        
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('togglePassword').addEventListener('click', togglePassword);
+            document.getElementById('email').addEventListener('input', validateEmail);
+            document.getElementById('password').addEventListener('input', validatePassword);
+        });
+        
+        window.addEventListener('beforeunload', function() {
+            if (unsubscribePanel) db.ref('01_PanelHome').off('value', unsubscribePanel);
+            if (unsubscribeHero) db.ref('05_AdminAuthPanel/01_Loghero').off('value', unsubscribeHero);
+        });
+    </script>
+</body>
+</html>

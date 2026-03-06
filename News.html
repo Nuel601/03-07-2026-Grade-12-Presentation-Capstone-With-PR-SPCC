@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay 118 News & Announcements</title>
+    <link rel="shortcut icon" type="image/png" href="Logo-Favicon-removebg-preview.png">
+    <meta name="description" content="Latest news, updates, and announcements from Barangay 118">
+    <meta name="keywords" content="barangay news, community updates, announcements, barangay 118 news">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="News.css">
+</head>
+<body>
+
+    <header id="dynamic-header"></header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h2 id="news-hero-title">News & Announcements</h2>
+            <p id="news-hero-description">Latest updates, advisories, and community news.</p>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <div class="container">
+            <div class="news-header">
+                <h2 id="news-section-title">Latest Stories</h2>
+                <p class="news-subtitle" id="news-section-subtitle">Stay updated with the latest news and announcements</p>
+            </div>
+            <div class="news-grid" id="news-grid-container"></div>
+        </div>
+    </section>
+
+    <section class="events-section" id="Events-with-Calendar">
+        <div class="container">
+            <h2 class="section-title" id="events-title">Community Events Calendar</h2>
+            <div class="events-container">
+                <div class="events-grid-container">
+                    <div class="events-column">
+                        <h3>PAST EVENTS</h3>
+                        <div id="past-events-list"></div>
+                    </div>
+
+                    <div class="events-column center">
+                        <h3>CURRENT EVENT</h3>
+                        <div class="center-content-wrapper"> 
+                            <div id="current-event-container"></div>
+                            <div class="calendar-inside">
+                                <div class="calendar">
+                                    <div class="calendar-header">
+                                        <div class="calendar-nav">
+                                            <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                                            <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                                        </div>
+                                        <h3 id="calendar-month">January 2026</h3>
+                                    </div>
+                                    <div class="calendar-grid" id="calendar-dates"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="events-column">
+                        <h3>UPCOMING EVENTS</h3>
+                        <div id="upcoming-events-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="news-modal" id="news-modal">
+        <div class="news-modal-content">
+            <div class="news-modal-header">
+                <h2 class="news-modal-title" id="news-modal-title">News Title</h2>
+                <button class="news-modal-close" id="news-modal-close">&times;</button>
+            </div>
+            <div class="news-modal-meta">
+                <div class="news-modal-date" id="news-modal-date"><i class="far fa-calendar"></i> Date</div>
+                <div class="news-modal-category" id="news-modal-category">Category</div>
+            </div>
+            <img id="news-modal-image" src="" alt="" class="news-modal-image">
+            <div class="news-modal-body" id="news-modal-body"></div>
+            <div class="news-modal-footer">
+                <button class="btn-secondary" id="news-modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="event-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-event-title">Event Details</h3>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="close-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast"></div>   
+    <footer id="dynamic-footer"></footer>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="News.js"></script>
+</body>
+</html>

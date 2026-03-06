@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Barangay 118 · Request documents</title>
+    <link rel="shortcut icon" type="image/png" href="Logo-Favicon-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --primary-soft: #dbeafe;
+            --primary-event: #6ca8f7;
+            --header:#346ce5;
+            --primary-hover: rgba(37, 99, 235, 0.08);
+            --primary-10: rgba(37, 99, 235, 0.1);
+            --primary-20: rgba(37, 99, 235, 0.2);
+
+            --light: #ffffff;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --gray-light: #f8fafc;
+            --gray-border: #e2e8f0;
+
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --shadow-nav: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+
+            --radius: 10px;
+            --radius-sm: 6px;
+            --radius-lg: 16px;
+            --radius-xl: 16px;
+            --radius-full: 9999px;
+
+            --border: #cbd5e1;
+
+            --error: #dc2626;
+            --error-light: #fef2f2;
+            --success: #16a34a;
+            --success-light: #f0fdf4;
+            --warning: #d97706;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+
+            --transition: all 0.25s ease;
+            --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--gray-light);
+            color: var(--dark);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: min(90%, 1400px);
+            margin: 0 auto;
+        }
+
+        /* header */
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 3px solid var(--primary);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 75px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-image {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 2px solid var(--primary-soft);
+            background: white;
+            padding: 2px;
+        }
+
+        #system-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(145deg, var(--primary-dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            padding: 4px 0;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .user-greeting {
+            background: var(--primary-soft);
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            font-weight: 500;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        #logoutBtn {
+            background: none;
+            border: 1px solid var(--gray-border);
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--dark);
+        }
+
+        #logoutBtn:hover {
+            background: #fee2e2;
+            border-color: #dc2626;
+            color: #b91c1c;
+        }
+
+        /* Notification Bell */
+        .notification-bell {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+        .notification-bell .badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: var(--error);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .notification-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            background: white;
+            border: 1px solid var(--gray-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            width: 320px;
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        .notification-dropdown.show {
+            display: block;
+        }
+        .notification-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-border);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .notification-item:hover {
+            background: var(--gray-light);
+        }
+        .notification-item.unread {
+            background: var(--primary-soft);
+        }
+        .notification-item .time {
+            font-size: 0.7rem;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+        .mark-read-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+        .no-notifications {
+            padding: 20px;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        /* main */
+        .main-container {
+            flex: 1;
+            padding: 2rem 0 3rem;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .panel-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .panel-header h1 span {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge-resident {
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            padding: 0.5rem 1.8rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* document cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+            align-items: stretch;
+        }
+
+        .doc-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 1.8rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .doc-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .doc-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .doc-description {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .doc-time {
+            font-size: 0.95rem;
+            color: var(--dark);
+            background: var(--primary-soft);
+            padding: 0.3rem 1rem;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            width: fit-content;
+            margin-bottom: 1rem;
+        }
+
+        .requirements {
+            margin: 0.5rem 0 1.2rem;
+            flex-grow: 1;
+        }
+
+        .requirements strong {
+            font-size: 0.95rem;
+            color: var(--dark);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .requirements ul {
+            padding-left: 1.3rem;
+            margin: 0;
+        }
+
+        .requirements li {
+            font-size: 0.9rem;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .btn-request {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.9rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1rem;
+            margin-top: auto;
+        }
+
+        .btn-request:hover {
+            background: var(--primary-dark);
+            transform: scale(1.02);
+        }
+
+        /* modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            animation: modalFade 0.2s;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* document guide inside modal */
+        .doc-guide {
+            background: #f0f7ff;
+            border-left: 5px solid var(--primary);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .doc-guide h4 {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .guide-steps {
+            list-style: none;
+            margin: 0.5rem 0 0;
+            padding-left: 0;
+        }
+
+        .guide-steps li {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            color: var(--dark);
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        .guide-steps li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .guide-tag {
+            background: white;
+            padding: 0.25rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            border: 1px solid var(--primary-soft);
+            display: inline-block;
+            margin-right: 6px;
+            margin-top: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.4rem;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--gray-border);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-10);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .btn-secondary {
+            background: none;
+            border: 1px solid var(--gray-border);
+            padding: 0.7rem 1.8rem;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: #f1f5f9;
+        }
+
+        /* My Requests Section */
+        .my-requests {
+            margin-top: 3rem;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem;
+        }
+        .requests-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .requests-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        .requests-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--gray-border);
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .status-pending {
+            background: var(--warning-light);
+            color: var(--warning);
+            border: 1px solid var(--warning);
+        }
+        .status-approved {
+            background: var(--success-light);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+        .status-rejected {
+            background: var(--error-light);
+            color: var(--error);
+            border: 1px solid var(--error);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: #fff;
+            padding: 30px 0 5px;
+            margin-top: auto;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 18px;
+            color: #fff;
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            border-radius: 2px;
+        }
+        .footer-description {
+            font-size: .95rem;
+            line-height: 1.6;
+            color: #fff;
+            margin: 0;
+            word-wrap: break-word;
+            max-width: 500px;
+        }
+        .footer-right {
+            display: flex;
+            gap: 40px;
+        }
+        .footer-center .footer-row {
+            display: flex;
+            justify-content: flex-start;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+        .footer-contact-info {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .footer-contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-contact-info li i {
+            color: #3b82f6;
+            font-size: 16px;
+            width: 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .footer-contact-info li span {
+            font-family: 'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+            font-weight: 400;
+            font-size: .95rem;
+            line-height: 1.6;
+            color: #fff;
+        }
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .footer-links li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-links li i {
+            color: #3b82f6;
+            font-size: 16px;
+            width: 20px;
+        }
+        .footer-links li a {
+            font-family: 'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+            font-size: .95rem;
+            color: #fff;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+        .footer-links li a:hover {
+            color: #a0aec0;
+        }
+        .footer-center {
+            text-align: left;
+            margin: 0 auto;
+        }
+        .footer-right .footer-column {
+            max-width: 250px;
+        }
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 15px 0 10px;
+            border-top: 1px solid rgba(255,255,255,.1);
+            color: #aab6c5;
+            font-size: .75rem;
+            margin-top: 20px;
+        }
+
+        /* Chat Button and Modal */
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            z-index: 99;
+        }
+        .chat-button:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+        .chat-button .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--error);
+            color: white;
+            border-radius: 50%;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .chat-modal {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            max-width: calc(100% - 60px);
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            border: 1px solid var(--gray-border);
+        }
+        .chat-modal.active {
+            display: flex;
+        }
+        .chat-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .chat-header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .message.user {
+            background: var(--primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .message.admin {
+            background: #e5e7eb;
+            color: var(--dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        .message small {
+            display: block;
+            font-size: 10px;
+            margin-top: 4px;
+            opacity: 0.7;
+        }
+        .chat-input-area {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid var(--gray-border);
+            background: white;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        }
+        .chat-input-area input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--gray-border);
+            border-radius: 30px;
+            outline: none;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .chat-input-area button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .chat-input-area button:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (max-width: 1200px) {
+            .container { width: 95%; }
+            header { height: 64px; }
+            .navbar { height: 64px; gap: 12px; }
+            .logo-image { width: 46px; height: 46px; }
+            #system-name { font-size: 20px; }
+        }
+        @media (max-width: 1024px) {
+            .container { width: 95%; padding: 0 18px; }
+            header { height: 64px; }
+            .logo-image { width: 44px; height: 44px; }
+            #system-name { font-size: 18px; }
+            .welcome-title { font-size: 3rem; }
+            .welcome-subtitle { font-size: 1.25rem; }
+            .barangay-logo { width: 100px; height: 100px; }
+        }
+        @media (max-width: 768px) {
+            .container { width: 100%; padding: 0 16px; }
+            header { height: 64px; padding: 8px 0; }
+            .navbar { flex-direction: row; align-items: center; gap: 12px; }
+            .logo-image { width: 40px; height: 40px; }
+            #system-name { display: none; }
+            .nav-links a span { display: none; }
+            .nav-links { gap: 10px; justify-content: center; }
+            .welcome-title { font-size: 2.2rem; }
+            .welcome-subtitle { font-size: 1rem; }
+            .barangay-logo { width: 88px; height: 88px; }
+            .footer-content { flex-direction: column; gap: 26px; }
+            .footer-center .footer-row { gap: 24px; justify-content: center; }
+            .nav-links a { padding: 10px; border-radius: 8px; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 12px; }
+            header { height: 60px; }
+            .logo-image { width: 36px; height: 36px; }
+            #system-name { display: none; }
+            .nav-links { gap: 8px; justify-content: center; }
+            .nav-links a i { font-size: 18px; }
+            .nav-links a { padding: 12px; }
+            .welcome-title { font-size: 1.8rem; }
+            .welcome-subtitle { font-size: .95rem; }
+            .barangay-logo { width: 72px; height: 72px; }
+            .footer-center .footer-row { flex-direction: column; gap: 18px; align-items: flex-start; }
+            .footer-contact-info li { gap: 8px; }
+            .card-grid { grid-template-columns: 1fr !important; gap: 16px; }
+            .doc-card { padding: 14px; min-height: auto; }
+            .btn-request { padding: 12px 18px; font-size: .95rem; }
+        }
+        @media (max-width: 360px) {
+            .welcome-title { font-size: 1.6rem; }
+            .barangay-logo { width: 64px; height: 64px; }
+            .nav-links a i { font-size: 16px; }
+            .nav-links a { padding: 10px; }
+            .footer-contact-info li span { font-size: .9rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; animation: none !important; }
+        }
+        @media (hover: none) and (pointer: coarse) {
+            .nav-links a, .map-link-button, .btn-request {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <a href="#" class="logo">
+                    <img src="Logo-Favicon-removebg-preview.png" alt="Barangay 118" class="logo-image" onerror="this.src='https://via.placeholder.com/48x48?text=Logo'">
+                    <h1 id="system-name">BARANGAY 118 PORTAL</h1>
+                </a>
+                <div class="nav-right">
+                    <div class="notification-bell" id="notificationBell">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge" id="notificationBadge">0</span>
+                        <div class="notification-dropdown" id="notificationDropdown">
+                            <div id="notificationsList"></div>
+                        </div>
+                    </div>
+                    <div class="user-greeting" id="userGreeting">
+                        <span id="userNameDisplay">Resident</span> 
+                    </div>
+                    <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container container">
+        <!-- welcome + role -->
+        <div class="panel-header">
+            <h1>Welcome, <span id="userNameMain">Resident</span>!</h1>
+            <span class="badge-resident">Barangay Resident</span>
+        </div>
+
+        <!-- document request section with clear requirements -->
+        <h2 class="section-title">Request a document</h2>
+        <div class="card-grid">
+            <!-- Barangay Clearance -->
+            <div class="doc-card">
+                <h3>Barangay Clearance</h3>
+                <p class="doc-description">Required for various transactions including employment, business permits, and legal matters. This document certifies your good standing in the community.</p>
+                <div class="doc-time"><i class="far fa-clock"></i> Processing: Same day</div>
+                <div class="requirements">
+                    <strong>Requirements:</strong>
+                    <ul>
+                        <li>Valid Government-issued ID</li>
+                    </ul>
+                </div>
+                <button class="btn-request request-btn" data-doc="Barangay Clearance">
+                    Request
+                </button>
+            </div>
+            <!-- Certificate of Residency -->
+            <div class="doc-card">
+                <h3>Certificate of Residency</h3>
+                <p class="doc-description">Proof of residency for school enrollment, loans, government transactions.</p>
+                <div class="doc-time"><i class="far fa-clock"></i> Processing: Same day</div>
+                <div class="requirements">
+                    <strong>Requirements:</strong>
+                    <ul>
+                        <li>Valid government-issued ID</li>
+                        <li>Proof of Residency (utility bill or barangay ID)</li>
+                        <li>Completed application form</li>
+                    </ul>
+                </div>
+                <button class="btn-request request-btn" data-doc="Certificate of Residency">Request</button>
+            </div>
+
+            <!-- Certificate of Indigency -->
+            <div class="doc-card">
+                <h3>Certificate of Indigency</h3>
+                <p class="doc-description">For government assistance programs and social welfare benefits.</p>
+                <div class="doc-time"><i class="far fa-clock"></i> Processing: 1–2 days</div>
+                <div class="requirements">
+                    <strong>Requirements:</strong>
+                    <ul>
+                        <li>Valid ID</li>
+                        <li>Proof of Income or Affidavit of No Income</li>
+                        <li>Proof of Residency</li>
+                    </ul>
+                </div>
+                <button class="btn-request request-btn" data-doc="Certificate of Indigency">Request</button>
+            </div>
+            <!-- Barangay ID -->
+            <div class="doc-card">
+                <h3>Barangay ID</h3>
+                <p class="doc-description">Official ID for local transactions and supplementary identification.</p>
+                <div class="doc-time"><i class="far fa-clock"></i> Processing: 3–5 working days</div>
+                <div class="requirements">
+                    <strong>Requirements:</strong>
+                    <ul>
+                        <li>Valid ID (if available)</li>
+                        <li>Proof of Residency</li>
+                        <li>1x1 ID photo</li>
+                        <li>Completed application form</li>
+                    </ul>
+                </div>
+                <button class="btn-request request-btn" data-doc="Barangay ID">Request</button>
+            </div>
+        </div>
+
+        <!-- My Requests Section -->
+        <div class="my-requests">
+            <h2 class="section-title">My Requests</h2>
+            <table class="requests-table" id="myRequestsTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>  <!-- Bagong column para sa oras -->
+                        <th>Document</th>
+                        <th>Purpose</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="myRequestsBody">
+                    <tr><td colspan="5" style="text-align:center;">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="container" id="footer-container">
+            <div class="footer-content" id="footer-content">
+                <div class="footer-column" id="footer-system-column">
+                    <h3 id="footer-title" class="footer-title">Barangay 118 Online System</h3>
+                    <p id="footer-description" class="footer-description">Secure and efficient online services for Barangay 118. Connecting our community through technology.</p>
+                </div>
+                <div class="footer-center" id="footer-center">
+                    <div class="footer-row" id="footer-row">
+                        <div class="footer-column" id="footer-quick-links">
+                            <h3>Quick Links</h3>
+                            <ul class="footer-links">
+                                <li><a href="#" id="go-to-home-btn">Home</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column" id="footer-contact-column">
+                            <h3 id="footer-contact-title">Contact Info</h3>
+                            <ul id="footer-contact-info" class="footer-contact-info">
+                                <li><i class="fas fa-map-marker-alt"></i><span id="footer-address-line1">402 2nd St, Grace Park East, Caloocan</span></li>
+                                <li><i class="fas fa-map-pin"></i><span id="footer-address-line2">Metro Manila, Philippines</span></li>
+                                <li><i class="fas fa-phone"></i><span id="footer-phone">(02) 8123-4567</span></li>
+                                <li><i class="fas fa-envelope"></i><span id="footer-email">info@barangay118.gov.ph</span></li>
+                                <li><i class="fas fa-clock"></i><span id="footer-office-hours">Mon–Fri: 8:00 AM – 5:00 PM</span></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column" id="footer-links-column">
+                            <h3 id="footer-social-title">Follow Us</h3>
+                            <ul class="footer-links" id="footer-social-links">
+                                <li id="footer-facebook-item"><a id="footer-facebook-link" href="https://facebook.com/barangay118" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                                <li id="footer-messenger-item"><a id="footer-messenger-link" href="https://m.me/barangay118" target="_blank"><i class="fab fa-facebook-messenger"></i> Messenger Chat</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright" id="footer-copyright">
+                <p id="copyright-text">&copy; 2025 Barangay 118 Online System. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL for document request -->
+    <div class="modal" id="requestModal">
+        <div class="modal-content" id="modalContent">
+            <!-- dynamic guide + form injected via js -->
+        </div>
+    </div>
+
+    <!-- CHAT BUTTON AND MODAL -->
+    <button class="chat-button" id="chatButton" title="Chat with Admin">
+        <i class="fas fa-comment"></i>
+        <span class="badge" id="chatUnreadBadge" style="display:none;">0</span>
+    </button>
+
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            <h3><i class="fa-solid fa-envelope"></i> - Chat with Barangay Admin</h3>
+            <button id="closeChat"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- messages will appear here -->
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Type your message..." />
+            <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+    <script>
+        (function() {
+            const firebaseConfig = {
+                apiKey: "AIzaSyADUN3zUupPLgB8Z0p_867XUK7FYKCkwoU",
+                authDomain: "barangay118-test-website.firebaseapp.com",
+                databaseURL: "https://barangay118-test-website-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "barangay118-test-website",
+                storageBucket: "barangay118-test-website.firebasestorage.app",
+                messagingSenderId: "459463926150",
+                appId: "1:459463926150:web:e66bc57f5e29c2dca24c07",
+                measurementId: "G-RQ8JYYJ1G7"
+            };
+
+            if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+            const database = firebase.database();
+            const isLoggedIn = sessionStorage.getItem('userLoggedIn') === 'true';
+            let userName = sessionStorage.getItem('userName') || 'Resident';
+            const userRole = sessionStorage.getItem('userRole');
+
+            // Generate or retrieve user ID for this session
+            let userId = sessionStorage.getItem('userId');
+            if (!userId) {
+                userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                sessionStorage.setItem('userId', userId);
+            }
+
+            if (!isLoggedIn) {
+                alert('Please log in first.');
+                window.location.href = 'LogIn.html';
+            } else if (userRole === 'admin' || userRole === 'super_admin') {
+                alert('Redirecting to admin panel...');
+                window.location.href = 'MainAdmin.html';
+            }
+
+            document.getElementById('userNameDisplay').textContent = userName;
+            document.getElementById('userNameMain').textContent = userName;
+
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                sessionStorage.clear();
+                window.location.href = 'LogIn.html';
+            });
+
+            const modal = document.getElementById('requestModal');
+            const modalContent = document.getElementById('modalContent');
+
+            function getGuideForDoc(docType) {
+                if (docType === 'Barangay Clearance') {
+                    return {
+                        title: 'Paano kumuha ng Barangay Clearance',
+                        steps: [
+                            'Maghanda ng valid ID (National ID, Passport, Driver’s License).',
+                            'I-upload ang proof of residency (utility bill, Barangay ID, etc.).',
+                            'Mag-fill out ng clearance form.',
+                            'Bayaran ang minimal fee sa brgy o hintayin ang digital copy sa iyong email (10-15 min).',
+                            'Paalala: Ipapadala namin ang iyong Barangay Clearance sa Gmail account mo, kaya siguraduhing ma-access mo ito.'
+                        ],
+                        reqChips: ['Valid ID', 'Proof of Residency', 'Cedula']
+                    };
+                } else if (docType === 'Certificate of Residency') {
+                    return {
+                        title: 'Steps para sa Certificate of Residency',
+                        steps: [
+                            'Magbigay ng kahit isang valid government ID.',
+                            'Magpakita ng proof na nakatira ka dito (barangay ID, utility bill, cedula, etc.).',
+                            'Kumuha ng application form sa barangay o mag-download online.',
+                            'Fill-up ang form at isumite kasama ang photocopy ng ID.',
+                            'Makuha agad sa same day walk-in, o hintayin sa iyung Gmail Account',
+                            'Paalala: Ipapadala namin ang iyong Certificate of Residency sa Gmail account mo, kaya siguraduhing ma-access mo ito.'
+                        ],
+                        reqChips: ['Valid ID', 'Proof of Residency', 'Application form']
+                    };
+                } else if (docType === 'Certificate of Indigency') {
+                    return {
+                        title: 'Gabay sa Certificate of Indigency',
+                        steps: [
+                            'Maghanda ng valid ID anuman.',
+                            'Patunay ng paninirahan sa Barangay 118 (kamakailang bill o ID).',
+                            'Magbigay ng proof of income o affidavit of no income.',
+                            'Processing time ay 1-2 araw; maaaring kumuha ng follow-up.',
+                            'Paalala: Ipapadala namin ang iyong Certificate of Indigency sa Gmail account mo, kaya siguraduhing ma-access mo ito.'
+                        ],
+                        reqChips: ['Valid ID', 'Proof of Income / Affidavit', 'Residency proof']
+                    };
+                } else if (docType === 'Barangay ID') {
+                    return {
+                        title: 'Paano kumuha ng Barangay ID',
+                        steps: [
+                            'Magbigay ng iyung picture (white background).',
+                            'Magpakita ng isang valid ID kung mayroon; kung wala, magdala ng supporting documents patunay na nakatira ka sa barangay.',
+                            'Paalala: Ipapadala namin ang iyong Barangay ID sa Gmail account mo, kaya siguraduhing ma-access mo ito.',
+                            'Magbayad sa brgy o hintayin ang printable ID sa loob ng 3-5 working days.'
+                        ],
+                        reqChips: ['1x1 ID photo', 'Valid ID (if any)', 'Proof of residency', 'Application form']
+                    };
+                } else {
+                    return {
+                        title: 'General guide',
+                        steps: ['Piliin ang dokumento', 'I-upload ang requirements', 'Hintayin ang approval'],
+                        reqChips: []
+                    };
+                }
+            }
+
+            function openRequestModal(docType) {
+                const guide = getGuideForDoc(docType);
+                let stepsHtml = '';
+                guide.steps.forEach(step => {
+                    stepsHtml += `<li>${step}</li>`;
+                });
+                let chipsHtml = '';
+                if (guide.reqChips.length) {
+                    chipsHtml = '<div style="margin-top: 10px;">';
+                    guide.reqChips.forEach(chip => {
+                        chipsHtml += `<span class="guide-tag">${chip}</span>`;
+                    });
+                    chipsHtml += '</div>';
+                }
+
+                let fileUploadsHtml = `
+                    <div class="form-group">
+                        <label>Upload Requirements (image or PDF)</label>
+                        <input class="form-control" type="file" id="fileUpload" accept="image/*,.pdf" multiple>
+                    </div>`;
+
+                modalContent.innerHTML = `
+                    <h2 style="margin-bottom:0.5rem;">Request ${docType}</h2>
+                    <div class="doc-guide">
+                        <h4>${guide.title}</h4>
+                        <ul class="guide-steps">
+                            ${stepsHtml}
+                        </ul>
+                        ${chipsHtml}
+                    </div>
+                    <form id="requestForm">
+                        <input type="hidden" id="docType" value="${docType}">
+                        
+                        <div class="form-group">
+                            <label>Full name</label>
+                            <input class="form-control" type="text" id="fullName" value="${userName}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Purpose / Reason for request</label>
+                            <textarea class="form-control" id="purpose" rows="2" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Additional notes (optional)</label>
+                            <textarea class="form-control" id="notes" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <textarea class="form-control" id="Email" rows="2" required></textarea>
+                        </div>
+                        ${fileUploadsHtml}
+                        <div class="modal-actions">
+                            <button type="button" class="btn-secondary" id="cancelModal">Cancel</button>
+                            <button type="submit" class="btn-request" style="width:auto;">Submit request</button>
+                        </div>
+                    </form> `;
+                modal.classList.add('active');
+
+                document.getElementById('cancelModal').addEventListener('click', () => {
+                    modal.classList.remove('active');
+                });
+                document.getElementById('requestForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const requestData = {
+                        fullName: document.getElementById('fullName').value.trim(),
+                        documentType: docType,
+                        purpose: document.getElementById('purpose').value.trim(),
+                        notes: document.getElementById('notes')?.value.trim() || '',
+                        status: 'pending',        
+                        timestamp: Date.now(),    
+                        filesAttached: true,
+                        userId: userId
+                    };
+
+                    // Save request to Firebase
+                    database.ref('requests').push(requestData)
+                        .then(() => {
+                            // Gumawa ng notification para sa user
+                            const notificationMsg = `Your request for ${docType} has been submitted. We will notify you once it is processed.`;
+                            database.ref('notifications/' + userId).push({
+                                message: notificationMsg,
+                                timestamp: Date.now(),
+                                read: false
+                            });
+
+                            alert('Request submitted successfully! You will receive a notification once it is processed.');
+                            modal.classList.remove('active');
+                        })
+                        .catch((error) => {
+                            alert('Error submitting request: ' + error.message);
+                        });
+                });
+            }
+
+            document.querySelectorAll('.request-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const doc = e.currentTarget.getAttribute('data-doc');
+                    openRequestModal(doc);
+                });
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.remove('active');
+            });
+
+            // === NOTIFICATION SYSTEM ===
+            const notificationBell = document.getElementById('notificationBell');
+            const notificationDropdown = document.getElementById('notificationDropdown');
+            const notificationBadge = document.getElementById('notificationBadge');
+            const notificationsList = document.getElementById('notificationsList');
+
+            let notifications = [];
+            let unreadCount = 0;
+
+            // Load notifications for this user
+            function loadNotifications() {
+                database.ref('notifications/' + userId).on('value', (snapshot) => {
+                    const data = snapshot.val();
+                    notifications = [];
+                    if (data) {
+                        Object.keys(data).forEach(key => {
+                            notifications.push({ id: key, ...data[key] });
+                        });
+                    }
+                    // Sort by timestamp descending
+                    notifications.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+                    unreadCount = notifications.filter(n => !n.read).length;
+                    updateNotificationBadge();
+                    renderNotifications();
+                });
+            }
+
+            function updateNotificationBadge() {
+                notificationBadge.textContent = unreadCount;
+                if (unreadCount === 0) {
+                    notificationBadge.style.display = 'none';
+                } else {
+                    notificationBadge.style.display = 'inline';
+                }
+            }
+
+            function renderNotifications() {
+                if (notifications.length === 0) {
+                    notificationsList.innerHTML = '<div class="no-notifications">No notifications</div>';
+                    return;
+                }
+                let html = '';
+                notifications.forEach(n => {
+                    const time = n.timestamp ? new Date(n.timestamp).toLocaleString() : '';
+                    const unreadClass = n.read ? '' : 'unread';
+                    html += `
+                        <div class="notification-item ${unreadClass}" data-id="${n.id}">
+                            <div>${n.message}</div>
+                            <div class="time">${time}</div>
+                            ${!n.read ? '<button class="mark-read-btn" data-id="'+n.id+'">Mark as read</button>' : ''}
+                        </div>
+                    `;
+                });
+                notificationsList.innerHTML = html;
+
+                // Attach mark as read event
+                document.querySelectorAll('.mark-read-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const notifId = btn.dataset.id;
+                        markAsRead(notifId);
+                    });
+                });
+            }
+
+            function markAsRead(notifId) {
+                database.ref('notifications/' + userId + '/' + notifId).update({ read: true });
+            }
+
+            // Toggle dropdown
+            notificationBell.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle('show');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!notificationBell.contains(e.target)) {
+                    notificationDropdown.classList.remove('show');
+                }
+            });
+
+            // Load notifications
+            loadNotifications();
+
+            // === MY REQUESTS ===
+            const myRequestsBody = document.getElementById('myRequestsBody');
+            function loadMyRequests() {
+                database.ref('requests').orderByChild('userId').equalTo(userId).on('value', (snapshot) => {
+                    const data = snapshot.val();
+                    const requests = [];
+                    if (data) {
+                        Object.keys(data).forEach(key => {
+                            requests.push({ id: key, ...data[key] });
+                        });
+                    }
+                    requests.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+                    renderMyRequests(requests);
+                });
+            }
+
+            function renderMyRequests(requests) {
+                if (requests.length === 0) {
+                    myRequestsBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No requests found.</td></tr>';
+                    return;
+                }
+                let html = '';
+                requests.forEach(req => {
+                    const dateObj = req.timestamp ? new Date(req.timestamp) : null;
+                    const date = dateObj ? dateObj.toLocaleDateString() : 'No date';
+                    const time = dateObj ? dateObj.toLocaleTimeString() : '—';
+                    const statusClass = `status-badge status-${req.status || 'pending'}`;
+                    html += `<tr>
+                        <td>${date}</td>
+                        <td>${time}</td>
+                        <td>${req.documentType || 'N/A'}</td>
+                        <td>${req.purpose || '—'}</td>
+                        <td><span class="${statusClass}">${req.status || 'pending'}</span></td>
+                    </tr>`;
+                });
+                myRequestsBody.innerHTML = html;
+            }
+
+            loadMyRequests();
+            const chatButton = document.getElementById('chatButton');
+            const chatModal = document.getElementById('chatModal');
+            const closeChat = document.getElementById('closeChat');
+            const chatMessages = document.getElementById('chatMessages');
+            const chatInput = document.getElementById('chatInput');
+            const sendChat = document.getElementById('sendChat');
+            const chatUnreadBadge = document.getElementById('chatUnreadBadge');
+            let messagesRef = null;
+
+            function openChat() {
+                chatModal.classList.add('active');
+                chatUnreadBadge.style.display = 'none';
+            }
+
+            function closeChatFunc() {
+                chatModal.classList.remove('active');
+            }
+
+            chatButton.addEventListener('click', openChat);
+            closeChat.addEventListener('click', closeChatFunc);
+
+            if (userId) {
+                messagesRef = database.ref('chats/' + userId + '/messages');
+                messagesRef.on('value', (snapshot) => {
+                    const data = snapshot.val();
+                    let messages = [];
+                    if (data) {
+                        Object.keys(data).forEach(key => {
+                            messages.push({ id: key, ...data[key] });
+                        });
+                    }
+                    // Sort by timestamp ascending
+                    messages.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+                    renderMessages(messages);
+                    // Update unread badge: count admin messages that are unread (i.e., read === false)
+                    const unreadAdminMessages = messages.filter(m => m.sender === 'admin' && !m.read).length;
+                    if (unreadAdminMessages > 0 && !chatModal.classList.contains('active')) {
+                        chatUnreadBadge.style.display = 'inline';
+                        chatUnreadBadge.textContent = unreadAdminMessages;
+                    } else {
+                        chatUnreadBadge.style.display = 'none';
+                    }
+                    // If chat is open, mark all admin messages as read
+                    if (chatModal.classList.contains('active')) {
+                        messages.forEach(m => {
+                            if (m.sender === 'admin' && !m.read) {
+                                database.ref('chats/' + userId + '/messages/' + m.id).update({ read: true });
+                            }
+                        });
+                    }
+                });
+            }
+
+            function renderMessages(messages) {
+                if (messages.length === 0) {
+                    chatMessages.innerHTML = '<div style="text-align:center; color:#999; padding:20px;">No messages yet. Start the conversation!</div>';
+                    return;
+                }
+                let html = '';
+                messages.forEach(m => {
+                    const time = m.timestamp ? new Date(m.timestamp).toLocaleTimeString() : '';
+                    const senderClass = m.sender === 'user' ? 'user' : 'admin';
+                    html += `<div class="message ${senderClass}">
+                        ${m.content}
+                        <small>${time}</small>
+                    </div>`;
+                });
+                chatMessages.innerHTML = html;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function sendMessage() {
+                const content = chatInput.value.trim();
+                if (!content) return;
+                const message = {
+                    sender: 'user',
+                    content: content,
+                    timestamp: Date.now(),
+                    read: false // will be marked as read when admin sees
+                };
+                messagesRef.push(message)
+                    .then(() => {
+                        chatInput.value = '';
+                    })
+                    .catch(err => alert('Error sending message: ' + err));
+            }
+
+            sendChat.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendMessage();
+            });
+
+        })();
+    </script>
+</body>
+</html>

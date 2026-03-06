@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Barangay 118 · Admin Panel</title>
+    <link rel="shortcut icon" type="image/png" href="Logo-Favicon-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb; 
+            --primary-dark: #1e40af;
+            --primary-light: #3b82f6;
+            --secondary: #16a34a;
+            --secondary-dark: #15803d;
+            --secondary-light: #22c55e;
+            --light: #ffffff;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --gray-light: #f1f5f9;
+            --gray-dark: #475569;
+            --border: #e2e8f0;
+            --accent: #f59e0b; 
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            --success: #16a34a;
+            --success-light: #ecfdf5;
+            --warning: #f97316;
+            --warning-light: #fff7ed;
+            --info: #0284c7;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.10);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+            --radius-sm: 6px;
+            --radius: 10px;
+            --radius-lg: 14px;
+            --transition: all 0.25s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* === HEADER (kapareho ng AboutUsAdmin) === */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 18px 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 4px solid var(--secondary);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-image {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: white;
+            padding: 4px;
+            box-shadow: var(--shadow-md);
+        }
+
+        #system-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: white;
+            margin: 0;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-greeting {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        #logoutBtn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        #logoutBtn:hover {
+            background: var(--error);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* === MAIN CONTENT === */
+        .main-container {
+            flex: 1;
+            padding: 30px 0 40px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .panel-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .panel-header h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge-admin {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 8px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* === STATS CARDS === */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--light);
+            border-radius: var(--radius-lg);
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* === FILTER BAR === */
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            align-items: center;
+            background: var(--light);
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .filter-select {
+            padding: 12px 18px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 15px;
+            background: white;
+            min-width: 200px;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: var(--light);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Additional button styles for Quick Actions */
+        .btn-secondary {
+            background: var(--gray);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-secondary:hover {
+            background: var(--gray-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-success:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-warning:hover {
+            background: #ea580c;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-danger {
+            background: var(--error);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-danger:hover {
+            background: #b91c1c;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Quick Actions container */
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        /* Admin section cards (for Quick Actions & Recent Activity) */
+        .admin-section {
+            background: var(--light);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            margin-bottom: 25px;
+        }
+
+        .admin-section h2.section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-section h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        /* Recent Activity log */
+        .activity-log {
+            list-style: none;
+            padding: 0;
+        }
+        .activity-log li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--gray-dark);
+            font-size: 15px;
+        }
+        .activity-log li:last-child {
+            border-bottom: none;
+        }
+        .activity-log i {
+            color: var(--primary);
+            width: 20px;
+            font-size: 16px;
+        }
+        .activity-timestamp {
+            margin-left: auto;
+            font-size: 13px;
+            color: var(--gray);
+            white-space: nowrap;
+        }
+
+        /* === TABLE === */
+        .table-wrapper {
+            background: var(--light);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 16px 15px;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+            color: var(--dark);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: var(--gray-light);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: capitalize;
+            letter-spacing: 0.3px;
+        }
+
+        .status-pending {
+            background: var(--warning-light);
+            color: var(--warning);
+            border: 1px solid var(--warning);
+        }
+
+        .status-approved {
+            background: var(--success-light);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .status-rejected {
+            background: var(--error-light);
+            color: var(--error);
+            border: 1px solid var(--error);
+        }
+
+        .action-btn {
+            background: var(--light);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-right: 5px;
+            transition: var(--transition);
+        }
+
+        .action-btn.approve {
+            background: var(--success-light);
+            border-color: var(--success);
+            color: var(--success-dark, #166534);
+        }
+
+        .action-btn.approve:hover {
+            background: var(--success);
+            color: white;
+        }
+
+        .action-btn.reject {
+            background: var(--error-light);
+            border-color: var(--error);
+            color: var(--error-dark, #991b1b);
+        }
+
+        .action-btn.reject:hover {
+            background: var(--error);
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Chat List Styles */
+        .chat-list {
+            list-style: none;
+            padding: 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .chat-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .chat-list li:hover {
+            background: var(--gray-light);
+        }
+        .chat-list li.unread {
+            background: var(--primary-soft);
+            font-weight: 600;
+        }
+        .chat-user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .chat-user-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .chat-last-message {
+            font-size: 13px;
+            color: var(--gray);
+            max-width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .chat-unread-badge {
+            background: var(--error);
+            color: white;
+            border-radius: 20px;
+            padding: 3px 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Chat Modal (Admin) */
+        .chat-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .chat-modal.active {
+            display: flex;
+        }
+        .chat-modal-content {
+            background: white;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-xl);
+        }
+        .chat-modal-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            border-radius: var(--radius) var(--radius) 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-modal-header h3 {
+            font-size: 18px;
+        }
+        .chat-modal-header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        .chat-modal-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 300px;
+        }
+        .message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .message.user {
+            background: var(--primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .message.admin {
+            background: #e5e7eb;
+            color: var(--dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        .message small {
+            display: block;
+            font-size: 10px;
+            margin-top: 4px;
+            opacity: 0.7;
+        }
+        .chat-modal-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid var(--border);
+            background: white;
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+        .chat-modal-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            outline: none;
+            margin-right: 10px;
+        }
+        .chat-modal-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* === RESPONSIVE === */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-right {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .panel-header h1 {
+                font-size: 26px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+
+            .btn-primary, .btn-outline, .btn-secondary, .btn-success, .btn-warning, .btn-danger {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .logo-image {
+                width: 40px;
+                height: 40px;
+            }
+
+            #system-name {
+                font-size: 18px;
+            }
+
+            .user-greeting {
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+
+            #logoutBtn {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <a href="#" class="logo">
+                    <img src="Logo-Favicon-removebg-preview.png" alt="Barangay 118" class="logo-image" onerror="this.src='https://via.placeholder.com/48x48?text=Logo'">
+                    <h1 id="system-name">BARANGAY 118 ADMIN</h1>
+                </a>
+                <div class="nav-right">
+                    <div class="user-greeting" id="userGreeting">
+                        <span id="userNameDisplay">Admin</span>
+                    </div>
+                    <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container container">
+        <div class="panel-header">
+            <h1>Welcome, <span id="userNameMain">Admin</span>!</h1>
+            <span class="badge-admin">Administrator</span>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid" id="statsContainer">
+            <div class="stat-card">
+                <h3>Total Requests</h3>
+                <div class="stat-number" id="totalRequests">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Pending</h3>
+                <div class="stat-number" id="pendingCount">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Approved</h3>
+                <div class="stat-number" id="approvedCount">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Rejected</h3>
+                <div class="stat-number" id="rejectedCount">0</div>
+            </div>
+        </div>
+
+        <!-- Filter and Actions -->
+        <div class="filter-bar">
+            <select id="statusFilter" class="filter-select">
+                <option value="all">All statuses</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+            <button id="applyFilter" class="btn-primary"><i class="fas fa-filter"></i> Apply filter</button>
+            <button class="btn-outline" id="undoBtn"><i class="fas fa-undo"></i> Undo</button>
+            <!-- Ang button na "Add mock request" ay tinanggal na -->
+        </div>
+
+        <!-- Requests Table -->
+        <div class="table-wrapper">
+            <table id="requestsTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Resident</th>
+                        <th>Document</th>
+                        <th>Purpose</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr><td colspan="6" style="text-align:center; padding:2rem;">Loading requests...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ========== ADDED SECTION: Quick Actions & Recent Activity ========== -->
+        <div class="admin-section">
+            <h3><i class="fas fa-bolt" style="color: var(--primary);"></i> Quick Actions</h3>
+            <div class="quick-actions">
+                <button class="btn-primary" id="previewSiteBtn"><i class="fas fa-external-link-alt"></i> Preview Site</button>
+                <button class="btn-success" id="exportDataBtn"><i class="fas fa-download"></i> Export Data</button>
+                <button class="btn-secondary" id="backupDataBtn"><i class="fas fa-database"></i> Backup Data</button>
+                <button class="btn-warning" id="refreshDataBtn"><i class="fas fa-sync"></i> Refresh</button>
+                <button class="btn-danger" id="clearAllDataBtn"><i class="fas fa-trash"></i> Clear All Data</button>
+            </div>
+        </div>
+
+        <!-- ========== NEW CHAT SECTION ========== -->
+        <div class="admin-section">
+            <h2 class="section-title"><i class="fas fa-comments"></i> Resident Chats</h2>
+            <ul class="chat-list" id="chatUserList">
+                <li style="text-align:center; color: var(--gray);">Loading chats...</li>
+            </ul>
+        </div>
+
+        <div class="admin-section">
+            <h2 class="section-title"><i class="fas fa-history"></i> Recent Activity</h2>
+            <ul class="activity-log">
+                <li>
+                    <i class="fas fa-info-circle"></i>
+                    <span>System initialized with Firebase Realtime Database integration (new keys)</span>
+                    <span class="activity-timestamp">8:20:09 PM</span>
+                </li>
+                <!-- You can add more activity items here dynamically later -->
+            </ul>
+        </div>
+        <!-- ========== END ADDED SECTION ========== -->
+
+    </main>
+
+    <!-- Chat Modal (for replying) -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h3 id="chatModalTitle">Chat with <span id="chatUserName"></span></h3>
+                <button id="closeChatModal">&times;</button>
+            </div>
+            <div class="chat-modal-messages" id="chatModalMessages">
+                <!-- messages go here -->
+            </div>
+            <div class="chat-modal-input">
+                <input type="text" id="chatModalInput" placeholder="Type your reply..." />
+                <button id="sendChatReply"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+    <script>
+        (function() {
+            // Firebase config (same as given)
+            const firebaseConfig = {
+                apiKey: "AIzaSyADUN3zUupPLgB8Z0p_867XUK7FYKCkwoU",
+                authDomain: "barangay118-test-website.firebaseapp.com",
+                databaseURL: "https://barangay118-test-website-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "barangay118-test-website",
+                storageBucket: "barangay118-test-website.firebasestorage.app",
+                messagingSenderId: "459463926150",
+                appId: "1:459463926150:web:e66bc57f5e29c2dca24c07",
+                measurementId: "G-RQ8JYYJ1G7"
+            };
+
+            if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+            const database = firebase.database();
+            const isLoggedIn = sessionStorage.getItem('userLoggedIn') === 'true';
+            const userName = sessionStorage.getItem('userName') || 'Admin';
+            const userRole = sessionStorage.getItem('userRole');
+
+            // References
+            const requestsRef = database.ref('requests');
+            const tableBody = document.getElementById('tableBody');
+            const totalSpan = document.getElementById('totalRequests');
+            const pendingSpan = document.getElementById('pendingCount');
+            const approvedSpan = document.getElementById('approvedCount');
+            const rejectedSpan = document.getElementById('rejectedCount');
+            const statusFilter = document.getElementById('statusFilter');
+            const applyFilter = document.getElementById('applyFilter');
+            const refreshBtn = document.getElementById('refreshDataBtn'); // Fixed: using refreshDataBtn from Quick Actions
+
+            let allRequests = [];
+            let currentFilter = 'all';
+
+            // Load realtime data
+            function loadRequests() {
+                requestsRef.on('value', (snapshot) => {
+                    const data = snapshot.val();
+                    const requests = [];
+                    if (data) {
+                        Object.keys(data).forEach(key => {
+                            requests.push({ id: key, ...data[key] });
+                        });
+                    }
+                    // sort by date descending
+                    requests.sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
+                    allRequests = requests;
+                    updateStats();
+                    filterAndRender();
+                });
+            }
+
+            function updateStats() {
+                const total = allRequests.length;
+                const pending = allRequests.filter(r => r.status === 'pending').length;
+                const approved = allRequests.filter(r => r.status === 'approved').length;
+                const rejected = allRequests.filter(r => r.status === 'rejected').length;
+                totalSpan.textContent = total;
+                pendingSpan.textContent = pending;
+                approvedSpan.textContent = approved;
+                rejectedSpan.textContent = rejected;
+            }
+
+            function filterAndRender() {
+                const filter = currentFilter;
+                let filtered = allRequests;
+                if (filter !== 'all') {
+                    filtered = allRequests.filter(r => r.status === filter);
+                }
+
+                if (filtered.length === 0) {
+                    tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:2rem;">No requests found.</td></tr>`;
+                    return;
+                }
+
+                let html = '';
+                filtered.forEach(req => {
+                    const date = req.timestamp ? new Date(req.timestamp).toLocaleString() : 'No date';
+                    const statusClass = `status-badge status-${req.status || 'pending'}`;
+                    html += `<tr>
+                        <td>${date}</td>
+                        <td>${req.fullName || 'Unknown'}</td>
+                        <td>${req.documentType || 'N/A'}</td>
+                        <td>${req.purpose || '—'}</td>
+                        <td><span class="${statusClass}">${req.status || 'pending'}</span></td>
+                        <td>
+                            ${req.status !== 'approved' ? `<button class="action-btn approve" data-id="${req.id}" data-action="approve">Approve</button>` : ''}
+                            ${req.status !== 'rejected' ? `<button class="action-btn reject" data-id="${req.id}" data-action="reject">Reject</button>` : ''}
+                            <button class="action-btn" data-id="${req.id}" data-action="view">View</button>
+                        </td>
+                    </tr>`;
+                });
+                tableBody.innerHTML = html;
+            }
+
+            function sendNotification(userId, message, requestId) {
+                if (!userId) return;
+                const notificationRef = database.ref('notifications/' + userId).push();
+                notificationRef.set({
+                    message: message,
+                    timestamp: Date.now(),
+                    read: false,
+                    requestId: requestId
+                });
+            }
+
+            function updateStatus(requestId, newStatus) {
+                // First get the request to know the userId
+                requestsRef.child(requestId).once('value', (snapshot) => {
+                    const request = snapshot.val();
+                    if (!request) return;
+                    
+                    // Update status
+                    requestsRef.child(requestId).update({ status: newStatus })
+                        .then(() => {
+                            console.log('Status updated');
+                            // Send notification
+                            const userId = request.userId;
+                            const docType = request.documentType || 'document';
+                            const message = `Your request for ${docType} has been ${newStatus}.`;
+                            sendNotification(userId, message, requestId);
+                        })
+                        .catch(err => alert('Error: ' + err));
+                });
+            }
+
+            // Event delegation for action buttons
+            tableBody.addEventListener('click', (e) => {
+                const btn = e.target.closest('.action-btn');
+                if (!btn) return;
+                const requestId = btn.dataset.id;
+                const action = btn.dataset.action;
+                if (action === 'approve') {
+                    if (confirm('Approve this request?')) updateStatus(requestId, 'approved');
+                } else if (action === 'reject') {
+                    if (confirm('Reject this request?')) updateStatus(requestId, 'rejected');
+                } else if (action === 'view') {
+                    const req = allRequests.find(r => r.id === requestId);
+                    if (req) {
+                        alert(`Full name: ${req.fullName}\nDocument: ${req.documentType}\nPurpose: ${req.purpose}\nNotes: ${req.notes || '—'}\nStatus: ${req.status}\nTimestamp: ${new Date(req.timestamp).toLocaleString()}\nUser ID: ${req.userId || 'N/A'}`);
+                    }
+                }
+            });
+
+            // Filter change
+            applyFilter.addEventListener('click', () => {
+                currentFilter = statusFilter.value;
+                filterAndRender();
+            });
+
+            // Refresh (triggers value event) - using refreshBtn from Quick Actions
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', () => {
+                    requestsRef.once('value', () => {});
+                });
+            }
+
+            // Quick Actions button placeholders
+            document.getElementById('previewSiteBtn').addEventListener('click', () => {
+                window.open('MainPage.html', '_blank');
+            });
+            document.getElementById('exportDataBtn').addEventListener('click', () => {
+                alert('Export Data clicked - implement export logic');
+            });
+            document.getElementById('backupDataBtn').addEventListener('click', () => {
+                alert('Backup Data clicked - implement backup');
+            });
+            document.getElementById('clearAllDataBtn').addEventListener('click', () => {
+                if (confirm('Are you sure you want to clear ALL requests? This cannot be undone.')) {
+                    requestsRef.remove()
+                        .then(() => alert('All requests cleared'))
+                        .catch(err => alert('Error: ' + err));
+                }
+            });
+            document.getElementById('undoBtn').addEventListener('click', () => {
+                alert('Undo function - not implemented');
+            });
+
+            // start listening
+            loadRequests();
+
+            // ========== CHAT SYSTEM (ADMIN) ==========
+            const chatUserList = document.getElementById('chatUserList');
+            const chatModal = document.getElementById('chatModal');
+            const chatModalMessages = document.getElementById('chatModalMessages');
+            const chatModalInput = document.getElementById('chatModalInput');
+            const sendChatReply = document.getElementById('sendChatReply');
+            const closeChatModal = document.getElementById('closeChatModal');
+            const chatUserNameSpan = document.getElementById('chatUserName');
+
+            let currentChatUserId = null;
+            let currentChatMessagesRef = null;
+
+            // Load list of users who have chats
+            function loadChatUsers() {
+                database.ref('chats').on('value', (snapshot) => {
+                    const data = snapshot.val();
+                    if (!data) {
+                        chatUserList.innerHTML = '<li style="text-align:center; color:var(--gray);">No chats yet.</li>';
+                        return;
+                    }
+                    const userIds = Object.keys(data);
+                    // For each user, get the latest message and unread count
+                    let usersWithInfo = [];
+                    let promises = userIds.map(userId => {
+                        return database.ref('chats/' + userId + '/messages').once('value').then(msgSnap => {
+                            const msgs = msgSnap.val();
+                            if (!msgs) return null;
+                            const messages = Object.values(msgs);
+                            messages.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
+                            const lastMsg = messages.length ? messages[messages.length-1] : null;
+                            const unreadCount = messages.filter(m => m.sender === 'user' && !m.read).length;
+                            // Also get user's name from requests? For now we'll just use userId
+                            // We could also store user's name in chats node but for simplicity we'll use userId
+                            // Option: try to fetch from requests
+                            return {
+                                userId: userId,
+                                lastMessage: lastMsg ? lastMsg.content : '',
+                                lastTimestamp: lastMsg ? lastMsg.timestamp : 0,
+                                unreadCount: unreadCount
+                            };
+                        });
+                    });
+                    Promise.all(promises).then(results => {
+                        usersWithInfo = results.filter(r => r !== null);
+                        // Sort by last message timestamp descending
+                        usersWithInfo.sort((a,b) => (b.lastTimestamp || 0) - (a.lastTimestamp || 0));
+                        renderChatUsers(usersWithInfo);
+                    });
+                });
+            }
+
+            function renderChatUsers(users) {
+                if (users.length === 0) {
+                    chatUserList.innerHTML = '<li style="text-align:center; color:var(--gray);">No chats yet.</li>';
+                    return;
+                }
+                let html = '';
+                users.forEach(u => {
+                    const unreadClass = u.unreadCount > 0 ? 'unread' : '';
+                    const lastMsgPreview = u.lastMessage ? (u.lastMessage.length > 30 ? u.lastMessage.substring(0,30)+'…' : u.lastMessage) : 'No messages';
+                    html += `<li class="${unreadClass}" data-userid="${u.userId}">
+                        <div class="chat-user-info">
+                            <span class="chat-user-name">${u.userId}</span>
+                            <span class="chat-last-message">${lastMsgPreview}</span>
+                        </div>
+                        ${u.unreadCount > 0 ? `<span class="chat-unread-badge">${u.unreadCount}</span>` : ''}
+                    </li>`;
+                });
+                chatUserList.innerHTML = html;
+
+                // Add click event to each chat
+                document.querySelectorAll('.chat-list li').forEach(li => {
+                    li.addEventListener('click', (e) => {
+                        const userId = li.dataset.userid;
+                        openChatModal(userId);
+                    });
+                });
+            }
+
+            function openChatModal(userId) {
+                currentChatUserId = userId;
+                chatUserNameSpan.textContent = userId;
+                // Load messages
+                if (currentChatMessagesRef) currentChatMessagesRef.off();
+                currentChatMessagesRef = database.ref('chats/' + userId + '/messages');
+                currentChatMessagesRef.on('value', (snapshot) => {
+                    const data = snapshot.val();
+                    let messages = [];
+                    if (data) {
+                        Object.keys(data).forEach(key => {
+                            messages.push({ id: key, ...data[key] });
+                        });
+                    }
+                    messages.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
+                    renderChatModalMessages(messages);
+                    // Mark all user messages as read (admin has seen them)
+                    messages.forEach(m => {
+                        if (m.sender === 'user' && !m.read) {
+                            database.ref('chats/' + userId + '/messages/' + m.id).update({ read: true });
+                        }
+                    });
+                });
+                chatModal.classList.add('active');
+            }
+
+            function renderChatModalMessages(messages) {
+                if (messages.length === 0) {
+                    chatModalMessages.innerHTML = '<div style="text-align:center; color:#999; padding:20px;">No messages yet. Start the conversation!</div>';
+                    return;
+                }
+                let html = '';
+                messages.forEach(m => {
+                    const time = m.timestamp ? new Date(m.timestamp).toLocaleTimeString() : '';
+                    const senderClass = m.sender === 'user' ? 'user' : 'admin';
+                    html += `<div class="message ${senderClass}">
+                        ${m.content}
+                        <small>${time}</small>
+                    </div>`;
+                });
+                chatModalMessages.innerHTML = html;
+                chatModalMessages.scrollTop = chatModalMessages.scrollHeight;
+            }
+
+            function sendReply() {
+                const content = chatModalInput.value.trim();
+                if (!content || !currentChatUserId) return;
+                const message = {
+                    sender: 'admin',
+                    content: content,
+                    timestamp: Date.now(),
+                    read: false // will be marked as read when user opens chat
+                };
+                database.ref('chats/' + currentChatUserId + '/messages').push(message)
+                    .then(() => {
+                        chatModalInput.value = '';
+                    })
+                    .catch(err => alert('Error sending reply: ' + err));
+            }
+
+            sendChatReply.addEventListener('click', sendReply);
+            chatModalInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendReply();
+            });
+
+            closeChatModal.addEventListener('click', () => {
+                chatModal.classList.remove('active');
+                if (currentChatMessagesRef) currentChatMessagesRef.off();
+                currentChatUserId = null;
+            });
+
+            // Load chats
+            loadChatUsers();
+        })();
+    </script>
+</body>
+</html>

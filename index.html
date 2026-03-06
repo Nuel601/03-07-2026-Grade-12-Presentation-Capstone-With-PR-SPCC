@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/png" href="Logo-Favicon-removebg-preview.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Barangay 118 · Official Login</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-soft: #dbeafe;
+      --light: #ffffff;
+      --dark: #1e293b;
+      --gray: #64748b;
+      --gray-light: #f8fafc;
+      --radius-full: 9999px;
+      --transition: all 0.25s ease;
+      --transition-fast: all 0.15s ease;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;}
+
+    body {
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:1.5rem;
+      position:relative;
+      background:#1c1c1c;
+    }
+
+    body::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:url('Munomento.png');
+      background-repeat:no-repeat;   
+      background-position:center;
+      background-size:cover;
+      opacity:0.4;
+      pointer-events:none;
+    }
+
+    .auth-card {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border-radius:32px;
+      box-shadow:0 25px 50px -12px rgba(0,0,0,0.25),0 0 0 1px rgba(255,255,255,0.6) inset;
+      width:100%;
+      max-width:440px;
+      padding:2.5rem 2.2rem 3rem;
+      border:1px solid rgba(255,255,255,0.7);
+      transition:var(--transition);
+    }
+
+    .brand-header {
+      display:flex;
+      align-items:center;
+      gap:0.75rem;
+      justify-content:center;
+      margin-bottom:1.5rem;
+    }
+
+    .brand-icon {
+      background: var(--primary);
+      color: var(--light);
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.8rem;
+      box-shadow:0 10px 15px -3px rgba(37,99,235,0.3);
+    }
+
+    h2 {
+      font-size:2rem;
+      font-weight:600;
+      color: var(--dark);
+      letter-spacing:-0.02em;
+    }
+
+    .sub-heading { text-align:center; margin-bottom:2.2rem; }
+    .sub-heading p {
+      font-size:1rem;
+      color:#475569;
+      font-weight:500;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:0.5rem;
+      flex-wrap:wrap;
+    }
+
+    .badge {
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      padding:0.3rem 1rem;
+      border-radius: var(--radius-full);
+      font-size:0.75rem;
+      font-weight:600;
+      text-transform:uppercase;
+      border:1px solid #bfdbfe;
+    }
+
+    .form-group { margin-bottom:1.75rem; }
+
+    label {
+      display:block;
+      font-size:0.85rem;
+      font-weight:600;
+      color:#334155;
+      margin-bottom:0.5rem;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+    }
+
+    .input-wrapper { position:relative; display:flex; align-items:center; }
+
+    .input-wrapper i:not(.toggle-password) {
+      position:absolute; left:1rem; color:#94a3b8; font-size:1.1rem; pointer-events:none;
+    }
+
+    .toggle-password {
+      position:absolute;
+      right:1rem;
+      top:50%;
+      transform:translateY(-50%);
+      cursor:pointer;
+      color:#94a3b8;
+      font-size:1.2rem;
+      z-index:2;
+      transition: color 0.2s;
+    }
+
+    .toggle-password:hover { color: var(--primary-dark); }
+
+    input {
+      width:100%;
+      padding:0.9rem 1rem 0.9rem 2.8rem;
+      border:1.5px solid #e2e8f0;
+      border-radius:20px;
+      font-size:1rem;
+      background: var(--light);
+      color: var(--dark);
+      transition: var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    input:focus {
+      outline:none;
+      border-color: var(--primary);
+      box-shadow:0 0 0 4px rgba(37,99,235,0.15),0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    input::placeholder { color:#b9c7da; font-weight:400; font-size:0.95rem; }
+
+    .login-btn {
+      width:100%;
+      padding:0.95rem 1.5rem;
+      font-size:1.1rem;
+      font-weight:600;
+      border-radius:30px;
+      border:none;
+      cursor:pointer;
+      background: var(--primary);
+      color: var(--light);
+      margin:1rem 0 1.8rem;
+      transition:var(--transition);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:0.6rem;
+    }
+
+    .login-btn:hover { background: var(--primary-dark); transform: scale(1.02); }
+
+    .info-note {
+      background: var(--gray-light);
+      border-radius:18px;
+      padding:1rem 1.2rem;
+      font-size:0.9rem;
+      color: var(--dark);
+      border:1px solid #e0e7ff;
+      display:flex;
+      align-items:center;
+      gap:0.8rem;
+      box-shadow:var(--shadow-sm);
+    }
+
+    .info-note i {
+      color: var(--primary);
+      font-size:1.3rem;
+      background: var(--primary-soft);
+      padding:0.5rem;
+      border-radius:12px;
+    }
+
+    .info-note span { font-weight:600; color: var(--primary-dark); }
+    .info-note small { display:block; color: var(--gray); font-size:0.8rem; margin-top:0.2rem; }
+
+    @media (max-width:480px){
+      .auth-card{padding:2rem 1.5rem;}
+      h2{font-size:1.8rem;}
+      .brand-icon{width:40px; height:40px; font-size:1.5rem;}
+    }
+  </style>
+</head>
+<body>
+<div class="auth-card">
+  <div class="brand-header">
+    <div class="brand-icon"><i class="fas fa-building"></i></div>
+    <h2>Barangay 118</h2>
+  </div>
+
+  <div class="sub-heading">
+    <p>
+      <i class="fas fa-shield-alt" style="color: var(--primary);"></i> Official Portal
+      <span class="badge"><i class="fas fa-user-check"></i> residents & officials</span>
+    </p>
+  </div>
+
+  <form id="loginForm">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <div class="input-wrapper">
+        <i class="far fa-envelope"></i>
+        <input type="email" id="email" placeholder="Enter the brgy118 portal" required autocomplete="email">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="input-wrapper">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Enter password" required autocomplete="current-password">
+        <i class="fas fa-eye toggle-password"></i>
+      </div>
+    </div>
+
+    <button type="submit" class="login-btn">
+      <span>Sign in to dashboard</span>
+      <i class="fas fa-arrow-right"></i>
+    </button>
+  </form>
+
+  <div class="info-note">
+    <div>
+      <span>ⓘ For Barangay 118 Members Only</span>
+      <small>Only registered residents and officials can log in to this website</small>
+    </div>
+  </div>
+</div>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyADUN3zUupPLgB8Z0p_867XUK7FYKCkwoU",
+  authDomain: "barangay118-test-website.firebaseapp.com",
+  databaseURL: "https://barangay118-test-website-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "barangay118-test-website",
+  storageBucket: "barangay118-test-website.firebasestorage.app",
+  messagingSenderId: "459463926150",
+  appId: "1:459463926150:web:e66bc57f5e29c2dca24c07",
+  measurementId: "G-RQ8JYYJ1G7"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const officialUIDs = ["VRWUwxB2smdH4dJPMlATVebzl8u2"];
+const loginForm = document.getElementById('loginForm');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const togglePassword = document.querySelector('.toggle-password');
+
+// Password toggle
+togglePassword.addEventListener('click', function() {
+  const type = passwordInput.type === 'password' ? 'text' : 'password';
+  passwordInput.type = type;
+  this.classList.toggle('fa-eye');
+  this.classList.toggle('fa-eye-slash');
+});
+
+// Login handler
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  if(!email || !password){
+    alert('Please enter both email and password.');
+    return;
+  }
+
+  const btn = loginForm.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.style.opacity = '0.8';
+  btn.style.cursor = 'wait';
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then((userCredential)=>{
+      const user = userCredential.user;
+      if(officialUIDs.includes(user.uid)){
+        alert(`Login successful! Welcome, to ${user.email}`);
+        window.location.href='PanelHome.html';
+      } else {
+        alert('Access denied. Only Barangay 118 residents can login.');
+        auth.signOut();
+        btn.disabled = false; btn.style.opacity=''; btn.style.cursor='';
+      }
+    })
+    .catch((error)=>{
+      btn.disabled = false; btn.style.opacity=''; btn.style.cursor='';
+      let msg='Login failed: ';
+      if(error.code==='auth/user-not-found') msg+='No account with this email.';
+      else if(error.code==='auth/wrong-password') msg+='Incorrect password.';
+      else if(error.code==='auth/invalid-email') msg+='Invalid email format.';
+      else msg+=error.message;
+      alert(msg);
+    });
+});
+</script>
+</body>
+</html>

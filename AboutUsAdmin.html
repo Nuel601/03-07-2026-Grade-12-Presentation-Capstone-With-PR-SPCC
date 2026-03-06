@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Admin | Barangay 118</title>
+    <link rel="shortcut icon" type="image/png" href="Logo-Favicon-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="AboutUsAdmin.css">
+</head>
+<body>
+    <div class="mobile-block">
+        <i class="fas fa-laptop"></i>
+        <h2>PC / Laptop Only</h2>
+        <p>This Admin is designed for desktop and laptop screens. Please access it from a computer for the best experience.</p>
+        <small>Barangay 118 Online System</small>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo" onclick="myFunction()">
+                    <div class="logo-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>BARANGAY 118 ADMIN PANEL</h1>
+                        <p>About Us Control Center</p>
+                    </div>
+                </div>
+
+                <div class="nav-links">
+                    <a href="PanelAdmin.html">Dashboard</a>
+                    <a href="AboutUsAdmin.html" class="active">AboutUs</a>
+                    <a href="NewsAdmin.html">News</a>
+                    <a href="EmergencyAdmin.html">Emergency</a>
+                    <a href="AdminAuthPanel.html">Create</a>
+                    <a href="AdminLogInControl.html">Access Control</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-panel">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title"><i class="fas fa-cogs"></i> Control Center</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active" data-tab="welcome"><span class="sidebar-icon"><i class="fas fa-tachometer-alt"></i></span> Dashboard</a></li>
+                <li><a href="#" data-tab="hero"><span class="sidebar-icon"><i class="fas fa-heading"></i></span> Hero</a></li>
+                <li><a href="#" data-tab="story"><span class="sidebar-icon"><i class="fas fa-book"></i></span> Story</a></li>
+                <li><a href="#" data-tab="mission"><span class="sidebar-icon"><i class="fas fa-bullseye"></i></span> Mission & Vision</a></li>
+                <li><a href="#" data-tab="officials"><span class="sidebar-icon"><i class="fas fa-users"></i></span> Barangay Officials</a></li>
+                <li><a href="#" data-tab="committees"><span class="sidebar-icon"><i class="fas fa-user-friends"></i></span> Committees</a></li>
+                <li><a href="#" data-tab="documents"><span class="sidebar-icon"><i class="fas fa-file-alt"></i></span> Document Requirements</a></li>
+                <li><a href="#" data-tab="location"><span class="sidebar-icon"><i class="fas fa-map-marker-alt"></i></span> Location</a></li>
+                <li><a href="#" data-tab="contact"><span class="sidebar-icon"><i class="fas fa-phone-alt"></i></span> Contact Information</a></li>
+                <li><a href="#" data-tab="faq"><span class="sidebar-icon"><i class="fas fa-question-circle"></i></span> FAQ</a></li>
+                <li><a href="#" data-tab="userFeedback"><span class="sidebar-icon"><i class="fas fa-comments"></i></span> User Feedback</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <a href="LogIn.html" class="sidebar-logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <div id="welcome" class="tab-content active">
+                <div class="admin-section">
+                    <h2 class="section-title"><i class="fas fa-tachometer-alt"></i> Dashboard Overview</h2>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="system-status">Ready</div>
+                            <div class="stat-label">System Status</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="user-feedback-count">0</div>
+                            <div class="stat-label">User Feedback</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-value" id="data-size">0 KB</div>
+                            <div class="stat-label">Data Size</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-value" id="last-updated">Never</div>
+                            <div class="stat-label">Last Updated</div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-success">
+                        <strong><i class="fas fa-check-circle"></i> System Ready! Welcome to the Barangay 118 Admin AboutUs Control Panel.</strong> 
+                    </div>
+                    
+                    <h3 style="margin-bottom: 15px; color: var(--dark);">Quick Actions</h3>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" id="preview-site-btn">
+                            <i class="fas fa-external-link-alt"></i> Preview Site
+                        </button>
+                        <button class="btn btn-secondary" id="export-news-btn">
+                            <i class="fas fa-download"></i> Export News Data
+                        </button>
+                        <button class="btn btn-success" id="backup-btn">
+                            <i class="fas fa-database"></i> Backup Data
+                        </button>
+                        <button class="btn btn-warning" id="refresh-btn">
+                            <i class="fas fa-sync"></i> Refresh
+                        </button>
+                        <button class="btn btn-danger" id="clear-all-data-btn">
+                            <i class="fas fa-trash"></i> Clear All Data
+                        </button>
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <h2 class="section-title"><i class="fas fa-history"></i> Recent Activity</h2>
+                    <div id="recent-activity">
+                        <p style="color: var(--gray); text-align: center; padding: 20px;">
+                            <i class="fas fa-clock"></i> Activity log will appear here...
+                        </p>
+                    </div>
+                </div>
+
+                <div class="quick-guide-center">
+                    <div class="quick-guide-header">
+                        <h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2>
+                    </div>
+                    
+                    <div id="welcome-guide" class="guide-section">
+                        <h4>Dashboard Overview</h4>
+                        <p>The dashboard provides a quick overview of your system's key metrics and recent activity.</p>
+                        <ul>
+                            <li>Monitor system status and data size</li>
+                            <li>Track last updated time and user feedback count</li>
+                            <li>View recent system activity</li>
+                            <li>Use quick actions for common tasks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Tab -->
+            <div id="hero" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-heading"></i> Hero Section</h2>
+                        <div class="action-buttons">
+                            <a href="AboutUs.html" target="_blank" class="btn btn-success btn-sm">
+                                <i class="fas fa-eye"></i> View Site
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--gray); margin-bottom: 25px;">Update the Hero section that appears at the top of your About Us page.</p>
+                    
+                    <form id="hero-form">
+                        <div class="form-group">
+                            <label class="form-label" for="hero-title">Hero Title</label>
+                            <input type="text" class="form-control" id="hero-title" placeholder="Enter hero title">
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">Main title that appears on the About Us page</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="hero-description">Hero Description</label>
+                            <textarea class="form-control" id="hero-description" placeholder="Enter hero description"></textarea>
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">Description text below the main title</small>
+                        </div>
+
+                        <div class="action-buttons-container">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Update Hero Section
+                            </button>
+                            <button type="button" class="btn btn-warning" id="hero-reset-btn">
+                                <i class="fas fa-undo"></i> Reset to Defaults
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="quick-guide-center">
+                    <div class="quick-guide-header">
+                        <h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2>
+                    </div>
+                    
+                    <div id="hero-guide" class="guide-section">
+                        <h4>Hero Section</h4>
+                        <p>Customize the Hero section of your About Us page.</p>
+                        <ul>
+                            <li>Update the page title and description</li>
+                            <li>Changes appear immediately on the main site</li>
+                            <li>Use descriptive titles for better user experience</li>
+                            <li>Changes are saved to Database</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="story" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-book"></i> Story Section</h2>
+                        <div class="action-buttons">
+                            <a href="AboutUs.html" target="_blank" class="btn btn-success btn-sm">
+                                <i class="fas fa-eye"></i> View Site
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--gray); margin-bottom: 25px;">Tell the story of your barangay and upload an image of your barangay hall or community.</p>
+                    
+                    <form id="story-form">
+                        <div class="form-group">
+                            <label class="form-label" for="story-title">Story Title</label>
+                            <input type="text" class="form-control" id="story-title" placeholder="Enter story title">
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">Keep the title short and descriptive.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="story-content1">Story Content 1</label>
+                            <textarea class="form-control" id="story-content1" placeholder="Enter first paragraph"></textarea>
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">This will appear as the opening paragraph of the story.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="story-content2">Story Content 2</label>
+                            <textarea class="form-control" id="story-content2" placeholder="Enter second paragraph"></textarea>
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">Add supporting details or the continuation of the story.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="story-content3">Story Content 3</label>
+                            <textarea class="form-control" id="story-content3" placeholder="Enter third paragraph"></textarea>
+                            <small style="color: var(--gray); margin-top: 5px; display: block;"> Optional: You may add more context or a closing statement.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="story-image">Barangay Image URL</label>
+                            <input type="text" class="form-control" id="story-image" placeholder="https://example.com/barangay-image.jpg">
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">Enter direct URL to high-quality barangay image</small>
+                            <div class="image-preview-container">
+                                <img id="story-image-preview" class="image-preview" alt="Barangay image preview">
+                            </div>
+                        </div>
+
+                        <div class="action-buttons-container">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Update Story Section
+                            </button>
+                            <button type="button" class="btn btn-warning" id="story-reset-btn">
+                                <i class="fas fa-undo"></i> Reset to Defaults
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="quick-guide-center">
+                    <div class="quick-guide-header">
+                        <h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2>
+                    </div>
+                    
+                    <div id="story-guide" class="guide-section">
+                        <h4>Story Section</h4>
+                        <p>Customize the story section with your barangay's story and image.</p>
+                        <ul>
+                            <li>Update the story title and paragraphs</li>
+                            <li>Add a barangay hall or community image</li>
+                            <li>Preview images before saving</li>
+                            <li>Changes appear on the About Us page</li>
+                            <li>Changes are saved to Database</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mission" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-bullseye"></i> Mission & Vision Section</h2>
+                        <div class="action-buttons">
+                            <a href="AboutUs.html" target="_blank" class="btn btn-success btn-sm">
+                                <i class="fas fa-eye"></i> View Site
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--gray); margin-bottom: 25px;">Define your barangay's mission and vision statements.</p>
+                    
+                    <form id="mission-form">
+                        <div class="form-group">
+                            <label class="form-label" for="mission-vision-title">Section Title</label>
+                            <input type="text" class="form-control" id="mission-vision-title" placeholder="Enter section title">
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">Main title that appears on the mission vision.</small>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="mission-title">Mission Title</label>
+                                <input type="text" class="form-control" id="mission-title" placeholder="Enter mission title">
+                                <small style="color: var(--gray); margin-top: 5px; display: block;">  Enter a short and clear title for your Mission section.</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="vision-title">Vision Title</label>
+                                <input type="text" class="form-control" id="vision-title" placeholder="Enter vision title">
+                                <small style="color: var(--gray); margin-top: 5px; display: block;">  Enter a short and clear title for your Vision section.</small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="mission-text">Mission Text</label>
+                                <textarea class="form-control" id="mission-text" placeholder="Enter mission statement"></textarea>
+                                <small style="color: var(--gray); margin-top: 0px; display: block;">  Enter in your Description.</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="vision-text">Vision Text</label>
+                                <textarea class="form-control" id="vision-text" placeholder="Enter vision statement"></textarea>
+                                <small style="color: var(--gray); margin-top: 0px; display: block;">  Enter in your Description.</small>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons-container">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Update Mission & Vision
+                            </button>
+                            <button type="button" class="btn btn-warning" id="mission-reset-btn">
+                                <i class="fas fa-undo"></i> Reset to Defaults
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="quick-guide-center">
+                    <div class="quick-guide-header">
+                        <h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2>
+                    </div>
+                    
+                    <div id="mission-guide" class="guide-section">
+                        <h4>Mission & Vision Section</h4>
+                        <p>Define your barangay's mission and vision statements.</p>
+                        <ul>
+                            <li>Update section title</li>
+                            <li>Update mission and vision titles</li>
+                            <li>Edit mission and vision statements</li>
+                            <li>Keep statements concise and impactful</li>
+                            <li>Changes appear on the About Us page</li>
+                            <li>Changes are saved to Database</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="officials" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-users"></i> Barangay Officials Section</h2>
+                        <div class="action-buttons">
+                            <a href="AboutUs.html" target="_blank" class="btn btn-success btn-sm">
+                                <i class="fas fa-eye"></i> View Site
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--gray); margin-bottom: 25px;">Manage the list of barangay officials. You can add, edit, or remove officials as needed.</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="officials-subtitle">Officials Subtitle</label>
+                        <input type="text" class="form-control" id="officials-subtitle" placeholder="Enter officials subtitle">
+                        <small style="color: var(--gray); margin-top: 5px; display: block;">Subtitle that appears above the officials list</small>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <strong><i class="fas fa-info-circle"></i> Pro Tip:</strong> Click on any official to edit their details.
+                    </div>
+                    
+                    <div class="tabs">
+                        <div class="tab active" data-official-tab="existing">
+                            <i class="fa-solid fa-users"></i> Existing Officials
+                        </div>
+                        <div class="tab" data-official-tab="add">
+                            <i class="fa-solid fa-user-plus"></i> Add New Official
+                        </div>
+
+                        <div class="search-container">
+                            <input type="text" class="search-bar" id="officials-search" placeholder="Search officials by name or position...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div id="existing-officials" class="sub-tab-content active">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Avatar</th>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="officials-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="add-official" class="sub-tab-content">
+                        <form id="official-form">
+                            <input type="hidden" id="official-edit-id" value="">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="official-name">Name *</label>
+                                    <input type="text" class="form-control" id="official-name" placeholder="Enter official name" required>
+                                    <small style="color: var(--gray); margin-top: 0px; display: block;">Enter of Name</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="official-position">Position *</label>
+                                    <input type="text" class="form-control" id="official-position" placeholder="Enter official position" required>
+                                    <small style="color: var(--gray); margin-top: 0px; display: block;"> Enter of Position</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="official-description">Description</label>
+                                <textarea class="form-control" id="official-description" placeholder="Enter official description"></textarea>
+                                <small style="color: var(--gray); margin-top: 0px; display: block;"> Enter the Description</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="official-avatar">Profile Image URL or Initial</label>
+                                <input type="text" class="form-control" id="official-avatar" placeholder="Enter image URL or single character initial">
+                                <small style="color: var(--gray); margin-top: 5px; display: block;">Enter direct URL to profile image OR a single character (e.g., "J" for Jerryllyn)</small>
+                                <div class="image-preview-container">
+                                    <img id="official-avatar-preview" class="avatar-preview" alt="Official avatar preview">
+                                </div>
+                            </div>
+                            
+                            <div class="action-buttons-container">
+                                <button type="submit" class="btn btn-success" id="official-submit-btn">
+                                    <i class="fas fa-plus-circle"></i> Add Official
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="official-cancel-edit" style="display: none;">
+                                    <i class="fas fa-times"></i> Cancel Edit
+                                </button>
+                                <button type="button" class="btn btn-warning" id="officials-reset-btn">
+                                    <i class="fas fa-undo"></i> Reset All Officials
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="quick-guide-center">
+                    <div class="quick-guide-header">
+                        <h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2>
+                    </div>
+                    
+                    <div id="officials-guide" class="guide-section">
+                        <h4>Barangay Officials Management</h4>
+                        <p>Manage all barangay officials and their information.</p>
+                        <ul>
+                            <li>Add, edit, and delete officials</li>
+                            <li>Upload profile images for each official</li>
+                            <li>Include detailed descriptions for each official</li>
+                            <li>Changes appear on the About Us page</li>
+                            <li>Changes are saved to Database</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="committees" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-user-friends"></i> Committees Section</h2>
+                        <div class="action-buttons">
+                            <a href="AboutUs.html" target="_blank" class="btn btn-success btn-sm">
+                                <i class="fas fa-eye"></i> View Site
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--gray); margin-bottom: 25px;">Manage the different committees in your barangay and their members.</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="committees-subtitle">Committees Subtitle</label>
+                        <input type="text" class="form-control" id="committees-subtitle" placeholder="Enter committees subtitle">
+                        <small style="color: var(--gray); margin-top: 5px; display: block;">Subtitle that appears above the committees list</small>
+                    </div>
+                          
+                    <div class="tabs">
+                        <div class="tab active" data-committee-tab="existing">
+                            <i class="fa-solid fa-shield"></i> Existing Committees
+                        </div>
+                        <div class="tab" data-committee-tab="add">
+                            <i class="fa-solid fa-circle-plus"></i> Add New Committee
+                        </div>
+
+                        <div class="search-container">
+                            <input type="text" class="search-bar" id="committees-search" placeholder="Search committees by title...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div id="existing-committees" class="sub-tab-content active">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Committee Name</th>
+                                    <th>Chairperson</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="committees-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="add-committee" class="sub-tab-content">
+                        <form id="committee-form">
+                            <input type="hidden" id="committee-edit-id" value="">
+                            <div class="form-group">
+                                <label class="form-label" for="committee-name">Committee Name *</label>
+                                <input type="text" class="form-control" id="committee-name" placeholder="Enter committee name" required>
+                                <small style="color: var(--gray); margin-top: 5px; display: block;">Enter the official name of the committee. This field is required.</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="committee-chairperson">Committee Chairperson</label>
+                                <input type="text" class="form-control" id="committee-chairperson" placeholder="Enter committee chairperson">
+                                <small style="color: var(--gray); margin-top: 5px; display: block;">Enter the full name of the committee chairperson</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="committee-description">Committee Description</label>
+                                <textarea class="form-control" id="committee-description" placeholder="Enter committee description"></textarea>
+                                <small style="color: var(--gray); margin-top: 5px; display: block;">Briefly describe the committee’s role, purpose, or responsibilities.</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="committee-icon">Committee Icon Class</label>
+                                <input type="text" class="form-control" id="committee-icon" placeholder="fas fa-users">
+                                <small style="color: var(--gray); margin-top: 5px; display: block;">
+                                    Enter FontAwesome icon class (e.g., <code>fas fa-users</code>, <code>fas fa-shield-heart</code>). 
+                                    You can browse all icons here: <a href="https://fontawesome.com/search#icongrid" target="_blank">FontAwesome Icons</a>
+                                </small>                                
+                            </div>
+                            
+                            <div class="action-buttons-container">
+                                <button type="submit" class="btn btn-success" id="committee-submit-btn">
+                                    <i class="fas fa-plus-circle"></i> Add Committee
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="committee-cancel-edit" style="display: none;">
+                                    <i class="fas fa-times"></i> Cancel Edit
+                                </button>
+                                <button type="button" class="btn btn-warning" id="committees-reset-btn">
+                                    <i class="fas fa-undo"></i> Reset All Committees
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="quick-guide-center">
+                    <div class="quick-guide-header">
+                        <h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2>
+                    </div>
+                    
+                    <div id="committees-guide" class="guide-section">
+                        <h4>Committees Management</h4>
+                        <p>Manage barangay committees and their members.</p>
+                        <ul>
+                            <li>Add, edit, and delete committees</li>
+                            <li>Include committee name, chairperson, and description</li>
+                            <li>Add FontAwesome icon for each committee</li>
+                            <li>Organize by committee functions</li>
+                            <li>Keep information up-to-date</li>
+                            <li>Changes are saved to Database</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="documents" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-file-alt"></i> Document Requirements Section</h2>
+                        <div class="action-buttons">
+                            <a href="AboutUs.html" target="_blank" class="btn btn-success btn-sm">
+                                <i class="fas fa-eye"></i> View Site
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--gray); margin-bottom: 25px;">List the documents residents can request and their requirements.</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="documents-subtitle">Documents Subtitle</label>
+                        <input type="text" class="form-control" id="documents-subtitle" placeholder="Enter documents subtitle">
+                        <small style="color: var(--gray); margin-top: 5px; display: block;">Subtitle that appears above the documents list</small>
+                    </div>
+                  
+                    <div class="tabs">
+                        <div class="tab active" data-document-tab="existing">
+                            <i class="fa-solid fa-file-lines"></i> Existing Documents
+                        </div>
+                        <div class="tab" data-document-tab="add">
+                            <i class="fa-solid fa-file-circle-plus"></i> Add New Document
+                        </div>
+                        <div class="search-container">
+                            <input type="text" class="search-bar" id="documents-search" placeholder="Search documents by title...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div id="existing-documents" class="sub-tab-content active">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Requirements</th>
+                                    <th>Processing Time</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="documents-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="add-document" class="sub-tab-content">
+                        <form id="document-form">
+                            <input type="hidden" id="document-edit-id" value="">
+                            <div class="form-group">
+                                <label class="form-label" for="document-title">Document Title *</label>
+                                <input type="text" class="form-control" id="document-title" placeholder="Enter document title" required>
+                                <small style="color: var(--gray); margin-top: 5px; display: block;">Enter the official title of the document.</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="document-description">Document Description</label>
+                                <textarea class="form-control" id="document-description" placeholder="Describe the document purpose"></textarea>
+                                <small style="color: var(--gray); margin-top: 5px; display: block;">Briefly describe the purpose or use of the document</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="document-requirements">Requirements</label>
+                                <textarea class="form-control" id="document-requirements" placeholder="Enter requirements (one per line)"></textarea>
+                                <small style="color: var(--gray); margin-top: 5px; display: block;">Each line will become a separate requirement</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="document-processing-time">Processing Time</label>
+                                <input type="text" class="form-control" id="document-processing-time" placeholder="e.g., 10-15 minutes, Same day">
+                                <small style="color: var(--gray); margin-top: 5px; display: block;">Specify the estimated time to process this document (e.g., "10-15 minutes", "Same day").</small>
+                            </div>
+                            
+                            <div class="action-buttons-container">
+                                <button type="submit" class="btn btn-success" id="document-submit-btn">
+                                    <i class="fas fa-plus-circle"></i> Add Document
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="document-cancel-edit" style="display: none;">
+                                    <i class="fas fa-times"></i> Cancel Edit
+                                </button>
+                                <button type="button" class="btn btn-warning" id="documents-reset-btn">
+                                    <i class="fas fa-undo"></i> Reset All Documents
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="quick-guide-center">
+                    <div class="quick-guide-header">
+                        <h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2>
+                    </div>
+                    
+                    <div id="documents-guide" class="guide-section">
+                        <h4>Document Requirements Management</h4>
+                        <p>Manage document requirements and information.</p>
+                        <ul>
+                            <li>Add, edit, and delete document types</li>
+                            <li>Include descriptions and requirements</li>
+                            <li>Specify processing time</li>
+                            <li>Keep information accurate and up-to-date</li>
+                            <li>Changes are saved to Database</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="location" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-map-marker-alt"></i> Location Section</h2>
+                        <div class="action-buttons">
+                            <a href="AboutUs.html" target="_blank" class="btn btn-success btn-sm">
+                                <i class="fas fa-eye"></i> View Site
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--gray); margin-bottom: 25px;">Provide information about your barangay's location.</p>
+                    
+                    <form id="location-form">
+                        <div class="form-group">
+                            <label class="form-label" for="location-title">Section Title</label>
+                            <input type="text" class="form-control" id="location-title" placeholder="Enter section title">
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">Enter the main title for the Location section.</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="location-subtitle">Section Subtitle</label>
+                            <input type="text" class="form-control" id="location-subtitle" placeholder="Enter section subtitle">
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">Enter a subtitle or short description for the section</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="map-link">Map Embed URL *</label>
+                            <input type="text" class="form-control" id="map-link" placeholder="Enter Google Maps embed URL">
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">
+                                Paste the full Google Maps embed URL (<code>iframe src</code>).Example/preview: 
+                                <a href="https://www.google.com/maps/@12.0694778,122.0595622,6.56z?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D" target="_blank">View on Google Maps</a></small>                              
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="map-address">Map Address</label>
+                            <input type="text" class="form-control" id="map-address" placeholder="Enter map address">
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">Enter the full address to display on the map</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="map-location">Location Name</label>
+                            <input type="text" class="form-control" id="map-location" placeholder="e.g., Barangay 118 Hall, Grace Park East, Caloocan">
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">Specify the location name (e.g., Barangay 118 Hall, Grace Park East, Caloocan).</small>
+                        </div>
+
+                        <div class="action-buttons-container">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Update Location Section
+                            </button>
+                            <button type="button" class="btn btn-warning" id="location-reset-btn">
+                                <i class="fas fa-undo"></i> Reset to Defaults
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="quick-guide-center">
+                    <div class="quick-guide-header">
+                        <h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2>
+                    </div>
+                    
+                    <div id="location-guide" class="guide-section">
+                        <h4>Location Section</h4>
+                        <p>Provide information about your barangay's location.</p>
+                        <ul>
+                            <li>Update section title and subtitle</li>
+                            <li>Modify map embed URL (Google Maps iframe src)</li>
+                            <li>Update barangay address</li>
+                            <li>Specify location name</li>
+                            <li>Changes appear on the About Us page</li>
+                            <li>Changes are saved to Database</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="contact" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-phone-alt"></i> Contact Information</h2>
+                        <div class="action-buttons">
+                            <a href="AboutUs.html" target="_blank" class="btn btn-success btn-sm">
+                                <i class="fas fa-eye"></i> View Site
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--gray); margin-bottom: 25px;">Update your barangay's contact details. Form split into two columns for better readability.</p>
+                    
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label class="form-label" for="contact-title">Section Title</label>
+                            <input type="text" class="form-control" id="contact-title" placeholder="Enter section title">
+                            <p style="color: var(--gray); margin-bottom: 25px;">Enter the main title for the Contact section.</p>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="contact-address">Location Address</label>
+                                <input type="text" class="form-control" id="contact-address" placeholder="Enter location address">
+                                <p style="color: var(--gray); margin-bottom: 25px;">Enter the full address of the barangay or office location.</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="contact-email">Email Address</label>
+                                <input type="text" class="form-control" id="contact-email" placeholder="Enter email address">
+                                <p style="color: var(--gray); margin-bottom: 25px;">Provide the official contact email address.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="contact-phone">Phone Number</label>
+                                <input type="text" class="form-control" id="contact-phone" placeholder="Enter phone number">
+                                <p style="color: var(--gray); margin-bottom: 25px;">Enter the primary contact number landline or mobile.</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="contact-map-link">Map Link URL</label>
+                                <input type="text" class="form-control" id="contact-map-link" placeholder="Enter Google Maps link URL">
+                                <p style="color: var(--gray); margin-bottom: 25px;">Paste the full Google Maps link optional, for map directions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="contact-map-link-text">Map Link Text</label>
+                                <input type="text" class="form-control" id="contact-map-link-text" placeholder="Enter map link text">
+                                <p style="color: var(--gray); margin-bottom: 25px;">Enter the text for the map link (e.g., View on Google Maps).</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="contact-hours-weekdays">Weekday Hours</label>
+                                <input type="text" class="form-control" id="contact-hours-weekdays" placeholder="Monday-Friday: 8:00 AM - 5:00 PM">
+                                <p style="color: var(--gray); margin-bottom: 25px;">Specify office hours for Monday to Friday.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="contact-hours-saturday">Saturday Hours</label>
+                            <input type="text" class="form-control" id="contact-hours-saturday" placeholder="Saturday: 8:00 AM - 12:00 PM">
+                            <p style="color: var(--gray); margin-bottom: 25px;">Specify office hours for Saturday.</p>
+                        </div>
+
+                        <div class="action-buttons-container">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Update Contact Information
+                            </button>
+                            <button type="button" class="btn btn-warning" id="contact-reset-btn">
+                                <i class="fas fa-undo"></i> Reset to Defaults
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="quick-guide-center">
+                    <div class="quick-guide-header">
+                        <h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2>
+                    </div>
+                    
+                    <div id="contact-guide" class="guide-section">
+                        <h4>Contact Information</h4>
+                        <p>Update your barangay's contact details.</p>
+                        <ul>
+                            <li>Update section title and address</li>
+                            <li>Modify email and phone number</li>
+                            <li>Customize map link text and URL</li>
+                            <li>Set office hours for weekdays and Saturdays</li>
+                            <li>Changes are saved to Database</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="faq" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-question-circle"></i> FAQ Section</h2>
+                        <div class="action-buttons">
+                            <a href="AboutUs.html" target="_blank" class="btn btn-success btn-sm">
+                                <i class="fas fa-eye"></i> View Site
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--gray); margin-bottom: 25px;">Manage frequently asked questions and their answers.</p>
+        
+                    <div class="tabs">
+                        <div class="tab active" data-faq-tab="existing">
+                            <i class="fa-solid fa-question-circle"></i> Existing FAQs
+                        </div>
+                        <div class="tab" data-faq-tab="add">
+                            <i class="fa-solid fa-circle-plus"></i> Add New FAQ
+                        </div>
+                        <div class="search-container">
+                            <input type="text" class="search-bar" id="faq-search" placeholder="Search FAQs by question...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div id="existing-faqs" class="sub-tab-content active">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Question</th>
+                                    <th>Answer</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="faq-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="add-faq" class="sub-tab-content">
+                        <form id="faq-form">
+                            <input type="hidden" id="faq-edit-id" value="">
+                            <div class="form-group">
+                                <label class="form-label" for="faq-question">Question *</label>
+                                <input type="text" class="form-control" id="faq-question" placeholder="Enter FAQ question" required>
+                                <p style="color: var(--gray); margin-bottom: 25px;">Enter the frequently asked question here.</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="faq-answer">Answer *</label>
+                                <textarea class="form-control" id="faq-answer" placeholder="Enter FAQ answer" required></textarea>
+                                <p style="color: var(--gray); margin-bottom: 25px;">Provide a clear and concise answer to the FAQ.</p>
+                            </div>
+                            
+                            <div class="action-buttons-container">
+                                <button type="submit" class="btn btn-success" id="faq-submit-btn">
+                                    <i class="fas fa-plus-circle"></i> Add FAQ
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="faq-cancel-edit" style="display: none;">
+                                    <i class="fas fa-times"></i> Cancel Edit
+                                </button>
+                                <button type="button" class="btn btn-warning" id="faq-reset-btn">
+                                    <i class="fas fa-undo"></i> Reset All FAQs
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="quick-guide-center">
+                    <div class="quick-guide-header">
+                        <h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2>
+                    </div>
+                    
+                    <div id="faq-guide" class="guide-section">
+                        <h4>FAQ Management</h4>
+                        <p>Manage frequently asked questions and their answers.</p>
+                        <ul>
+                            <li>Add, edit, and delete FAQs</li>
+                            <li>Provide clear and concise answers</li>
+                            <li>Organize by common topics</li>
+                            <li>Keep information up-to-date</li>
+                            <li>Changes are saved to Database</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="userFeedback" class="tab-content">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-comments"></i> User Feedback</h2>
+                        <div class="action-buttons">
+                            <a href="AboutUs.html" target="_blank" class="btn btn-success btn-sm">
+                                <i class="fas fa-eye"></i> View Site
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--gray); margin-bottom: 25px;">View and manage user feedback from the contact form. Feedback is stored in Firebase Realtime Database.</p>
+                                 
+                    <div class="tabs">
+                        <div class="tab active" data-feedback-tab="all">
+                            <i class="fa-solid fa-envelope"></i> All Feedback
+                        </div>
+                        <div class="tab" data-feedback-tab="unread">
+                            <i class="fa-solid fa-envelope-circle-check"></i> Unread
+                        </div>
+                        <div class="tab" data-feedback-tab="read">
+                            <i class="fa-solid fa-envelope-open-text"></i> Read
+                        </div>
+                        <div class="search-container">
+                            <input type="text" class="search-bar" id="feedback-search" placeholder="Search feedback by name, email, subject, or message...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div id="feedback-content" class="sub-tab-content active">
+                        <table class="data-table feedback-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>User Name</th>
+                                    <th>Subject</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="feedback-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="quick-guide-center">
+                    <div class="quick-guide-header">
+                        <h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2>
+                    </div>
+                    
+                    <div id="userFeedback-guide" class="guide-section">
+                        <h4>User Feedback Management</h4>
+                        <p>Manage user feedback from the contact form stored in Firebase.</p>
+                        <ul>
+                            <li>View all user messages with details</li>
+                            <li>Mark messages as read or unread</li>
+                            <li>Delete messages when no longer needed</li>
+                            <li>Use search to find specific messages</li>
+                            <li>Feedback is stored in Database under userFeedback</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="save-status" class="save-status">• Ready</div>
+    <div id="feedback-modal" class="edit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Feedback Details</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="feedback-detail-item">
+                    <div class="feedback-detail-label">Name:</div>
+                    <div class="feedback-detail-value" id="feedback-detail-name"></div>
+                </div>
+                <div class="feedback-detail-item">
+                    <div class="feedback-detail-label">Email:</div>
+                    <div class="feedback-detail-value" id="feedback-detail-email"></div>
+                </div>
+                <div class="feedback-detail-item">
+                    <div class="feedback-detail-label">Subject:</div>
+                    <div class="feedback-detail-value" id="feedback-detail-subject"></div>
+                </div>
+                <div class="feedback-detail-item">
+                    <div class="feedback-detail-label">Message:</div>
+                    <div class="feedback-detail-value" id="feedback-detail-message"></div>
+                </div>
+                <div class="feedback-detail-item">
+                    <div class="feedback-detail-label">Date:</div>
+                    <div class="feedback-detail-value" id="feedback-detail-date"></div>
+                </div>
+                <div class="feedback-detail-item">
+                    <div class="feedback-detail-label">Time:</div>
+                    <div class="feedback-detail-value" id="feedback-detail-time"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger btn-sm" id="feedback-modal-delete-btn">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+                <button class="btn btn-warning btn-sm" id="feedback-modal-mark-read-btn">
+                    <i class="fas fa-check-circle"></i> Mark as Read
+                </button>
+                <button class="btn btn-secondary btn-sm" id="feedback-modal-close-btn">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="AboutUsAdmin.js"></script>
+</body>
+</html>

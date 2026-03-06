@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Control - Barangay 118 Admin</title>
+    <link rel="shortcut icon" type="image/png" href="Logo-Favicon-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="AdminLogInControl.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo" onclick="location.reload()">
+                    <div class="logo-icon"><i class="fas fa-cogs"></i></div>
+                    <div class="logo-text">
+                        <h1>BARANGAY 118 ADMIN PANEL</h1>
+                        <p>Access Control Center</p>
+                    </div>
+                </div>
+                <div class="nav-links">
+                    <a href="PanelAdmin.html">Dashboard</a>
+                    <a href="AboutUsAdmin.html">AboutUs</a>
+                    <a href="NewsAdmin.html">News</a>
+                    <a href="EmergencyAdmin.html">Emergency</a>
+                    <a href="AdminAuthPanel.html">Create</a>
+                    <a href="AdminLogInControl.html" class="active">Access Control</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-panel">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title"><i class="fas fa-cogs"></i> Control Center</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" data-tab="dashboard" class="active"><span class="sidebar-icon"><i class="fas fa-tachometer-alt"></i></span> Dashboard Overview</a></li>
+                <li><a href="#" data-tab="user-management"><span class="sidebar-icon"><i class="fas fa-users-cog"></i></span> User Management</a></li>
+                <li><a href="#" data-tab="admin-management"><span class="sidebar-icon"><i class="fas fa-user-shield"></i></span> Admin Management</a></li>
+                <li><a href="#" data-tab="system-logs"><span class="sidebar-icon"><i class="fas fa-history"></i></span> System Logs</a></li>
+                <li><a href="#" data-tab="login-editor"><span class="sidebar-icon"><i class="fas fa-edit"></i></span> Login Hero Editor</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="LogIn.html" class="sidebar-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="admin-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <div class="admin-section">
+                    <h2 class="section-title"><i class="fas fa-tachometer-alt"></i> Dashboard Overview</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="system-status">Ready</div>
+                            <div class="stat-label">System Status</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="user-online">0</div>
+                            <div class="stat-label">User Online</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="data-size">0 KB</div>
+                            <div class="stat-label">Data Size</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="last-updated">Never</div>
+                            <div class="stat-label">Last Updated</div>
+                        </div>
+                    </div>
+                    <div class="alert alert-success"><strong><i class="fas fa-check-circle"></i> System Ready!</strong> Manage login and accounts via Firebase (<code>06_LogSystem</code>). Passwords are never stored in the database.</div>
+                    <h3 style="margin-bottom:15px">Quick Actions</h3>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" id="preview-login-btn"><i class="fas fa-external-link-alt"></i> Preview Login Page</button>
+                        <button class="btn btn-secondary" id="export-data-btn"><i class="fas fa-download"></i> Export Data</button>
+                        <button class="btn btn-success" id="backup-data-btn"><i class="fas fa-database"></i> Backup to JSON</button>
+                        <button class="btn btn-warning" id="refresh-btn"><i class="fas fa-sync"></i> Refresh</button>
+                        <button class="btn btn-danger" id="clear-data-btn"><i class="fas fa-trash"></i> Clear All Data</button>
+                    </div>
+                </div>
+                <div class="quick-guide-center">
+                    <div class="quick-guide-header"><h2 class="quick-guide-title"><i class="fas fa-book"></i> Quick Guide</h2></div>
+                    <div id="dashboard-guide" class="guide-section">
+                        <h4>Access Control Dashboard</h4>
+                        <p>Manage all user accounts, admins, and login page content. Data is stored in Firebase Realtime Database under <code>06_LogSystem</code>.</p>
+                        <ul>
+                            <li><strong>User Online</strong> – number of active sessions across all pages.</li>
+                            <li><strong>System Status</strong> – shows "Online" when connected to Firebase.</li>
+                            <li>Use the tabs to add/edit/delete accounts.</li>
+                            <li>Changes are saved automatically to Firebase.</li>
+                            <li><strong>Passwords are never saved</strong> – they must be managed in Firebase Authentication or another secure system.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Management Tab -->
+            <div id="user-management" class="tab-content">
+                <div class="admin-section">
+                    <h2 class="section-title"><i class="fas fa-users-cog"></i> User Management</h2>
+                    <p style="color:var(--gray); margin-bottom:25px;">Manage regular user accounts (role = user).</p>
+                    <div class="tabs">
+                        <div class="tab active" data-user-tab="existing"><i class="fas fa-list"></i> Existing Users</div>
+                        <div class="tab" data-user-tab="add"><i class="fas fa-user-plus"></i> Add New User</div>
+                        <div class="search-container">
+                            <input type="text" class="search-bar" id="user-search" placeholder="Search users...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                    </div>
+                    <!-- Existing Users -->
+                    <div id="existing-users" class="sub-tab-content active">
+                        <table class="data-table">
+                            <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Registered</th><th>Actions</th></tr></thead>
+                            <tbody id="users-table-body"></tbody>
+                        </table>
+                    </div>
+                    <!-- Add/Edit User -->
+                    <div id="add-user" class="sub-tab-content">
+                        <form id="user-form">
+                            <input type="hidden" id="user-edit-id" value="">
+                            <div class="form-row">
+                                <div class="form-group"><label class="form-label">Full Name *</label><input type="text" class="form-control" id="user-name" required></div>
+                                <div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-control" id="user-email" required></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label class="form-label">Password (for Auth only, not stored)</label><input type="text" class="form-control" id="user-password" placeholder="min. 6 characters"></div>
+                                <div class="form-group"><label class="form-label">Role</label>
+                                    <select class="form-control" id="user-role"><option value="user">User</option><option value="admin">Admin</option><option value="super_admin">Super Admin</option></select>
+                                </div>
+                                <div class="form-group"><label class="form-label">Status</label>
+                                    <select class="form-control" id="user-status"><option value="active">Active</option><option value="inactive">Inactive</option><option value="pending">Pending</option></select>
+                                </div>
+                            </div>
+                            <div class="action-buttons-container">
+                                <button type="submit" class="btn btn-success" id="user-submit-btn"><i class="fas fa-plus-circle"></i> Add User</button>
+                                <button type="button" class="btn btn-secondary" id="user-cancel-edit" style="display:none"><i class="fas fa-times"></i> Cancel Edit</button>
+                            </div>
+                            <p class="form-note"><i class="fas fa-info-circle"></i> Password is never stored in the database; set it via Firebase Auth separately.</p>
+                        </form>
+                    </div>
+                </div>
+                <div class="quick-guide-center"><div class="guide-section"><h4>User Management</h4><p>Add, edit, or delete regular users. Passwords are for display only and not saved.</p></div></div>
+            </div>
+
+            <!-- Admin Management Tab -->
+            <div id="admin-management" class="tab-content">
+                <div class="admin-section">
+                    <h2 class="section-title"><i class="fas fa-user-shield"></i> Admin Management</h2>
+                    <p style="color:var(--gray); margin-bottom:25px;">Manage admin and super admin accounts.</p>
+                    <div class="tabs">
+                        <div class="tab active" data-admin-tab="existing"><i class="fas fa-list"></i> Existing Admins</div>
+                        <div class="tab" data-admin-tab="add"><i class="fas fa-user-plus"></i> Add New Admin</div>
+                        <div class="search-container">
+                            <input type="text" class="search-bar" id="admin-search" placeholder="Search admins...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                    </div>
+                    <div id="existing-admins" class="sub-tab-content active">
+                        <table class="data-table">
+                            <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Last Login</th><th>Actions</th></tr></thead>
+                            <tbody id="admins-table-body"></tbody>
+                        </table>
+                    </div>
+                    <div id="add-admin" class="sub-tab-content">
+                        <form id="admin-form">
+                            <input type="hidden" id="admin-edit-id" value="">
+                            <div class="form-row">
+                                <div class="form-group"><label class="form-label">Full Name *</label><input type="text" class="form-control" id="admin-name" required></div>
+                                <div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-control" id="admin-email" required></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label class="form-label">Password (for Auth only)</label><input type="text" class="form-control" id="admin-password" placeholder="min. 6 characters"></div>
+                                <div class="form-group"><label class="form-label">Role</label>
+                                    <select class="form-control" id="admin-role"><option value="admin">Admin</option><option value="super_admin">Super Admin</option></select>
+                                </div>
+                                <div class="form-group"><label class="form-label">Status</label>
+                                    <select class="form-control" id="admin-status"><option value="active">Active</option><option value="inactive">Inactive</option></select>
+                                </div>
+                            </div>
+                            <div class="action-buttons-container">
+                                <button type="submit" class="btn btn-success" id="admin-submit-btn"><i class="fas fa-plus-circle"></i> Add Admin</button>
+                                <button type="button" class="btn btn-secondary" id="admin-cancel-edit" style="display:none"><i class="fas fa-times"></i> Cancel Edit</button>
+                            </div>
+                            <p class="form-note"><i class="fas fa-info-circle"></i> Password is never stored in the database.</p>
+                        </form>
+                    </div>
+                </div>
+                <div class="quick-guide-center"><div class="guide-section"><h4>Admin Management</h4><p>Super admin accounts cannot be deleted. Passwords are not saved.</p></div></div>
+            </div>
+
+            <!-- System Logs Tab -->
+            <div id="system-logs" class="tab-content">
+                <div class="admin-section">
+                    <h2 class="section-title"><i class="fas fa-history"></i> System Logs</h2>
+                    <p style="color:var(--gray); margin-bottom:25px;">Audit trail of all important actions.</p>
+                    
+                    <div class="form-group" style="max-width:300px">
+                        <label class="form-label">Filter by type</label>
+                        <select class="form-control" id="log-filter">
+                            <option value="all">All</option>
+                            <option value="login">Login</option>
+                            <option value="account">Account Management</option>
+                            <option value="content">Content Update</option>
+                            <option value="system">System</option>
+                        </select>
+                    </div>
+
+                    <div class="search-container">
+                        <input type="text" class="search-bar" id="admin-search" placeholder="Search admins...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Timestamp</th>
+                                <th>Action</th>
+                                <th>Details</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logs-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Login Editor Tab -->
+            <div id="login-editor" class="tab-content">
+                <div class="admin-section">
+                    <h2 class="section-title"><i class="fas fa-edit"></i> Login Page Editor</h2>
+                    <p style="color:var(--gray); margin-bottom:25px;">Customize the content shown on the login page.</p>
+                    <form id="login-page-form">
+                        <div class="form-row">
+                            <div class="form-group"><label class="form-label">Hero Title</label><input type="text" class="form-control" id="login-hero-title" placeholder="Login to Your Account"></div>
+                            <div class="form-group"><label class="form-label">Hero Description</label><input type="text" class="form-control" id="login-hero-desc" placeholder="Sign in to access..."></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label class="form-label">Welcome Title</label><input type="text" class="form-control" id="login-welcome-title" placeholder="Welcome"></div>
+                            <div class="form-group"><label class="form-label">Welcome Description</label><input type="text" class="form-control" id="login-welcome-desc" placeholder="Access your barangay services..."></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Features (one per line)</label>
+                            <textarea class="form-control" id="login-features" rows="4" placeholder="Quick document requests&#10;Request Processing Overview&#10;Community announcements&#10;Secure and private"></textarea>
+                        </div>
+                        <div class="action-buttons-container">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Login Page Content</button>
+                            <button type="button" class="btn btn-warning" id="reset-login-page-btn"><i class="fas fa-undo"></i> Reset to Defaults</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="save-status" class="save-status">• Connected to Firebase</div>
+    <div id="toast" class="toast"></div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyADUN3zUupPLgB8Z0p_867XUK7FYKCkwoU",
+            authDomain: "barangay118-test-website.firebaseapp.com",
+            databaseURL: "https://barangay118-test-website-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "barangay118-test-website",
+            storageBucket: "barangay118-test-website.firebasestorage.app",
+            messagingSenderId: "459463926150",
+            appId: "1:459463926150:web:9198dcc900dd9236a24c07",
+            measurementId: "G-DP4QQ9KLKE"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const rootRef = db.ref('06_LogSystem');
+        
+        class AdminLogControlPanel {
+            constructor() {
+                this.data = {
+                    accounts: {},
+                    logs: {},
+                    loginPage: {
+                        heroTitle: 'Login to Your Account',
+                        heroDescription: 'Sign in to access your dashboard and Barangay 118 services.',
+                        welcomeTitle: 'Welcome',
+                        welcomeDescription: 'Access your barangay services and stay connected securely through our portal.',
+                        features: ['Quick document requests', 'Request Processing Overview', 'Community announcements', 'Secure and private']
+                    }
+                };
+                this.lastUpdated = null;
+                this.sessionId = null;
+                this.presenceRef = null;
+                this.init();
+            }
+        
+            init() {
+                this.loadFromFirebase();
+                this.setupListeners();
+                this.setupEventListeners();
+                this.setupPresence();
+                this.setupConnectionStatus();
+                this.updateSaveStatus('Connected');
+            }
+        
+            setupPresence() {
+                this.sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8);
+                this.presenceRef = rootRef.child('0D_onlineUsers/' + this.sessionId);
+        
+                db.ref('.info/connected').on('value', (snap) => {
+                    if (snap.val() === true) {
+                        this.presenceRef.set(true);
+                        this.presenceRef.onDisconnect().remove();
+                    }
+                });
+        
+                rootRef.child('0D_onlineUsers').on('value', (snapshot) => {
+                    const count = snapshot.numChildren();
+                    document.getElementById('user-online').textContent = count;
+                });
+            }
+        
+            setupConnectionStatus() {
+                const statusEl = document.getElementById('system-status');
+                db.ref('.info/connected').on('value', (snap) => {
+                    statusEl.textContent = snap.val() ? 'Online' : 'Offline';
+                    statusEl.style.color = snap.val() ? '#10b981' : '#ef4444';
+                });
+            }
+        
+            loadFromFirebase() {
+                rootRef.once('value', (snapshot) => {
+                    const fbData = snapshot.val() || {};
+                    if (fbData['0A_accounts']) this.data.accounts = fbData['0A_accounts'];
+                    if (fbData['0B_logs']) this.data.logs = fbData['0B_logs'];
+                    if (fbData['0C_loginPage']) this.data.loginPage = { ...this.data.loginPage, ...fbData['0C_loginPage'] };
+                    
+                    if (Object.keys(this.data.accounts).length === 0) {
+                        this.seedDefaultAccounts();
+                    }
+                    
+                    this.lastUpdated = new Date();
+                    this.renderAll();
+                    this.logActivity('System', 'Data loaded from Firebase', 'system', 'success');
+                });
+            }
+        
+            seedDefaultAccounts() {
+                const accounts = {};
+        
+                accounts.acc1 = {
+                    id: 'acc1',
+                    email: 'mainadmin@barangay118.gov.ph',
+                    role: 'main_admin',
+                    name: 'Primary Administrator',
+                    status: 'active',
+                    registered: new Date().toLocaleDateString(),
+                    lastLogin: ''
+                };
+                accounts.acc2 = {
+                    id: 'acc2',
+                    email: 'mainadmin2@barangay118.gov.ph',
+                    role: 'main_admin',
+                    name: 'Chief Administrator',
+                    status: 'active',
+                    registered: new Date().toLocaleDateString(),
+                    lastLogin: ''
+                };
+        
+                accounts.acc3 = {
+                    id: 'acc3',
+                    email: 'admin1@barangay118.gov.ph',
+                    role: 'admin',
+                    name: 'Records Administrator',
+                    status: 'active',
+                    registered: new Date().toLocaleDateString(),
+                    lastLogin: ''
+                };
+                accounts.acc4 = {
+                    id: 'acc4',
+                    email: 'admin2@barangay118.gov.ph',
+                    role: 'admin',
+                    name: 'Operations Administrator',
+                    status: 'active',
+                    registered: new Date().toLocaleDateString(),
+                    lastLogin: ''
+                };
+                accounts.acc5 = {
+                    id: 'acc5',
+                    email: 'admin3@barangay118.gov.ph',
+                    role: 'admin',
+                    name: 'Logistics Administrator',
+                    status: 'active',
+                    registered: new Date().toLocaleDateString(),
+                    lastLogin: ''
+                };
+        
+                const userList = [
+                    { id: 6, email: "almanzor_jhlox@barangay118.gov.ph", name: "Jhlox ALMANZOR" },
+                    { id: 7, email: "andaya_zantrix@barangay118.gov.ph", name: "Zantrix ANDAYA" },
+                    { id: 8, email: "aranas_john@barangay118.gov.ph", name: "John Aezer ARANAS" },
+                    { id: 9, email: "argallon_ezekiel@barangay118.gov.ph", name: "Ezekiel ARGALLON" },
+                    { id: 10, email: "badilla_carl@barangay118.gov.ph", name: "Carl John Henry BADILLA" },
+                    { id: 11, email: "bag-id_alvin@barangay118.gov.ph", name: "Alvin BAG-ID" },
+                    { id: 12, email: "blanco_zidane@barangay118.gov.ph", name: "Zidane BLANCO" },
+                    { id: 13, email: "burgos_alfred@barangay118.gov.ph", name: "Alfred BURGOS" },
+                    { id: 14, email: "canlas_chester@barangay118.gov.ph", name: "Chester CANLAS" },
+                    { id: 15, email: "castro_jomar@barangay118.gov.ph", name: "Jomar CASTRO" },
+                    { id: 16, email: "catimbang_john@barangay118.gov.ph", name: "John Mark CATIMBANG" },
+                    { id: 17, email: "cruz_jezrel@barangay118.gov.ph", name: "Jezrel CRUZ" },
+                    { id: 18, email: "espino_rance@barangay118.gov.ph", name: "Rance ESPINO" },
+                    { id: 19, email: "fernandez_mico@barangay118.gov.ph", name: "Mico FERNANDEZ" },
+                    { id: 20, email: "flores_calvin@barangay118.gov.ph", name: "Calvin FLORES" },
+                    { id: 21, email: "galibo_gemanuel@barangay118.gov.ph", name: "Gemanuel GALIBO" },
+                    { id: 22, email: "garcia_john@barangay118.gov.ph", name: "John Cedric GARCIA" },
+                    { id: 23, email: "gatmaitan_renz@barangay118.gov.ph", name: "Renz Albert GATMAITAN" },
+                    { id: 24, email: "honradez_zacchary@barangay118.gov.ph", name: "Zacchary HONRADEZ" },
+                    { id: 25, email: "judaya_aedrick@barangay118.gov.ph", name: "Aedrick JUDAYA" },
+                    { id: 26, email: "lingan_andres@barangay118.gov.ph", name: "Andres LINGAN" },
+                    { id: 27, email: "mahilum_shchem@barangay118.gov.ph", name: "Shchem MAHILUM" },
+                    { id: 28, email: "manalo_carlos@barangay118.gov.ph", name: "Carlos MANALO" },
+                    { id: 29, email: "mendina_john@barangay118.gov.ph", name: "John Paul MENDINA" },
+                    { id: 30, email: "moldez_john@barangay118.gov.ph", name: "John Paul MOLDEZ" },
+                    { id: 31, email: "ortega_danny@barangay118.gov.ph", name: "Danny King ORTEGA" },
+                    { id: 32, email: "pangco_miguel@barangay118.gov.ph", name: "Miguel PANGCO" },
+                    { id: 33, email: "pontilan_neo@barangay118.gov.ph", name: "Neo Angelo PONTILAN" },
+                    { id: 34, email: "pozon_david@barangay118.gov.ph", name: "David Bryant POZON" },
+                    { id: 35, email: "pozon_john@barangay118.gov.ph", name: "John Patrick POZON" },
+                    { id: 36, email: "quindoza_mark@barangay118.gov.ph", name: "Mark Raymond QUINDOZA" },
+                    { id: 37, email: "saflor_jillian@barangay118.gov.ph", name: "Jillian SAFLOR" },
+                    { id: 38, email: "sandiego_mark@barangay118.gov.ph", name: "Mark SAN DIEGO" },
+                    { id: 39, email: "solis_jacob@barangay118.gov.ph", name: "Jacob SOLIS" },
+                    { id: 40, email: "sy_aarondave@barangay118.gov.ph", name: "Aaron Ariegado SY" },
+                    { id: 41, email: "vasquez_terrence@barangay118.gov.ph", name: "Terrence VASQUEZ" },
+                    { id: 42, email: "villarosa_kris@barangay118.gov.ph", name: "Kris VILLAROSA" },
+                    { id: 43, email: "carlos_aaliyah@barangay118.gov.ph", name: "Aaliyah Alyssa CARLOS" },
+                    { id: 44, email: "limbo_jewel@barangay118.gov.ph", name: "Jewel LIMBO" },
+                    { id: 45, email: "magampo_celestine@barangay118.gov.ph", name: "Celestine I MAGAMPO" },
+                    { id: 46, email: "ong_clariza@barangay118.gov.ph", name: "Clariza ONG" },
+                    { id: 47, email: "orpilla_jemilhyn@barangay118.gov.ph", name: "Jemilhyn ORPILLA" },
+                    { id: 48, email: "ruiz_angel@barangay118.gov.ph", name: "Angel RUIZ" },
+                    { id: 49, email: "tester_@barangay118.gov.ph", name: "guests tester" },
+                ];
+        
+                userList.forEach(user => {
+                    const accId = 'acc' + user.id;
+                    accounts[accId] = {
+                        id: accId,
+                        email: user.email,
+                        role: 'user',
+                        name: user.name,
+                        status: 'active',
+                        registered: new Date().toLocaleDateString(),
+                        lastLogin: ''
+                    };
+                });
+        
+                this.data.accounts = accounts;
+                this.lastUpdated = new Date();
+                this.saveToFirebase('0A_accounts', this.data.accounts);
+            }
+        
+            saveToFirebase(path, value) {
+                rootRef.child(path).set(value, (error) => {
+                    if (error) {
+                        this.showToast('Save failed: ' + error.message, 'error');
+                        this.updateSaveStatus('Save failed', 'error');
+                    } else {
+                        this.lastUpdated = new Date();
+                        this.renderDashboardStats();
+                        this.updateSaveStatus('Saved', 'success');
+                    }
+                });
+            }
+        
+            setupListeners() {
+                rootRef.on('value', (snapshot) => {
+                    const fbData = snapshot.val() || {};
+                    if (fbData['0A_accounts']) this.data.accounts = fbData['0A_accounts'];
+                    if (fbData['0B_logs']) this.data.logs = fbData['0B_logs'];
+                    if (fbData['0C_loginPage']) this.data.loginPage = { ...this.data.loginPage, ...fbData['0C_loginPage'] };
+                    this.lastUpdated = new Date();
+                    this.renderAll();
+                });
+            }
+        
+            renderAll() {
+                this.renderDashboardStats();
+                this.renderUsersTable();
+                this.renderAdminsTable();
+                this.renderLogsTable();
+                this.populateLoginForm();
+            }
+        
+            renderDashboardStats() {
+                document.getElementById('data-size').textContent = this.getDataSize();
+                document.getElementById('last-updated').textContent = this.getLastUpdatedFormatted();
+            }
+        
+            getDataSize() {
+                try {
+                    const jsonString = JSON.stringify(this.data);
+                    const bytes = new Blob([jsonString]).size;
+                    const kb = bytes / 1024;
+                    return kb < 1 ? '< 1 KB' : kb.toFixed(1) + ' KB';
+                } catch (e) {
+                    return '? KB';
+                }
+            }
+        
+            getLastUpdatedFormatted() {
+                if (!this.lastUpdated) return 'Never';
+                return `${this.lastUpdated.getMonth()+1}/${this.lastUpdated.getDate()}/${this.lastUpdated.getFullYear()}`;
+            }
+        
+            renderUsersTable() {
+                const tbody = document.getElementById('users-table-body');
+                if (!tbody) return;
+                const users = Object.values(this.data.accounts).filter(a => a.role === 'user');
+                tbody.innerHTML = '';
+                users.forEach((user, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td><span class="role-badge user">user</span></td>
+                        <td><span class="status-badge ${user.status}">${user.status}</span></td>
+                        <td>${user.registered || ''}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm edit-user" data-id="${user.id}"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="btn btn-danger btn-sm delete-user" data-id="${user.id}"><i class="fas fa-trash"></i> Delete</button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+                document.querySelectorAll('.edit-user').forEach(btn => btn.addEventListener('click', (e) => this.editUser(e.target.closest('button').dataset.id)));
+                document.querySelectorAll('.delete-user').forEach(btn => btn.addEventListener('click', (e) => this.deleteUser(e.target.closest('button').dataset.id)));
+            }
+        
+            renderAdminsTable() {
+                const tbody = document.getElementById('admins-table-body');
+                if (!tbody) return;
+                const admins = Object.values(this.data.accounts).filter(a => a.role === 'admin' || a.role === 'main_admin');
+                tbody.innerHTML = '';
+                admins.forEach((admin, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${admin.name}</td>
+                        <td>${admin.email}</td>
+                        <td><span class="role-badge ${admin.role}">${admin.role}</span></td>
+                        <td><span class="status-badge ${admin.status}">${admin.status}</span></td>
+                        <td>${admin.lastLogin || ''}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm edit-admin" data-id="${admin.id}"><i class="fas fa-edit"></i> Edit</button>
+                            ${admin.role !== 'main_admin' ? `<button class="btn btn-danger btn-sm delete-admin" data-id="${admin.id}"><i class="fas fa-trash"></i> Delete</button>` : ''}
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+                document.querySelectorAll('.edit-admin').forEach(btn => btn.addEventListener('click', (e) => this.editAdmin(e.target.closest('button').dataset.id)));
+                document.querySelectorAll('.delete-admin').forEach(btn => btn.addEventListener('click', (e) => this.deleteAdmin(e.target.closest('button').dataset.id)));
+            }
+        
+            renderLogsTable() {
+                const tbody = document.getElementById('logs-table-body');
+                if (!tbody) return;
+                const filter = document.getElementById('log-filter')?.value || 'all';
+                let logs = Object.values(this.data.logs);
+                if (filter !== 'all') logs = logs.filter(log => log.type === filter);
+                logs.sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
+                tbody.innerHTML = logs.map(log => `
+                    <tr>
+                        <td>${log.user || ''}</td>
+                        <td>${log.timestamp ? new Date(log.timestamp).toLocaleString() : ''}</td>
+                        <td>${log.action || ''}</td>
+                        <td>${log.details || ''}</td>
+                        <td><span class="status-badge ${log.status}">${log.status}</span></td>
+                    </tr>
+                `).join('');
+            }
+        
+            populateLoginForm() {
+                const lp = this.data.loginPage;
+                document.getElementById('login-hero-title').value = lp.heroTitle || '';
+                document.getElementById('login-hero-desc').value = lp.heroDescription || '';
+                document.getElementById('login-welcome-title').value = lp.welcomeTitle || '';
+                document.getElementById('login-welcome-desc').value = lp.welcomeDescription || '';
+                document.getElementById('login-features').value = (lp.features || []).join('\n');
+            }
+        
+            addUpdateUser(event) {
+                event.preventDefault();
+                const id = document.getElementById('user-edit-id').value;
+                const userData = {
+                    id: id || 'acc' + Date.now() + Math.random().toString(36).substr(2, 4),
+                    name: document.getElementById('user-name').value,
+                    email: document.getElementById('user-email').value,
+                    role: document.getElementById('user-role').value,
+                    status: document.getElementById('user-status').value,
+                    registered: id ? (this.data.accounts[id]?.registered || new Date().toLocaleDateString()) : new Date().toLocaleDateString(),
+                    lastLogin: id ? (this.data.accounts[id]?.lastLogin || '') : ''
+                };
+                if (!id && this.emailExists(userData.email)) {
+                    this.showToast('Email already exists!', 'error');
+                    return;
+                }
+                this.data.accounts[userData.id] = userData;
+                this.saveToFirebase('0A_accounts', this.data.accounts);
+                this.logActivity(userData.name, id ? 'Account updated' : 'Account created', 'account', 'success');
+                this.showToast(id ? 'User updated (password not stored)' : 'User added (password not stored)', 'success');
+                this.resetUserForm();
+                this.switchSubTab('user-management', 'existing');
+            }
+        
+            emailExists(email, excludeId = null) {
+                return Object.values(this.data.accounts).some(a => a.email === email && a.id !== excludeId);
+            }
+        
+            editUser(id) {
+                const user = this.data.accounts[id];
+                if (!user) return;
+                document.getElementById('user-edit-id').value = user.id;
+                document.getElementById('user-name').value = user.name;
+                document.getElementById('user-email').value = user.email;
+                document.getElementById('user-password').value = '';
+                document.getElementById('user-role').value = user.role;
+                document.getElementById('user-status').value = user.status;
+                document.getElementById('user-submit-btn').innerHTML = '<i class="fas fa-save"></i> Update User';
+                document.getElementById('user-cancel-edit').style.display = 'inline-block';
+                this.switchSubTab('user-management', 'add');
+            }
+        
+            deleteUser(id) {
+                if (!confirm('Delete this user?')) return;
+                delete this.data.accounts[id];
+                this.saveToFirebase('0A_accounts', this.data.accounts);
+                this.logActivity('System', 'User deleted', 'account', 'warning');
+                this.showToast('User deleted', 'success');
+            }
+        
+            resetUserForm() {
+                document.getElementById('user-form').reset();
+                document.getElementById('user-edit-id').value = '';
+                document.getElementById('user-submit-btn').innerHTML = '<i class="fas fa-plus-circle"></i> Add User';
+                document.getElementById('user-cancel-edit').style.display = 'none';
+            }
+        
+            addUpdateAdmin(event) {
+                event.preventDefault();
+                const id = document.getElementById('admin-edit-id').value;
+                const adminData = {
+                    id: id || 'acc' + Date.now() + Math.random().toString(36).substr(2, 4),
+                    name: document.getElementById('admin-name').value,
+                    email: document.getElementById('admin-email').value,
+                    role: document.getElementById('admin-role').value,
+                    status: document.getElementById('admin-status').value,
+                    registered: id ? (this.data.accounts[id]?.registered || new Date().toLocaleDateString()) : new Date().toLocaleDateString(),
+                    lastLogin: id ? (this.data.accounts[id]?.lastLogin || '') : ''
+                };
+                if (!id && this.emailExists(adminData.email)) {
+                    this.showToast('Email already exists!', 'error');
+                    return;
+                }
+                this.data.accounts[adminData.id] = adminData;
+                this.saveToFirebase('0A_accounts', this.data.accounts);
+                this.logActivity(adminData.name, id ? 'Admin updated' : 'Admin created', 'account', 'success');
+                this.showToast(id ? 'Admin updated' : 'Admin added', 'success');
+                this.resetAdminForm();
+                this.switchSubTab('admin-management', 'existing');
+            }
+        
+            editAdmin(id) {
+                const admin = this.data.accounts[id];
+                if (!admin) return;
+                document.getElementById('admin-edit-id').value = admin.id;
+                document.getElementById('admin-name').value = admin.name;
+                document.getElementById('admin-email').value = admin.email;
+                document.getElementById('admin-password').value = '';
+                document.getElementById('admin-role').value = admin.role;
+                document.getElementById('admin-status').value = admin.status;
+                document.getElementById('admin-submit-btn').innerHTML = '<i class="fas fa-save"></i> Update Admin';
+                document.getElementById('admin-cancel-edit').style.display = 'inline-block';
+                this.switchSubTab('admin-management', 'add');
+            }
+        
+            deleteAdmin(id) {
+                if (!confirm('Delete this admin?')) return;
+                delete this.data.accounts[id];
+                this.saveToFirebase('0A_accounts', this.data.accounts);
+                this.logActivity('System', 'Admin deleted', 'account', 'warning');
+                this.showToast('Admin deleted', 'success');
+            }
+        
+            resetAdminForm() {
+                document.getElementById('admin-form').reset();
+                document.getElementById('admin-edit-id').value = '';
+                document.getElementById('admin-submit-btn').innerHTML = '<i class="fas fa-plus-circle"></i> Add Admin';
+                document.getElementById('admin-cancel-edit').style.display = 'none';
+            }
+        
+            saveLoginPage(event) {
+                event.preventDefault();
+                const features = document.getElementById('login-features').value.split('\n').map(s => s.trim()).filter(s => s);
+                this.data.loginPage = {
+                    heroTitle: document.getElementById('login-hero-title').value,
+                    heroDescription: document.getElementById('login-hero-desc').value,
+                    welcomeTitle: document.getElementById('login-welcome-title').value,
+                    welcomeDescription: document.getElementById('login-welcome-desc').value,
+                    features: features
+                };
+                this.saveToFirebase('0C_loginPage', this.data.loginPage);
+                this.logActivity('System', 'Login page content updated', 'content', 'success');
+                this.showToast('Login page saved', 'success');
+            }
+        
+            resetLoginPage() {
+                if (confirm('Reset to default content?')) {
+                    this.data.loginPage = {
+                        heroTitle: 'Login to Your Account',
+                        heroDescription: 'Sign in to access your dashboard and Barangay 118 services.',
+                        welcomeTitle: 'Welcome',
+                        welcomeDescription: 'Access your barangay services and stay connected securely through our portal.',
+                        features: ['Quick document requests', 'Request Processing Overview', 'Community announcements', 'Secure and private']
+                    };
+                    this.populateLoginForm();
+                    this.saveToFirebase('0C_loginPage', this.data.loginPage);
+                    this.showToast('Login page reset to defaults', 'success');
+                }
+            }
+        
+            clearAllData() {
+                if (!confirm('⚠️ CLEAR ALL DATA? This will delete ALL accounts, logs, and login page content. This action cannot be undone.')) return;
+                
+                rootRef.set(null, (error) => {
+                    if (error) {
+                        this.showToast('Clear failed: ' + error.message, 'error');
+                    } else {
+                        this.seedDefaultAccounts();
+                        this.data.loginPage = {
+                            heroTitle: 'Login to Your Account',
+                            heroDescription: 'Sign in to access your dashboard and Barangay 118 services.',
+                            welcomeTitle: 'Welcome',
+                            welcomeDescription: 'Access your barangay services and stay connected securely through our portal.',
+                            features: ['Quick document requests', 'Request Processing Overview', 'Community announcements', 'Secure and private']
+                        };
+                        this.saveToFirebase('0C_loginPage', this.data.loginPage);
+                        this.logActivity('System', 'All data cleared and reset to defaults', 'system', 'warning');
+                        this.showToast('All data cleared and reset to defaults.', 'success');
+                    }
+                });
+            }
+        
+            logActivity(user, action, type, status) {
+                const logEntry = {
+                    timestamp: Date.now(),
+                    user: user,
+                    action: action,
+                    details: action,
+                    type: type,
+                    status: status
+                };
+                const logId = 'log' + Date.now() + Math.random().toString(36).substr(2, 4);
+                this.data.logs[logId] = logEntry;
+                this.saveToFirebase('0B_logs', this.data.logs);
+            }
+        
+            showToast(msg, type = 'info') {
+                const toast = document.getElementById('toast');
+                toast.textContent = msg;
+                toast.className = `toast ${type} show`;
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            }
+        
+            updateSaveStatus(msg, type = 'info') {
+                const el = document.getElementById('save-status');
+                el.textContent = '• ' + msg;
+                el.className = 'save-status ' + type;
+                setTimeout(() => {
+                    el.textContent = '• Connected to Firebase';
+                    el.className = 'save-status';
+                }, 3000);
+            }
+        
+            switchTab(tabId) {
+                document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+                document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+            }
+        
+            switchSubTab(parentTab, subTab) {
+                const container = document.getElementById(parentTab);
+                const tabs = container.querySelectorAll('[data-user-tab], [data-admin-tab]');
+                tabs.forEach(t => t.classList.remove('active'));
+                container.querySelector(`[data-${parentTab === 'user-management' ? 'user' : 'admin'}-tab="${subTab}"]`).classList.add('active');
+                container.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
+                container.querySelector(subTab === 'existing' ? '#existing-' + (parentTab === 'user-management' ? 'users' : 'admins') : '#add-' + (parentTab === 'user-management' ? 'user' : 'admin')).classList.add('active');
+            }
+        
+            setupSearch() {
+                document.getElementById('user-search').addEventListener('input', (e) => {
+                    const val = e.target.value.toLowerCase();
+                    document.querySelectorAll('#users-table-body tr').forEach(row => {
+                        row.style.display = row.innerText.toLowerCase().includes(val) ? '' : 'none';
+                    });
+                });
+                document.getElementById('admin-search').addEventListener('input', (e) => {
+                    const val = e.target.value.toLowerCase();
+                    document.querySelectorAll('#admins-table-body tr').forEach(row => {
+                        row.style.display = row.innerText.toLowerCase().includes(val) ? '' : 'none';
+                    });
+                });
+            }
+        
+            setupEventListeners() {
+                document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.switchTab(link.dataset.tab);
+                    });
+                });
+        
+                document.querySelectorAll('[data-user-tab]').forEach(tab => {
+                    tab.addEventListener('click', () => this.switchSubTab('user-management', tab.dataset.userTab));
+                });
+                document.querySelectorAll('[data-admin-tab]').forEach(tab => {
+                    tab.addEventListener('click', () => this.switchSubTab('admin-management', tab.dataset.adminTab));
+                });
+        
+                document.getElementById('user-form').addEventListener('submit', (e) => this.addUpdateUser(e));
+                document.getElementById('admin-form').addEventListener('submit', (e) => this.addUpdateAdmin(e));
+                document.getElementById('login-page-form').addEventListener('submit', (e) => this.saveLoginPage(e));
+                document.getElementById('reset-login-page-btn').addEventListener('click', () => this.resetLoginPage());
+        
+                document.getElementById('user-cancel-edit').addEventListener('click', () => {
+                    this.resetUserForm();
+                    this.switchSubTab('user-management', 'existing');
+                });
+                document.getElementById('admin-cancel-edit').addEventListener('click', () => {
+                    this.resetAdminForm();
+                    this.switchSubTab('admin-management', 'existing');
+                });
+        
+                document.getElementById('preview-login-btn').addEventListener('click', () => window.open('LogIn.html', '_blank'));
+                document.getElementById('export-data-btn').addEventListener('click', () => this.exportData());
+                document.getElementById('backup-data-btn').addEventListener('click', () => this.exportData());
+                document.getElementById('refresh-btn').addEventListener('click', () => this.loadFromFirebase());
+                document.getElementById('clear-data-btn').addEventListener('click', () => this.clearAllData());
+                document.getElementById('log-filter').addEventListener('change', () => this.renderLogsTable());
+                this.setupSearch();
+            }
+        
+            exportData() {
+                const dataStr = JSON.stringify(this.data, null, 2);
+                const blob = new Blob([dataStr], {type: 'application/json'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `logsystem-backup-${new Date().toISOString().split('T')[0]}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+                this.showToast('Data exported', 'success');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            window.panel = new AdminLogControlPanel();
+        });
+        </script>
+</body>
+</html>
